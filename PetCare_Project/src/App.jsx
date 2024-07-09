@@ -4,11 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  var a=11231;
-  var b=11231;
-  var c=11231;
-  var D=11231;
-  var cE=11231;
+
   return (
     <>
       
