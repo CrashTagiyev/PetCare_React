@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import { LoginRequest } from "../../AxiosFetchs/AuthFetchs/LoginRequest";
 import { PetCareAPI } from "../../APIs/PetCareAPI";
+import { useAuth } from "../../Hooks/useAuth";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const { login } = useAuth();
 
-  const loginHandler=(event)=>{
-    LoginRequest(loginEmail,loginPassword,event)
-  }
+  const loginHandler = (event) => {
+    event.preventDefault();
+    LoginRequest(loginEmail, loginPassword, event).then((u) => {
+      console.log(u.username);
+      console.log(u.emailAdress);
+      console.log(u.roles);
+      login(u);
+    });
+  };
 
   return (
     <>
@@ -29,20 +37,18 @@ const Login = () => {
       </form>
 
       <button
-            onClick={async () => {
-              try {
-                const response = await PetCareAPI.get(
-                  "/RepoTest/AppUserGetAll"
-                );
-                console.log(response.status);
-                console.log(response.data);
-              } catch (error) {
-                console.error("Fetching products failed:", error);
-              }
-            }}
-          >
-            Fetch Users
-          </button>
+        onClick={async () => {
+          try {
+            const response = await PetCareAPI.get("/RepoTest/AppUserGetAll");
+            console.log(response.status);
+            console.log(response.data);
+          } catch (error) {
+            console.error("Fetching products failed:", error);
+          }
+        }}
+      >
+        Fetch Users
+      </button>
     </>
   );
 };
