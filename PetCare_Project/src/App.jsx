@@ -3,12 +3,9 @@ import Login from "./Components/AuthComponents/Login";
 import { Routes, Route } from "react-router-dom";
 import AuthRequires from "./Components/AuthRequires";
 import GetUsers from "./Components/GetUsers";
-import Home from "./Components/ClassicComponents/Home";
-import AdminLayout from "./Components/Layouts/AdminLayout";
-import { useState, useEffect } from "react";
-import { jwtDecode } from "jwt-decode";
-import { AuthProvider } from "./Hooks/useAuth";
-
+import Home from "./Components/AuthComponents/Home";
+import Layout from "./Components/Layouts/Layout";
+import { useAuth } from "./Hooks/useAuth";
 const ROLES = {
   ADMIN: "Admin",
   USER: "User",
@@ -17,38 +14,20 @@ const ROLES = {
 };
 
 function App() {
-  const [currentRoles, setCurrentRoles] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token);
-        const tokenRoles = decodedToken.role;
-        setCurrentRoles(Array.isArray(tokenRoles) ? tokenRoles : [tokenRoles]);
-      } catch (error) {
-        console.error("Invalid token:", error);
-      }
-    }
-    setIsLoading(false);
-  }, []);
-
-  if (isLoading) return <h1>Loading...</h1>;
+  const { user } = useAuth();
 
   return (
-    <AuthProvider>
-      <Routes>
-        {/* Admin layout */}
-        <Route path="/login" element={<Login />} />
+    <Routes>
+      {/* Admin layout */}
+      <Route element={<Layout />}>
+        {!user && <Route path="/login" element={<Login />} />}
+        <Route path="/" element={<Home />} />
+
         <Route element={<AuthRequires allowedRoles={[ROLES.ADMIN]} />}>
-          <Route path="/" element={<AdminLayout />}>
-            <Route index element={<Home />} />
-            <Route path="/getusers" element={<GetUsers />} />
-          </Route>
+          <Route path="/getusers" element={<GetUsers />} />
         </Route>
-      </Routes>
-    </AuthProvider>
+      </Route>
+    </Routes>
   );
 }
 
