@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {jwtDecode} from "jwt-decode"; 
+import { jwtDecode } from "jwt-decode";
 import { Outlet, useLocation, Navigate } from "react-router-dom";
 
 const AuthRequires = ({ allowedRoles, children }) => {

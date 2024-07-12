@@ -5,7 +5,6 @@ import { useAuth } from "../Hooks/useAuth";
 const GetUsers = () => {
   const { user } = useAuth();
 
-  // Ensure user is not null before accessing its properties
 
   console.log(user.roles  );
   return (
