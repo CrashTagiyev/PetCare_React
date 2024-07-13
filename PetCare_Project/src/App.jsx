@@ -6,6 +6,7 @@ import GetUsers from "./Components/GetUsers";
 import Home from "./Components/Home/Home";
 import Layout from "./Components/Layouts/Layout";
 import { useAuth } from "./Hooks/useAuth";
+import SignUp from "./Components/SignUp/SignUp";
 const ROLES = {
   ADMIN: "Admin",
   USER: "User",
@@ -21,8 +22,9 @@ function App() {
       {/* Admin layout */}
       <Route element={<Layout />}>
         {!user && <Route path="/login" element={<Login />} />}
+        {!user && <Route path="/signup" element={<SignUp />} />}
         <Route path="/" element={<Home />} />
-        
+
         <Route element={<AuthRequires allowedRoles={[ROLES.ADMIN]} />}>
           <Route path="/getusers" element={<GetUsers />} />
         </Route>

@@ -1,0 +1,20 @@
+.signUp-Section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #efeef1;
+  height: 723px;
+}
+
+.signUp-Container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 20px;
+  height: 400px;
+  width: 700px;
+  padding: 62px 30px 40px;
+  background-color: white;
+}
