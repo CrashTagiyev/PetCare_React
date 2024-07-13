@@ -1,13 +1,22 @@
 import React from "react";
-import "../../Styles/css/footer.css";
+import "../footer/footer.scss";
+import footerlogo from "../../assets/Icons/ footer-logo.png"
+import facebook from "../../assets/Icons/ facebook.png"
+import twitter from "../../assets/Icons/ twitter.png"
+import instagram from "../../assets/Icons/ instagram.png"
+import youtube from "../../assets/Icons/ youtube.png"
+import pinterest from "../../assets/Icons/ pinterest.png"
 
-const footer = () => {
+const Footer = () => {
   return (
     <footer>
       <div class="footer-upper-part">
         <div class="logo-part">
           <a href="#">
-            <img src="../ assets/ footer-logo.png" alt="logo" />
+            <img
+              src={footerlogo}
+              alt="logo"
+            />
           </a>
         </div>
         <div class="middle-part">
@@ -30,27 +39,27 @@ const footer = () => {
           <ul>
             <li>
               <a href="#">
-                <img src="../ assets/ facebook.png" alt="facebook.com" />
+                <img src={facebook} alt="facebook.com" />
               </a>
             </li>
             <li>
               <a href="#">
-                <img src="../ assets/ twitter.png" alt="facebook.com" />
+                <img src={twitter} alt="twitter.com" />
               </a>
             </li>
             <li>
               <a href="#">
-                <img src="../ assets/ instagram.png" alt="facebook.com" />
+                <img src={instagram} alt="instagram.com" />
               </a>
             </li>
             <li>
               <a href="#">
-                <img src="../ assets/ youtube.png" alt="facebook.com" />
+                <img src={youtube} alt="youtube.com" />
               </a>
             </li>
             <li>
               <a href="#">
-                <img src="../ assets/ pinterest.png" alt="facebook.com" />
+                <img src={pinterest} alt="pinterest.com" />
               </a>
             </li>
           </ul>
@@ -69,4 +78,4 @@ const footer = () => {
   );
 };
 
-export default footer;
+export default Footer;
