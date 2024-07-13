@@ -1,0 +1,106 @@
+$footer-color-1: #6504B5;
+$footer-color-2: #2E0152;
+$footer-color-3: #FFFFFF;
+$hover-color-1: #E49BFF;
+$font-1: sans-serif;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font-1;
+}
+
+footer{
+    width: 100%;
+}
+
+.footer-upper-part{
+    background-color: $footer-color-1;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-top: 35px;
+
+    .logo-part img{
+        width: 126px;
+    }
+
+    .signup-part{
+        background-color: $footer-color-3;
+        width: 312px;
+        height: 190.39px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        border-radius: 8px;
+
+        .signup-text{
+            width: 249.59px;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            color: $footer-color-1;
+        }
+
+        .signup-button button{
+            width: 266px;
+            height: 48.39px;
+            background-color: $footer-color-1;
+            color: $footer-color-3;
+            font-size: 14px;
+            border-radius: 40px;
+            border: none;
+        }
+
+        .signup-button button:hover{
+            background-color: $hover-color-1;
+            cursor: pointer;
+        }
+    }
+}
+
+.footer-lower-part
+{
+    background-color: $footer-color-2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: 200px;
+    .social-media {
+        padding: 22px;
+        ul,li{
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            gap: 35px;
+        }
+    }
+
+    .brand p{ 
+        color: $footer-color-3;
+        font-size: 13px;
+    }
+
+    .rights {
+        width: 354.47px;
+        height: 19.2px;
+        p{
+            color: $footer-color-3;
+            font-size: 13px;
+            text-align: center;
+            line-height: 20.8px;
+        }
+    }
+     
+}
+
+
+ 
+
+ 
