@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  border-bottom: 1px solid black;
+  height: 70px;
+  width: 100%;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+}
+.header-left nav {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  padding-left: 20px;
+  border-left: 0.1px solid black;
+}
+
+.header-left nav {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+}

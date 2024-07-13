@@ -1,14 +1,24 @@
 import React from "react";
+import "../Header/Header.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../Hooks/useAuth";
+
 const Header = () => {
+  const { user } = useAuth();
   return (
     <>
-      <header>
-        <div className="">
-
+      <header className="header">
+        <div className="header-left">
+          <img className="logo" src="/src/assets/Icons/PetCareLogo.png"></img>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/getUsers">Users</Link>
+          </nav>
         </div>
-        {/* <Link to="/">Home</Link>
-        <Link to="/getUsers">Users</Link> */}
+        <div className="header-right">
+          <Link to="/">Sign Up</Link>
+          {!user && <Link to="/login">Log In</Link>}
+        </div>
       </header>
     </>
   );
