@@ -18,3 +18,27 @@
   padding: 62px 30px 40px;
   background-color: white;
 }
+
+.signUp-button{
+    position: relative;
+    top: 20px;
+    left: 70px;
+    color: white;
+    width: 200px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: #6504B5;
+    cursor: pointer;    
+}
+
+.signUp-button:hover{
+    background-color: #2E0152;
+}
+
+
+.signUp-h1{
+    position: relative;
+    bottom: 30px;
+    left: 10px;
+    font-size: xx-large;
+}

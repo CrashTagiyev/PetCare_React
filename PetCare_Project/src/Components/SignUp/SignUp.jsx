@@ -31,7 +31,7 @@ const SignUp = () => {
       >
         <div className="signUp-Container">
           <div className="signUp-left">
-            <h2>Sign up</h2>
+            <h1 className="signUp-h1">Sign up</h1>
             <Form.Item
               label="Username:"
               name="username"
@@ -46,7 +46,7 @@ const SignUp = () => {
             </Form.Item>
 
             <Form.Item
-              label="Email Address:"
+              label="Email"
               name="email"
               rules={[
                 { required: true, message: "Please input your Email Address!" },
@@ -64,7 +64,7 @@ const SignUp = () => {
             >
               <Input type={"password"} />
             </Form.Item>
-            <button>SIGN UP</button>
+            <button className="signUp-button">SIGN UP</button>
           </div>
           <div className="signUp-right">
             <Form.Item
@@ -117,7 +117,7 @@ const SignUp = () => {
               ]}
             >
               <Select
-                placeholder="Select a option and change input text above"
+                placeholder="City"
                 options={selectValues}
               ></Select>
             </Form.Item>
