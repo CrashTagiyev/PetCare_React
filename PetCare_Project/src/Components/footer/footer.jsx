@@ -10,8 +10,8 @@ import pinterest from "../../assets/Icons/ pinterest.png"
 const Footer = () => {
   return (
     <footer>
-      <div class="footer-upper-part">
-        <div class="logo-part">
+      <div className="footer-upper-part">
+        <div className="logo-part">
           <a href="#">
             <img
               src={footerlogo}
@@ -19,23 +19,23 @@ const Footer = () => {
             />
           </a>
         </div>
-        <div class="middle-part">
-          <div class="signup-part">
-            <div class="signup-text">
+        <div className="middle-part">
+          <div className="signup-part">
+            <div className="signup-text">
               <p>
                 To get the latest on pet adoption and pet care, sign up for the
                 PetCare newsletter.
               </p>
             </div>
-            <div class="signup-button">
+            <div className="signup-button">
               <button>SIGN UP</button>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="footer-lower-part">
-        <div class="social-media">
+      <div className="footer-lower-part">
+        <div className="social-media">
           <ul>
             <li>
               <a href="#">
@@ -64,10 +64,10 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div class="brand">
+        <div className="brand">
           <p>©2024 PetCare.com</p>
         </div>
-        <div class="rights">
+        <div className="rights">
           <p>
             All trademarks are owned by Société des Produits Nestlé S.A., or
             used with permission.
