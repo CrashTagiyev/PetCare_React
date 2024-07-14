@@ -1,12 +1,17 @@
 import React from "react";
 import { Select, Form, Input } from "antd";
 import { selectValues } from "./signUpDatas/signUpDatas";
-
+import { SignUpRequest } from "../../AxiosFetchs/AuthFetchs/SignUpRequest";
 import "../SignUp/signUp.css";
 
 const SignUp = () => {
   const onFinish = (values) => {
-    console.log("Success:", values);
+    try {
+      SignUpRequest(values);
+      // console.log("Success:", values);
+    } catch (error) {
+      console.log(error);
+    }
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -42,7 +47,7 @@ const SignUp = () => {
                 },
               ]}
             >
-              <Input  type={"text"} />
+              <Input type={"text"} />
             </Form.Item>
 
             <Form.Item
@@ -116,11 +121,9 @@ const SignUp = () => {
                 },
               ]}
             >
-              <Select
-                placeholder="City"
-                options={selectValues}
-              ></Select>
+              <Select placeholder="City" options={selectValues}></Select>
             </Form.Item>
+
             <Form.Item
               label="Address"
               name="address"

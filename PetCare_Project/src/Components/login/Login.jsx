@@ -3,8 +3,8 @@ import { LoginRequest } from "../../AxiosFetchs/AuthFetchs/LoginRequest";
 import { PetCareAPI } from "../../APIs/PetCareAPI";
 import { useAuth } from "../../Hooks/useAuth";
 import "../login/login.scss";
-import google from "../../assets/Icons/google.png"
-import facebook from "../../assets/Icons/facebook-login.png"
+import google from "../../assets/Icons/google.png";
+import facebook from "../../assets/Icons/facebook-login.png";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
@@ -14,17 +14,14 @@ const Login = () => {
   const loginHandler = (event) => {
     event.preventDefault();
     LoginRequest(loginEmail, loginPassword, event).then((u) => {
-      console.log(u.username);
-      console.log(u.emailAdress);
-      console.log(u.roles);
-      login(u);
+      if (u !== undefined) login(u);
     });
   };
 
   return (
-    <div class="parent-div">
-      <div class="main-div">
-        <div class="login-text">
+    <div className="parent-div">
+      <div className="main-div">
+        <div className="login-text">
           <p>Log In</p>
         </div>
         <form onSubmit={loginHandler}>
@@ -50,10 +47,10 @@ const Login = () => {
             <button type="submit">LOG IN</button>
           </div>
         </form>
-        <div class="forgot-password">
+        <div className="forgot-password">
           <a href="#">Forgot password? </a>
         </div>
-        <div class="or-login-with">
+        <div className="or-login-with">
           <div>
             <hr />
           </div>
@@ -64,8 +61,8 @@ const Login = () => {
             <hr />
           </div>
         </div>
-        <div class="alternative-logins">
-          <div class="facebook">
+        <div className="alternative-logins">
+          <div className="facebook">
             <button>
               <div>
                 <img src={facebook} />
@@ -75,7 +72,7 @@ const Login = () => {
               </div>
             </button>
           </div>
-          <div class="google">
+          <div className="google">
             <button>
               <div>
                 <img src={google} />
@@ -86,10 +83,8 @@ const Login = () => {
             </button>
           </div>
         </div>
-        <div class="need-account">
-          <o>
-            Need an account? <a href="#">Sign Up</a>
-          </o>
+        <div className="need-account">
+          Need an account? <a href="/signup">Sign Up</a>
         </div>
       </div>
     </div>

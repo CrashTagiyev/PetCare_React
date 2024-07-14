@@ -6,7 +6,7 @@ import Home from "./Components/Home/Home";
 import Layout from "./Components/Layouts/Layout";
 import { useAuth } from "./Hooks/useAuth";
 import SignUp from "./Components/SignUp/SignUp";
-import Login from "./Components/login/ login";
+import Login from "./Components/login/Login";
 const ROLES = {
   ADMIN: "Admin",
   USER: "User",
