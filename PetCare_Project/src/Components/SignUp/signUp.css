@@ -21,22 +21,19 @@
   flex-direction: row;
   justify-content: space-between;
   border-radius: 20px;
-  height: 400px;
-  width: 700px;
   padding: 62px 30px 40px;
   background-color: white;
+  gap: 30px;
 }
 
 .signUp-button {
-  position: relative;
-  top: 20px;
-  left: 70px;
   color: white;
   width: 200px;
   height: 40px;
   border-radius: 50px;
   background-color: #6504b5;
   cursor: pointer;
+  margin-left: 30px;
 }
 
 .signUp-button:hover {

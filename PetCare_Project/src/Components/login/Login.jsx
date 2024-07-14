@@ -5,6 +5,7 @@ import { useAuth } from "../../Hooks/useAuth";
 import "../login/login.scss";
 import google from "../../assets/Icons/google.png";
 import facebook from "../../assets/Icons/facebook-login.png";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
@@ -48,7 +49,7 @@ const Login = () => {
           </div>
         </form>
         <div className="forgot-password">
-          <a href="#">Forgot password? </a>
+          <Link href="/forgotpassword">Forgot password? </Link>
         </div>
         <div className="or-login-with">
           <div>
