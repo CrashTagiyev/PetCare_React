@@ -1,0 +1,155 @@
+@use "../../assets/basestyle/base.scss";
+
+@mixin loginstyle($backgorund-color: base.$footer-color-3) {
+  width: 340px;
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border-radius: 30px;
+  background-color: $backgorund-color;
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+@mixin hoverstyle {
+  cursor: pointer;
+  border: 2px solid black;
+}
+
+@mixin linkstyle {
+  color: base.$footer-color-1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: base.$font-1;
+}
+
+body {
+  background-color: #efeef1;
+}
+
+.parent-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 723px;
+}
+
+.main-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background-color: base.$footer-color-3;
+  padding: 20px;
+  width: 390px;
+  border-radius: 5px;
+
+  .login-text p {
+    font-size: 34px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    input {
+      width: 340px;
+      height: 55px;
+      border-radius: 5px;
+      border: 2px solid base.$border-color-1;
+      padding-left: 20px;
+      font-size: 18px;
+    }
+
+    input:hover {
+      border-color: base.$footer-color-1;
+    }
+
+    input:focus {
+      border-color: base.$footer-color-1;
+      outline: none;
+    }
+
+    button {
+      width: 340px;
+      height: 45px;
+      background-color: base.$footer-color-1;
+      color: base.$footer-color-3;
+      border-radius: 30px;
+      font-size: 14px;
+    }
+
+    button:hover {
+      cursor: pointer;
+      background-color: base.$hover-color-2;
+    }
+  }
+
+  .forgot-password a {
+    @include linkstyle();
+  }
+
+  .or-login-with {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+
+    hr {
+      width: 121.16px;
+    }
+  }
+
+  .alternative-logins {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .google button {
+      @include loginstyle;
+    }
+
+    .facebook button {
+      @include loginstyle(base.$login-color-1);
+      color: base.$footer-color-3;
+    }
+
+    .google button:hover {
+      @include hoverstyle();
+    }
+
+    .facebook button:hover {
+      @include hoverstyle();
+      background-color: base.$hover-color-3;
+    }
+  }
+
+  .need-account a {
+    @include linkstyle();
+  }
+}
+
+
+@media screen and (min-width: 768px) {
+  .main-div {
+    width: 500px;
+    height: 632.58px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .main-div {
+    width: 500px;
+    height: 577.58px;
+  }
+}

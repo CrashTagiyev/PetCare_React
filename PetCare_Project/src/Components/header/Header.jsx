@@ -1,5 +1,5 @@
 import React from "react";
-import "./Header.css";
+import "../header/header.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Hooks/useAuth";
 
@@ -16,7 +16,7 @@ const Header = () => {
           </nav>
         </div>
         <div className="header-right">
-          <Link to="/signup">Sign Up</Link>
+          {!user && <Link to="/signup">Sign Up</Link>}
           {!user && <Link to="/login">Log In</Link>}
         </div>
       </header>

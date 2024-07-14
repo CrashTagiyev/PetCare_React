@@ -1,9 +1,9 @@
 .header {
   display: flex;
   flex-direction: row;
+  background-color: white;
   justify-content: space-around;
   padding-bottom: 10px;
-  margin-top: 20px;
   border-bottom: 1px solid black;
   height: 70px;
   width: 100%;
