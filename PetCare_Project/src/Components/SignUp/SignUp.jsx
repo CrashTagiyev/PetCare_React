@@ -42,7 +42,7 @@ const SignUp = () => {
                 },
               ]}
             >
-              <Input type={"text"} />
+              <Input  type={"text"} />
             </Form.Item>
 
             <Form.Item
