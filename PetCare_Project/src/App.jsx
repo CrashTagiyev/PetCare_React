@@ -1,5 +1,4 @@
 import "./App.css";
-import Login from "./Components/AuthComponents/Login";
 import { Routes, Route } from "react-router-dom";
 import AuthRequires from "./Components/AuthRequires/AuthRequires";
 import GetUsers from "./Components/GetUsers";
@@ -7,6 +6,7 @@ import Home from "./Components/Home/Home";
 import Layout from "./Components/Layouts/Layout";
 import { useAuth } from "./Hooks/useAuth";
 import SignUp from "./Components/SignUp/SignUp";
+import Login from "./Components/login/ login";
 const ROLES = {
   ADMIN: "Admin",
   USER: "User",
@@ -21,7 +21,7 @@ function App() {
     <Routes>
       {/* Admin layout */}
       <Route element={<Layout />}>
-        {!user && <Route path="/login" element={<Login />} />}
+        {!user && <Route path="/login" element={<Login/>} />}
         {!user && <Route path="/signup" element={<SignUp />} />}
         <Route path="/" element={<Home />} />
 
