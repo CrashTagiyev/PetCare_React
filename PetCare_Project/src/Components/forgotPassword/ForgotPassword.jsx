@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ForgotPassowrdRequest } from "../../AxiosFetchs/AuthFetchs/ForgotPasswordRequest";
+import "../forgotPassword/forgotPassword.scss"
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState(``);
