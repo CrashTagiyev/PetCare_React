@@ -12,6 +12,6 @@ export const ForgotPassowrdRequest = async (emailAddress) => {
     code: response.data.statusCode,
     message: response.data.statusMessage,
   };
-  console.log(responseData);
+ 
   return responseData;
 };

@@ -1,48 +1,38 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ForgotPassowrdRequest } from "../../AxiosFetchs/AuthFetchs/ForgotPasswordRequest";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState(``);
-  const [successMessage, setSuccessMessage] = useState(``);
-  const [errorMessage, setErrorMessage] = useState(``);
+  const [message, setMessage] = useState(``);
   const [responseData, setResponseData] = useState();
 
   useEffect(() => {
-    if (responseData !== undefined) {
-      if (responseData.code === 200) {
-        setSuccessMessage(responseData.message);
-        setErrorMessage("");
-      } else {
-        setErrorMessage(responseData.message);
-        setSuccessMessage("");
-      }
+    if (responseData) {
+      setMessage(responseData.message);
     }
   }, [responseData]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await ForgotPassowrdRequest(email);
+      setResponseData(response);
+    } catch (error) {
+      setMessage("An error occurred. Please try again.");
+    }
+  };
+
   return (
     <section className="fp-section">
-      <h1>{successMessage}</h1>
-      <form
-        className="fp-form"
-        onSubmit={(e) => {
-            console.log("qweqweqweqweq")
-          e.preventDefault();
-          var response = ForgotPassowrdRequest(email);
-          setResponseData(response);
-        }}
-      >
+      <h1>{message}</h1>
+      <form className="fp-form" onSubmit={handleSubmit}>
         <input
           required
           className="fp-input"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
+          onChange={(e) => setEmail(e.target.value)}
           type={"email"}
         />
         <button type={"submit"}>Submit</button>
-        <span>{errorMessage}</span>
       </form>
     </section>
   );

@@ -18,7 +18,6 @@ export const LoginRequest = async (emailAdress, password, event) => {
     const { token, refreshToken, message, statusCode } = response.data;
     console.log("status codddu bu " + statusCode);
       if (statusCode <= 300) {
-        console.log("xiyar if-den kechdi");
         const decodedToken = jwtDecode(token);
         const roles = decodedToken.role;
         const username = decodedToken.userName; // Ensure to get the correct claim

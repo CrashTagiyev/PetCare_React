@@ -12,9 +12,9 @@ const Login = () => {
   const [loginPassword, setLoginPassword] = useState("");
   const { login } = useAuth();
 
-  const loginHandler = (event) => {
+  const loginHandler = async (event) => {
     event.preventDefault();
-    LoginRequest(loginEmail, loginPassword, event).then((u) => {
+    await LoginRequest(loginEmail, loginPassword, event).then((u) => {
       if (u !== undefined) login(u);
     });
   };
