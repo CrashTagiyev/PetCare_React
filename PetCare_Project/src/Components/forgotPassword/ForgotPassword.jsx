@@ -27,11 +27,13 @@ const ForgotPassword = () => {
     <section className="fp-section">
       <h1>{message}</h1>
       <form className="fp-form" onSubmit={handleSubmit}>
+        <h1>Forgot Password</h1>
         <input
           required
           className="fp-input"
           onChange={(e) => setEmail(e.target.value)}
           type={"email"}
+          placeholder="Email"
         />
         <button type={"submit"}>Submit</button>
       </form>
