@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { ForgotPassowrdRequest } from "../../AxiosFetchs/AuthFetchs/ForgotPasswordRequest";
-import "../forgotPassword/forgotPassword.scss"
+import "../forgotPassword/forgotPassword.scss";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState(``);
   const [message, setMessage] = useState(``);
   const [responseData, setResponseData] = useState();
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (responseData) {
@@ -13,8 +14,25 @@ const ForgotPassword = () => {
     }
   }, [responseData]);
 
+  const validateEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+
+  const validateInputs = () => {
+    const errors = {};
+    if (!email) {
+      errors.email = "Email is required";
+    } else if (!validateEmail(email)) {
+      errors.email = "Invalid email format";
+    }
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateInputs()) return;
     try {
       const response = await ForgotPassowrdRequest(email);
       setResponseData(response);
@@ -24,20 +42,30 @@ const ForgotPassword = () => {
   };
 
   return (
-    <section className="fp-section">
-      <h1>{message}</h1>
-      <form className="fp-form" onSubmit={handleSubmit}>
-        <h1>Forgot Password</h1>
-        <input
-          required
-          className="fp-input"
-          onChange={(e) => setEmail(e.target.value)}
-          type={"email"}
-          placeholder="Email"
-        />
-        <button type={"submit"}>Submit</button>
-      </form>
-    </section>
+    <div className="parent-container">
+      <div className="forgot-pass-container">
+        <div>
+          <h1>Forgot Password</h1>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <p>Please write you email , for reset your password</p>
+          </div>
+          <div>
+            <input
+              className={errors.email ? "is-invalid" : ""}
+              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              placeholder="Email"
+            />
+            {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+          </div>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 
