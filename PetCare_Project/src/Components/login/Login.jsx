@@ -11,13 +11,37 @@ const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const { login } = useAuth();
+  const [errors, setErrors] = useState({});
+  
+  const validateEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+
+  const validateInputs = () => {
+    const errors = {};
+    if (!loginEmail) {
+      errors.email = "Email is required";
+    } else if (!validateEmail(loginEmail)) {
+      errors.email = "Invalid email format";
+    }
+    if (!loginPassword) {
+      errors.password = "Password is required";
+    } else if (loginPassword.length < 8) {
+      errors.password = "Password must be at least 8 characters";
+    }
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
 
   const loginHandler = async (event) => {
     event.preventDefault();
+    if (!validateInputs()) return;
     await LoginRequest(loginEmail, loginPassword, event).then((u) => {
       if (u !== undefined) login(u);
     });
   };
+
 
   return (
     <div className="parent-div">
@@ -28,12 +52,14 @@ const Login = () => {
         <form onSubmit={loginHandler}>
           <div>
             <input
-              type="email"
+              type="text"
               name="emailAdress"
               value={loginEmail}
               onChange={(e) => setLoginEmail(e.target.value)}
               placeholder="Email"
+              className={errors.email ? "is-invalid" : ""}
             />
+             {errors.email && <div className="invalid-feedback">{errors.email}</div>}
           </div>
           <div>
             <input
@@ -42,7 +68,9 @@ const Login = () => {
               value={loginPassword}
               onChange={(e) => setLoginPassword(e.target.value)}
               placeholder="Password"
+              className={errors.password ? "is-invalid" : ""}
             />
+            {errors.password && <div className="invalid-feedback">{errors.password}</div>}
           </div>
           <div>
             <button type="submit">LOG IN</button>

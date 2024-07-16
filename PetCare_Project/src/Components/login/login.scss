@@ -77,6 +77,15 @@ body {
       border-color: base.$footer-color-1;
       outline: none;
     }
+
+    input.is-invalid {
+      border-color: base.$login-color-2; // Adjust color as needed
+    }
+    
+    .invalid-feedback {
+      color: base.$login-color-2; // Adjust color as needed
+      font-size: 0.875em;
+    }
     
     button {
       width: 340px;
