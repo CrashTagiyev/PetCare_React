@@ -10,7 +10,6 @@ const GetUsers = () => {
   return (
     <>
       <h1>{user.roles}</h1>
-
       <button
         onClick={async () => {
           try {

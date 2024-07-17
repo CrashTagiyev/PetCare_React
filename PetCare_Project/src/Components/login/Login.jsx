@@ -17,7 +17,7 @@ const Login = () => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
   };
-
+  
   const validateInputs = () => {
     const errors = {};
     if (!loginEmail) {

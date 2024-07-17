@@ -18,7 +18,6 @@ const ROLES = {
 
 function App() {
   const { user } = useAuth();
-
   return (
     <Routes>
       {/* Admin layout */}
