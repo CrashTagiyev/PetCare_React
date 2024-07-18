@@ -12,47 +12,43 @@ const Userprofile = () => {
   const [birthdate, setBirthdate] = useState("");
   const [errors, setErrors] = useState({});
 
-  const validateEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-  };
-
-  const validateInputs = () => {
-    const errors = {};
-    if (!username) {
-      errors.username = "Username is required";
-    }
-    if (!firstname) {
-      errors.firstname = "Firstname is required";
-    }
-    if (!lastname) {
-      errors.lastname = "Lastname is required";
-    }
-    if (!email) {
-      errors.email = "Email is required";
-    } else if (!validateEmail(email)) {
-      errors.email = "Invalid email format";
-    }
-    if (!city) {
-      errors.city = "City is required";
-    }
-    if (!address) {
-      errors.address = "Address is required";
-    }
-    if (!birthdate) {
-      errors.birthdate = "Birthdate is required";
-    }
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateInputs()) return;
-    // Perform the save action here
-    alert("Form submitted successfully!");
-  };
 
+    try {
+      const response = await fetch("/api/userprofile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          firstname,
+          lastname,
+          email,
+          city,
+          address,
+          birthdate,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        if (result.errors) {
+          setErrors(result.errors);
+        } else {
+          alert("An error occurred. Please try again.");
+        }
+      } else {
+        alert("Form submitted successfully!");
+        // Clear the form or perform any other success actions here
+      }
+    } catch (error) {
+      alert("An error occurred. Please try again.");
+    }
+  };
+  
   return (
     <div className="user-profile-parent">
       <div className="user-profile-container">
