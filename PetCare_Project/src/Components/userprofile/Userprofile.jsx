@@ -1,6 +1,5 @@
 import "../userprofile/userprofile.scss";
-import { useState } from "react";
-import React from "react";
+import React, { useState, useRef } from "react";
 
 const Userprofile = () => {
   const [username, setUsername] = useState("");
@@ -11,9 +10,27 @@ const Userprofile = () => {
   const [address, setAddress] = useState("");
   const [birthdate, setBirthdate] = useState("");
   const [errors, setErrors] = useState({});
+  const [isReadOnly, setIsReadOnly] = useState(true);
+
+  const usernameRef = useRef(null);
+
+  const handleEdit = () => {
+    setIsReadOnly(false);
+    setTimeout(() => {
+      if (usernameRef.current) {
+        usernameRef.current.focus();
+      }
+    }, 0);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Set inputs to readonly and remove focus
+    setIsReadOnly(true);
+    if (document.activeElement) {
+      document.activeElement.blur();
+    }
 
     try {
       const response = await fetch("/api/userprofile", {
@@ -48,7 +65,7 @@ const Userprofile = () => {
       alert("An error occurred. Please try again.");
     }
   };
-  
+
   return (
     <div className="user-profile-parent">
       <div className="user-profile-container">
@@ -61,10 +78,13 @@ const Userprofile = () => {
               <div className="input-container">
                 <label>Username:</label>
                 <input
-                  value={username}
+                  type="text"
+                  value="Elgun"
                   onChange={(e) => setUsername(e.target.value)}
                   className={errors.username ? "is-invalid" : ""}
-                ></input>
+                  readOnly={isReadOnly}
+                  ref={usernameRef}
+                />
                 {errors.username && (
                   <div className="invalid-feedback">{errors.username}</div>
                 )}
@@ -76,6 +96,7 @@ const Userprofile = () => {
                   value={firstname}
                   onChange={(e) => setFirstname(e.target.value)}
                   className={errors.firstname ? "is-invalid" : ""}
+                  readOnly={isReadOnly}
                 />
                 {errors.firstname && (
                   <div className="invalid-feedback">{errors.firstname}</div>
@@ -88,6 +109,7 @@ const Userprofile = () => {
                   value={lastname}
                   onChange={(e) => setLastname(e.target.value)}
                   className={errors.lastname ? "is-invalid" : ""}
+                  readOnly={isReadOnly}
                 />
                 {errors.lastname && (
                   <div className="invalid-feedback">{errors.lastname}</div>
@@ -100,6 +122,7 @@ const Userprofile = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className={errors.email ? "is-invalid" : ""}
+                  readOnly={isReadOnly}
                 />
                 {errors.email && (
                   <div className="invalid-feedback">{errors.email}</div>
@@ -115,6 +138,7 @@ const Userprofile = () => {
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                   className={errors.city ? "is-invalid" : ""}
+                  disabled={isReadOnly}
                 >
                   <option value="">Select a city</option>
                   <option value="option1">Option 1</option>
@@ -132,6 +156,7 @@ const Userprofile = () => {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   className={errors.address ? "is-invalid" : ""}
+                  readOnly={isReadOnly}
                 />
                 {errors.address && (
                   <div className="invalid-feedback">{errors.address}</div>
@@ -144,13 +169,21 @@ const Userprofile = () => {
                   value={birthdate}
                   onChange={(e) => setBirthdate(e.target.value)}
                   className={errors.birthdate ? "is-invalid" : ""}
+                  readOnly={isReadOnly}
                 />
                 {errors.birthdate && (
                   <div className="invalid-feedback">{errors.birthdate}</div>
                 )}
               </div>
-              <div>
-                <button typeof="submit">Save</button>
+              <div className="button-container">
+                <div>
+                  <button type="button" onClick={handleEdit}>
+                    Edit
+                  </button>
+                </div>
+                <div>
+                  <button type="submit">Save</button>
+                </div>
               </div>
             </div>
           </div>
