@@ -9,7 +9,9 @@ import SignUp from "./Components/SignUp/SignUp";
 import Login from "./Components/login/Login";
 import ForgotPassword from "./Components/forgotPassword/ForgotPassword";
 import ResetPassword from "./Components/resetPassword/ResetPassword";
-import Userprofile from "./Components/userprofile/Userprofile";
+import UserProfileInfo from "./Components/userProfileInfo/userProfileInfo";
+
+
 const ROLES = {
   ADMIN: "Admin",
   USER: "User",
@@ -26,7 +28,7 @@ function App() {
         {!user && <Route path="/login" element={<Login/>} />}
         {!user && <Route path="/signup" element={<SignUp />} />}
         <Route path="/" element={<Home />} />
-        <Route path="/userprofile" element={<Userprofile/>}></Route>
+        <Route path="/userprofileinfo" element={<UserProfileInfo/>}/>
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
 

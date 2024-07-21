@@ -1,1 +1,83 @@
-@use "../../assets/basestyle/base.scss"
+@use "../../assets/basestyle/base.scss";
+
+* {
+  @extend %common-shared-1;
+}
+
+.tab-box-main-container {
+  height: 823px;
+  display: flex;
+  justify-content: center;
+
+  .tab-container {
+    width: 1000px;
+    height: 700px;
+    background-color: base.$footer-color-3;
+    padding: 30px;
+    box-shadow: base.$box-shadow;
+    border-radius: 20px;
+    margin-top: 20px;
+
+    .tab-box {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-bottom: 2px solid rgba(229, 229, 229);
+      font-size: 18px;
+      font-weight: 600;
+      position: relative;
+
+      .tab-btn {
+        font-size: 18px;
+        font-weight: 600;
+        color: base.$user-profile-info-color-1;
+        background: none;
+        border: none;
+        padding: 18px;
+        cursor: pointer;
+        transition: color 0.3s ease-in-out; // Added transition for smooth color change
+
+        &.active {
+          color: base.$footer-color-1; // Change to your desired active color
+        }
+      }
+
+      .line {
+        position: absolute;
+        bottom: -2px; // Adjusted position to align with the bottom border
+        left: 0;
+        width: 90px; // Default width, this will be dynamically adjusted in JSX
+        height: 5px;
+        background-color: base.$footer-color-1;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+
+    .content-box {
+      padding: 20px;
+
+      .content {
+        display: none;
+
+        &.active {
+          display: block;
+        }
+
+        h2 {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 845px) {
+  .tab-box-main-container {
+    height: 150vh;
+  }
+  .tab-container {
+    height: 1124px !important;
+  }
+}

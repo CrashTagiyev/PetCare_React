@@ -13,6 +13,18 @@
     $border-color-1: #D2D1D3;
     $background-color: #D2D1D3;
     // ..........................
+    $user-profile-info-color-1: #919191;
 
 // fonts
     $font-1: sans-serif;
+
+// box-shadow
+    $box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+
+// Common Designs
+%common-shared-1{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font: $font-1;
+}

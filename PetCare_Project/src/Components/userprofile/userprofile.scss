@@ -1,13 +1,12 @@
 @use "../../assets/basestyle/base.scss";
 
 .user-profile-parent {
-  height: 723px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  // align-items: center;
 
   .user-profile-container {
-    background-color: base.$footer-color-3;
+    // background-color: base.$footer-color-3;
     width: 1000px;
     height: 620px;
     border-radius: 5px;
