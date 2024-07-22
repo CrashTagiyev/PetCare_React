@@ -50,6 +50,7 @@
 
               &:hover:not(.is-invalid) {
                 border-color: base.$footer-color-1;
+                cursor: default;
               }
 
               &:focus {

@@ -1,13 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../userProfileInfo/userProfileInfo.scss";
-import UserProfile from "../userprofile/Userprofile"
+import UserProfile from "../userprofile/Userprofile";
 
 const UserProfileInfo = () => {
   const [activeTab, setActiveTab] = useState("Info");
   const [lineStyle, setLineStyle] = useState({ left: 0, width: 0 });
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 650);
 
   const tabs = ["Info", "About Us", "Messages", "Blogs"];
   const tabRefs = useRef([]);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobileView(window.innerWidth <= 650);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const activeIndex = tabs.indexOf(activeTab);
@@ -25,9 +33,7 @@ const UserProfileInfo = () => {
       case "Info":
         return (
           <div className="content active">
-            {/* <h2>Home</h2>
-            <p>Home</p> */}
-            <UserProfile/>
+            <UserProfile />
           </div>
         );
       case "About Us":
@@ -59,19 +65,46 @@ const UserProfileInfo = () => {
   return (
     <div className="tab-box-main-container">
       <div className="tab-container">
-        <div className="tab-box">
-          {tabs.map((tab, index) => (
+        {isMobileView ? (
+          <>
             <button
-              key={tab}
-              ref={(el) => (tabRefs.current[index] = el)}
-              className={`tab-btn ${activeTab === tab ? "active" : ""}`}
-              onClick={() => setActiveTab(tab)}
+              className="hamburger-menu"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {tab}
+              ⌄
             </button>
-          ))}
-          <div className="line" style={lineStyle}></div>
-        </div>
+            {isMenuOpen && (
+              <div className="dropdown-menu">
+                {tabs.map((tab) => (
+                  <button
+                    key={tab}
+                    className={`tab-btn ${activeTab === tab ? "active" : ""}`}
+                    onClick={() => {
+                      setActiveTab(tab);
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="tab-box">
+            {tabs.map((tab, index) => (
+              <button
+                key={tab}
+                ref={(el) => (tabRefs.current[index] = el)}
+                className={`tab-btn ${activeTab === tab ? "active" : ""}`}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab}
+              </button>
+            ))}
+            <div className="line" style={lineStyle}></div>
+          </div>
+        )}
         <div className="content-box">{renderContent()}</div>
       </div>
     </div>
