@@ -17,6 +17,10 @@
     box-shadow: base.$box-shadow;
     border-radius: 20px;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
 
     .tab-box {
       width: 100%;
@@ -36,18 +40,18 @@
         border: none;
         padding: 18px;
         cursor: pointer;
-        transition: color 0.3s ease-in-out; // Added transition for smooth color change
+        transition: color 0.3s ease-in-out;
 
         &.active {
-          color: base.$footer-color-1; // Change to your desired active color
+          color: base.$footer-color-1;
         }
       }
 
       .line {
         position: absolute;
-        bottom: -2px; // Adjusted position to align with the bottom border
+        bottom: -2px;
         left: 0;
-        width: 90px; // Default width, this will be dynamically adjusted in JSX
+        width: 90px;
         height: 5px;
         background-color: base.$footer-color-1;
         border-radius: 10px;
@@ -55,8 +59,59 @@
       }
     }
 
+    .hamburger-menu {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 35px;
+      cursor: pointer;
+      // position: absolute;
+      top: 20px;
+      right: 30px;
+      color: base.$footer-color-1;
+    }
+
+    .dropdown-menu {
+      display: none;
+      flex-direction: column;
+      background-color: base.$footer-color-1;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      top: 60px;
+      right: 30px;
+      z-index: 1;
+      
+      .tab-btn {
+        padding: 10px;
+        text-align: left;
+        width: 200px;
+        background-color: base.$footer-color-3;
+        border: 1px solid base.$background-color;
+        font-size: 14px;
+        font-weight: 500;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.1);
+          color: base.$footer-color-3;
+        }
+      }
+    }
+
+    @media (max-width: 650px) {
+      .tab-box {
+        display: none;
+      }
+
+      .hamburger-menu {
+        display: block;
+      }
+
+      .dropdown-menu {
+        display: flex;
+      }
+    }
+
     .content-box {
       padding: 20px;
+      width: 100%;
 
       .content {
         display: none;
@@ -78,6 +133,6 @@
     height: 150vh;
   }
   .tab-container {
-    height: 1124px !important;
+    height: 1224px !important;
   }
 }

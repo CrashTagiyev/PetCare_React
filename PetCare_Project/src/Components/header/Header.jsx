@@ -9,7 +9,9 @@ const Header = () => {
     <>
       <header className="header">
         <div className="header-left">
-          <img className="logo" src="/src/assets/Icons/PetCareLogo.png"></img>
+          <Link to="/">
+            <img className="logo" src="/src/assets/Icons/PetCareLogo.png"></img>
+          </Link>
           <nav>
             <Link to="/">Home</Link>
             <Link to="/getUsers">Users</Link>
