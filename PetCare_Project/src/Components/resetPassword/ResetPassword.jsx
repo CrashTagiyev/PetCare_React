@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { ResetPasswordRequest } from "../../AxiosFetchs/AuthFetchs/ResetPasswordRequest";
-// import "../resetPassword/resetPassword.css";
-import "../resetPassword/resetPasswordScss.scss";
+import "../resetPassword/resetPassword.scss";
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
