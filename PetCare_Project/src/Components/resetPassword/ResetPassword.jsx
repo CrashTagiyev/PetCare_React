@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { ResetPasswordRequest } from "../../AxiosFetchs/AuthFetchs/ResetPasswordRequest";
-import "../resetPassword/resetPassword.css";
+// import "../resetPassword/resetPassword.css";
+import "../resetPassword/resetPasswordScss.scss";
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
@@ -15,10 +16,13 @@ const ResetPassword = () => {
 
   useEffect(() => {
     const fetchedUserId = query.get("userId");
-    let fetchedToken = query.get("token");
-    fetchedToken = fetchedToken.replace(/ /g, "+"); // Replace spaces with +
-    setUserId(fetchedUserId);
-    setToken(fetchedToken);
+    const fetchedToken = query.get("token");
+    if (fetchedUserId && fetchedToken) {
+      fetchedToken = fetchedToken.replace(/ /g, "+"); // Replace spaces with +
+      setUserId(fetchedUserId);
+      setToken(fetchedToken);
+    }
+    
   }, [query]);
 
   const handleSubmit = async (e) => {
@@ -36,8 +40,8 @@ const ResetPassword = () => {
   };
 
   return (
-    <section className="reset-password-section">
-      <div className="reset-form-container">
+    <section className="parent-container">
+      <div className="reset-pass-container">
         <h1 className="reset-password-h1">Reset Password</h1>
         <form className="reset-password-form" onSubmit={handleSubmit}>
           {(message.startsWith("Password has successfully changed") && (
@@ -45,14 +49,16 @@ const ResetPassword = () => {
           )) ||
             (message && <p className="form-errormesage">{message}</p>)}
           <input
-          className="reset-password-input"
+            className="reset-password-input"
             required
             type="password"
             placeholder="New Password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
           />
-          <button className="reset-password-button" type="submit">Submit</button>
+          <button className="reset-password-button" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     </section>

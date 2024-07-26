@@ -31,7 +31,6 @@ function App() {
         <Route path="/userprofileinfo" element={<UserProfileInfo/>}/>
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
-
         <Route element={<AuthRequires allowedRoles={[ROLES.ADMIN]} />}>
           <Route path="/getusers" element={<GetUsers />} />
         </Route>
