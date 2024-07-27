@@ -11,7 +11,6 @@ import ForgotPassword from "./Components/forgotPassword/ForgotPassword";
 import ResetPassword from "./Components/resetPassword/ResetPassword";
 import UserProfileInfo from "./Components/userProfileInfo/userProfileInfo";
 
-
 const ROLES = {
   ADMIN: "Admin",
   USER: "User",
@@ -23,12 +22,11 @@ function App() {
   const { user } = useAuth();
   return (
     <Routes>
-      {/* Admin layout */}
       <Route element={<Layout />}>
-        {!user && <Route path="/login" element={<Login/>} />}
+        {!user && <Route path="/login" element={<Login />} />}
         {!user && <Route path="/signup" element={<SignUp />} />}
         <Route path="/" element={<Home />} />
-        <Route path="/userprofileinfo" element={<UserProfileInfo/>}/>
+        <Route path="/userprofileinfo" element={<UserProfileInfo />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route element={<AuthRequires allowedRoles={[ROLES.ADMIN]} />}>

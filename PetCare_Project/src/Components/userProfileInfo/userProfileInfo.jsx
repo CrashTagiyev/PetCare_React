@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../userProfileInfo/userProfileInfo.scss";
 import UserProfile from "../userprofile/Userprofile";
+import Messages from "../inbox/Inbox";
 
 const UserProfileInfo = () => {
   const [activeTab, setActiveTab] = useState("Info");
@@ -8,7 +9,7 @@ const UserProfileInfo = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 650);
 
-  const tabs = ["Info", "About Us", "Messages", "Blogs"];
+  const tabs = ["Info", "About Us", "Inbox", "Blogs"];
   const tabRefs = useRef([]);
 
   useEffect(() => {
@@ -43,11 +44,10 @@ const UserProfileInfo = () => {
             <p>About Us</p>
           </div>
         );
-      case "Messages":
+      case "Inbox":
         return (
           <div className="content active">
-            <h2>Messages</h2>
-            <p>Messages</p>
+            <Messages />
           </div>
         );
       case "Blogs":
