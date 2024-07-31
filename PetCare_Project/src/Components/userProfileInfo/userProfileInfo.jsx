@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../userProfileInfo/userProfileInfo.scss";
 import UserProfile from "../userprofile/Userprofile";
-import Messages from "../inbox/Inbox";
+import Chat from "../chat/chat";
 
 const UserProfileInfo = () => {
   const [activeTab, setActiveTab] = useState("Info");
@@ -47,7 +47,7 @@ const UserProfileInfo = () => {
       case "Inbox":
         return (
           <div className="content active">
-            <Messages />
+            <Chat/>
           </div>
         );
       case "Blogs":

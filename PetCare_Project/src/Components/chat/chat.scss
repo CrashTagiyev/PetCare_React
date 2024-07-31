@@ -1,0 +1,133 @@
+@use "../../assets/basestyle/base.scss";
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+
+  .chat-top-container {
+    display: flex;
+
+    .logo-name-container {
+      display: flex;
+      background-color: base.$footer-color-1;
+      height: 57px;
+      width: 295px;
+      align-items: center;
+      gap: 30px;
+      border-right: 1px solid black;
+
+      .logo-part {
+        padding-left: 20px;
+        img {
+          width: 70px;
+        }
+      }
+
+      .name-part {
+        p {
+          color: base.$footer-color-3;
+        }
+      }
+    }
+
+    .current-user-container {
+      background-color: base.$footer-color-1;
+      width: 644px;
+      display: flex;
+      align-items: center;
+
+      p {
+        color: base.$footer-color-3;
+        padding-left: 30px;
+      }
+    }
+  }
+
+  .chat-mid-container {
+    display: flex;
+
+    .users-container {
+      display: flex;
+      flex-direction: column;
+      width: 284px;
+      height: 498px;
+      background-color: base.$chat-color-2;
+      border-right: 1px solid black;
+
+      .user-container {
+        display: flex;
+        align-items: center;
+        height: 57px;
+
+        button {
+          height: 57px;
+          width: 284px;
+          background-color: base.$chat-color-2;
+          text-align: left;
+          border: none;
+          border-bottom: 1px solid black;
+          font-size: 16px;
+
+          &:hover {
+            background-color: base.$chat-color-3;
+            cursor: pointer;
+          }
+
+          &:focus {
+            background-color: base.$chat-color-1;
+          }
+
+          .button-text-container {
+            padding-left: 30px;
+            color: base.$footer-color-3;
+          }
+        }
+      }
+    }
+
+    .message-container {
+      height: 498px;
+      width: 644px;
+      background-color: base.$chat-color-4;
+      display: flex;
+      flex-direction: column;
+
+      .message-content {
+        flex-grow: 1;
+        overflow-y: auto;
+      }
+
+      .send-message-container {
+        display: flex;
+        align-items: center;
+        background-color: base.$footer-color-1;
+        width: 616px;
+        height: 54px;
+        flex-shrink: 0;
+        gap: 30px;
+
+        .input-container {
+          padding-left: 20px;
+
+          input {
+            width: 503px;
+            height: 36px;
+            border-radius: 10px;
+            padding-left: 20px;
+          }
+        }
+
+        .send-button-container{
+            button{
+                background-color: base.$footer-color-1;
+                border: none;
+
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+      }
+    }
+  }
+}
