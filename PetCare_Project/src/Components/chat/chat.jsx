@@ -6,12 +6,23 @@ import { useAuth } from "../../Hooks/useAuth";
 import chatimage from "../../assets/Icons/ footer-logo.png";
 import send_message from "../../assets/Icons/ send-message.png";
 import { CreateChatConnection } from "../../AxiosFetchs/AuthFetchs/ChatConnection";
+import { add } from "../../Store/messagesSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 const Chat = () => {
-  const [chats, setChats] = useState([]);
   const [currentChattingUser, setCurrentChattingUser] = useState("");
   const [currentConnection, setCurrentConnection] = useState();
-  const [messages, setMessages] = useState([]);
   const { user } = useAuth();
+
+  // redux-part
+  const dispatch = useDispatch();
+
+  const messages = useSelector(store => store.messages);
+  const chats = useSelector(store => store.chat);
+  const addNewMessage = (newMessage) => {
+    dispatch(add(newMessage))
+  }
+
   useEffect(() => {
     const fetchChats = async () => {
       if (user) {
@@ -24,8 +35,6 @@ const Chat = () => {
         }
       }
     };
-    
-
 
     fetchChats();
   }, [user]);
@@ -76,13 +85,9 @@ const Chat = () => {
           </div>
           <div className="message-container">
             <div className="message-content">
-              {
-                messages.map((message,index)=>(
-                  <div key={index}>
-                  {message.content}
-                  </div>
-                ))
-              }
+              {messages.map((message, index) => (
+                <div key={index}>{message.content}</div>
+              ))}
             </div>
             <div className="send-message-container">
               <div className="input-container">

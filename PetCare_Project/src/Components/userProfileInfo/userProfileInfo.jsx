@@ -48,7 +48,7 @@ const UserProfileInfo = () => {
       case "Inbox":
         return (
           <div className="content active">
-            <Chat/>
+            <Chat />
           </div>
         );
       case "Blogs":
