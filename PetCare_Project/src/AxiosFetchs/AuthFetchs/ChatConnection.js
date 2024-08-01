@@ -14,7 +14,9 @@ export const CreateChatConnection = async (username, chatName) => {
   connection.on("GetConnectedChatsMessages", (receivedMessages) => {
     messages = receivedMessages;
   });
-  connection.on("SendMessageToChat");
+  connection.on("SendMessageToChat", (messages) => {
+    return messages;
+  });
   try {
     await connection.start();
     await connection.invoke("CreateConnection", { username, chatName });
