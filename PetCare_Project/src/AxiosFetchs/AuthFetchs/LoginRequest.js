@@ -20,7 +20,7 @@ export const LoginRequest = async (emailAdress, password, event) => {
       if (statusCode <= 300) {
         const decodedToken = jwtDecode(token);
         const roles = decodedToken.role;
-        const username = decodedToken.userName; // Ensure to get the correct claim
+        const username = decodedToken.username; // Ensure to get the correct claim
         const emailAddress = decodedToken.email; // Ensure to get the correct claim
         localStorage.setItem("accessToken", token);
         localStorage.setItem("refreshToken", refreshToken);

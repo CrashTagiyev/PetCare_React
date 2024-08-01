@@ -5,8 +5,7 @@ import "../inbox/inbox.scss"
 
 
 const Inbox = () => {
-  const {user}=useAuth();
-    
+
   return (
     <>
     <div>

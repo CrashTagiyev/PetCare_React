@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../userProfileInfo/userProfileInfo.scss";
 import UserProfile from "../userprofile/Userprofile";
-import Chat from "../chat/chat";
+import Chat from "../chat/Chat";
+
+const tabs = ["Info", "About Us", "Inbox", "Blogs"]; // Move tabs definition outside the component
 
 const UserProfileInfo = () => {
   const [activeTab, setActiveTab] = useState("Info");
@@ -9,7 +11,6 @@ const UserProfileInfo = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 650);
 
-  const tabs = ["Info", "About Us", "Inbox", "Blogs"];
   const tabRefs = useRef([]);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const UserProfileInfo = () => {
         width: activeTabRef.clientWidth,
       });
     }
-  }, [activeTab, tabs]);
+  }, [activeTab]);
 
   const renderContent = () => {
     switch (activeTab) {

@@ -4,7 +4,7 @@ import React from 'react'
       return (
         <>
         <div>Home</div>
-        <input type={'range'}></input>
+        <input type={'radio'}></input>
         </>
       )
     }

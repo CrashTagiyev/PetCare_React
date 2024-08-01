@@ -11,6 +11,7 @@
     "sass": "sass --watch Styles/scss:Styles/css"
   },
   "dependencies": {
+    "@microsoft/signalr": "^8.0.7",
     "@reduxjs/toolkit": "^2.2.6",
     "ant-design": "^1.0.0",
     "antd": "^5.19.1",

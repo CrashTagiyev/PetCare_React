@@ -10,6 +10,7 @@ import Login from "./Components/login/Login";
 import ForgotPassword from "./Components/forgotPassword/ForgotPassword";
 import ResetPassword from "./Components/resetPassword/ResetPassword";
 import UserProfileInfo from "./Components/userProfileInfo/userProfileInfo";
+import Chat from "./Components/chat/Chat";
 
 const ROLES = {
   ADMIN: "Admin",
