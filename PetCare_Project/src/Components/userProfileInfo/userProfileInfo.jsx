@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import "../userProfileInfo/userProfileInfo.scss";
 import UserProfile from "../userprofile/Userprofile";
 import Chat from "../chat/Chat";
+import { useAuth } from "../../Hooks/useAuth";
+import { HubConnectionBuilder } from "@microsoft/signalr";
+import { BASE_URL } from "../../APIs/PetCareAPI";
 
 const tabs = ["Info", "About Us", "Inbox", "Blogs"]; // Move tabs definition outside the component
 
@@ -30,6 +33,10 @@ const UserProfileInfo = () => {
     }
   }, [activeTab]);
 
+
+
+
+
   const renderContent = () => {
     switch (activeTab) {
       case "Info":
@@ -48,7 +55,7 @@ const UserProfileInfo = () => {
       case "Inbox":
         return (
           <div className="content active">
-            <Chat />
+            <Chat  />
           </div>
         );
       case "Blogs":
