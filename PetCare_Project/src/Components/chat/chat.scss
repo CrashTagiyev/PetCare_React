@@ -14,7 +14,7 @@
       width: 295px;
       align-items: center;
       gap: 30px;
-      border-right: 1px solid black;
+      border-right: 1px solid #c7c8cc;
 
       .logo-part {
         padding-left: 20px;
@@ -22,7 +22,7 @@
           width: 70px;
         }
       }
-        
+
       .name-part {
         p {
           color: base.$footer-color-3;
@@ -33,12 +33,32 @@
     .current-user-container {
       background-color: base.$footer-color-1;
       width: 644px;
+      height: 57px;
       display: flex;
       align-items: center;
+      gap: 525px;
 
-      p {
-        color: base.$footer-color-3;
-        padding-left: 30px;
+      .search-user-container {
+        display: none;
+      }
+
+      .current-user-name-visible {
+        display: block !important;
+      }
+
+      .current-user-name-hidden {
+        display: none !important;
+      }
+
+      .current-user-name {
+        p {
+          color: base.$footer-color-3;
+          padding-left: 30px;
+        }
+      }
+
+      .back-button-container{
+        display: none !important;
       }
     }
   }
@@ -49,10 +69,10 @@
     .users-container {
       display: flex;
       flex-direction: column;
-      width: 284px;
+      width: 295px;
       height: 498px;
       background-color: base.$chat-color-2;
-      border-right: 1px solid black;
+      border-right: 1px solid #c7c8cc;
 
       .user-container {
         display: flex;
@@ -65,7 +85,7 @@
           background-color: base.$chat-color-2;
           text-align: left;
           border: none;
-          border-bottom: 1px solid black;
+          border-bottom: 1px solid #c7c8cc;
           font-size: 16px;
 
           &:hover {
@@ -101,7 +121,7 @@
         display: flex;
         align-items: center;
         background-color: base.$footer-color-1;
-        width: 616px;
+        // width: 616px; // Default width
         height: 54px;
         flex-shrink: 0;
         gap: 30px;
@@ -117,17 +137,177 @@
           }
         }
 
-        .send-button-container{
-            button{
-                background-color: base.$footer-color-1;
-                border: none;
+        .send-button-container {
+          button {
+            background-color: base.$footer-color-1;
+            border: none;
 
-                &:hover{
-                    cursor: pointer;
-                }
+            &:hover {
+              cursor: pointer;
             }
+          }
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 915px) {
+  .chat-container {
+    align-items: center !important;
+
+    .chat-top-container {
+      flex-direction: column;
+    }
+
+    .logo-name-container {
+      width: 644px !important;
+      border-bottom: 2px solid #c7c8cc;
+    }
+
+    .search-user-container-visible {
+      display: flex !important;
+      justify-content: center !important;
+
+      .search-bar-container {
+        input {
+          width: 503px;
+          height: 36px;
+          padding-left: 20px;
+          border: none;
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
+
+          &:focus {
+            outline: none !important;
+          }
+        }
+      }
+
+      .search-button-container {
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 36px;
+          width: 30px;
+          border: none;
+          background-color: base.$footer-color-3;
+          border-top-right-radius: 10px;
+          border-bottom-right-radius: 10px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .search-user-container-hidden {
+      display: block;
+    }
+
+    .current-user-container-visible {
+      justify-content: center;
+    }
+
+    .current-user-name {
+      display: none !important;
+    }
+
+    .users-container {
+      width: 644px !important;
+
+      .user-container {
+        button {
+          width: 100% !important;
+          border-bottom: 1px solid #c7c8cc !important;
+        }
+      }
+    }
+
+    .message-container {
+      display: none !important;
+    }
+
+    .send-message-container {
+      width: 644px;
+      justify-content: center !important;
+    }
+
+    .message-container-visible {
+      display: flex !important;
+    }
+
+    .users-container-hidden {
+      display: none !important;
+    }
+
+    .back-button-container-visible{
+      display: block !important;
+      padding-right: 30px;
+
+      button{
+        background-color: base.$footer-color-1;
+        border: none;
+
+        &:hover{
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .chat-container {
+    .logo-name-container {
+      width: 390px !important;
+    }
+
+    .users-container {
+      width: 390px !important;
+
+      .user-container {
+        button {
+          width: 100% !important;
+          border-bottom: 1px solid #c7c8cc !important;
+        }
+      }
+    }
+
+    .current-user-container {
+      width: 390px !important;
+    }
+  }
+
+  .search-bar-container {
+    input {
+      width: 290px !important;
+    }
+  }
+
+  .message-container-visible {
+    width: 390px !important;
+  }
+
+  .send-message-container {
+    width: 390px !important;
+
+    .input-container {
+      input {
+        width: 290px !important;
+      }
+    }
+  }
+
+  .current-user-container {
+    gap: 280px !important;
+  }
+}
+
+@media screen and (min-width: 916px) {
+  .send-message-container {
+    width: 616px;
   }
 }

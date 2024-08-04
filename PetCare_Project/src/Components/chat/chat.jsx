@@ -1,21 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../chat/chat.scss";
 import { GetChats } from "../../AxiosFetchs/AuthFetchs/UsersChats";
-import { useEffect, useState } from "react";
 import { useAuth } from "../../Hooks/useAuth";
 import chatimage from "../../assets/Icons/ footer-logo.png";
 import send_message from "../../assets/Icons/ send-message.png";
+import search_button from "../../assets/Icons/ user-search-button.png";
+import back_button from "../../assets/Icons/arrow.png";
 import useChatConnection from "../../Hooks/useChatConnection";
 
 const Chat = () => {
-
-  //States
+  // States
   const [currentChattingUser, setCurrentChattingUser] = useState("");
   const [displayChats, setDisplayChats] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
   const [currentChatName, setCurrentChatName] = useState("");
+  const [isUsernameVisible, setUsernameVisible] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  
   //Hooks
   const { user } = useAuth();
   const { sendMessage, messages } = useChatConnection(
@@ -23,7 +24,18 @@ const Chat = () => {
     currentChatName
   );
 
+  // Handlers
+  const handleClick = () => {
+    setUsernameVisible(true);
+  };
+
+  const handleBackClick = () => {
+    setUsernameVisible(false);
+  };
+
+  // Effect to update screen width on resize
   useEffect(() => {
+    // Fetch chats when the user is updated
     const fetchChats = async () => {
       if (user) {
         try {
@@ -36,7 +48,20 @@ const Chat = () => {
     };
 
     fetchChats();
+
+    // Handle window resize
+    const handleResize = () => setWindowWidth(window.innerWidth);
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount or when the user changes
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [user]);
+
+  // Determine visibility classes based on screen width and state
+  const isBackButtonVisible = windowWidth <= 915 && isUsernameVisible;
 
   return (
     <div className="chat-container">
@@ -49,18 +74,62 @@ const Chat = () => {
             <p>PetCare Chat</p>
           </div>
         </div>
-        <div className="current-user-container">
-          <p>{currentChattingUser}</p>
+        <div
+          className={`current-user-container ${
+            !isUsernameVisible ? "current-user-container-visible" : ""
+          }`}
+        >
+          <div
+            className={`current-user-name ${
+              isUsernameVisible
+                ? "current-user-name-visible"
+                : "current-user-name-hidden"
+            }`}
+          >
+            <p>{currentChattingUser}</p>
+          </div>
+          <div
+            className={`${
+              isBackButtonVisible
+                ? "back-button-container-visible"
+                : "back-button-container"
+            }`}
+          >
+            <button onClick={handleBackClick}>
+              <img src={back_button} alt="Back" />
+            </button>
+          </div>
+          <div
+            className={`search-user-container ${
+              !isUsernameVisible
+                ? "search-user-container-visible"
+                : "search-user-container-hidden"
+            }`}
+          >
+            <div className="search-bar-container">
+              <input />
+            </div>
+            <div className="search-button-container">
+              <button>
+                <img src={search_button} alt="Search" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <div className="chat-mid-container">
-        <div className="users-container">
+        <div
+          className={`users-container ${
+            isUsernameVisible ? "users-container-hidden" : ""
+          }`}
+        >
           <div className="user-container">
             {displayChats &&
               displayChats.map((chat, index) => (
                 <button
                   onClick={(e) => {
                     e.preventDefault();
+                    setUsernameVisible(true);
                     setCurrentChatName(chat.chatName);
                     setCurrentChattingUser(
                       user.roles === "Vet" ? chat.appUserName : chat.vetUserName
@@ -75,7 +144,11 @@ const Chat = () => {
               ))}
           </div>
         </div>
-        <div className="message-container">
+        <div
+          className={`message-container ${
+            isUsernameVisible ? "message-container-visible" : ""
+          }`}
+        >
           <div className="message-content">
             {messages &&
               messages.map((msg, index) => (
