@@ -12,12 +12,12 @@ const UserProfileInfo = () => {
   const [activeTab, setActiveTab] = useState("Info");
   const [lineStyle, setLineStyle] = useState({ left: 0, width: 0 });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 650);
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 790);
 
   const tabRefs = useRef([]);
 
   useEffect(() => {
-    const handleResize = () => setIsMobileView(window.innerWidth <= 650);
+    const handleResize = () => setIsMobileView(window.innerWidth <= 790);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
