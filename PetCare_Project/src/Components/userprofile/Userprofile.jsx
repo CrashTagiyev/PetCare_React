@@ -2,7 +2,7 @@ import "../userprofile/userprofile.scss";
 import React, { useState, useRef } from "react";
 
 const Userprofile = () => {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState();
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");

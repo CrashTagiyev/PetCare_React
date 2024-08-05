@@ -42,7 +42,7 @@ const useChatConnection = (username, chatName) => {
         connection.stop();
       }
     };
-  }, [username, chatName]);
+  }, [username,chatName]);
 
   const sendMessage = async (message) => {
     if (connection && isConnected) {

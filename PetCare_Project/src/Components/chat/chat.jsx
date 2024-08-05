@@ -10,6 +10,7 @@ import useChatConnection from "../../Hooks/useChatConnection";
 const Chat = () => {
 
   //States
+  
   const [currentChattingUser, setCurrentChattingUser] = useState("");
   const [displayChats, setDisplayChats] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
@@ -79,7 +80,7 @@ const Chat = () => {
           <div className="message-content">
             {messages &&
               messages.map((msg, index) => (
-                <div key={index}>{msg.senderName + ":" + msg.content}</div>
+                <div   key={index}>{msg.senderName + ":" + msg.content}</div>
               ))}
           </div>
           <form
