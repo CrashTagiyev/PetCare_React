@@ -21,6 +21,7 @@ const Chat = () => {
   const { user } = useAuth();
   const { sendMessage, messages,disconnect} = useChatConnection(
     user.username,
+    currentChatName
   );
 
   // Handlers
