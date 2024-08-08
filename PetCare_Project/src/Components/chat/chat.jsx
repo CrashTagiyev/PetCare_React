@@ -9,7 +9,7 @@ import back_button from "../../assets/Icons/arrow.png";
 import useChatConnection from "../../Hooks/useChatConnection";
 
 const Chat = () => {
-  // States
+  //States
   const [currentChattingUser, setCurrentChattingUser] = useState("");
   const [displayChats, setDisplayChats] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
@@ -20,7 +20,7 @@ const Chat = () => {
 
   //Hooks
   const { user } = useAuth();
-  const { sendMessage, messages } = useChatConnection(
+  const { sendMessage, messages,disconnect} = useChatConnection(
     user.username,
     currentChatName
   );
@@ -73,6 +73,15 @@ const Chat = () => {
       disconnect();
     };
   }, []);
+
+
+  useEffect(() => {
+    return () => {
+      // Disconnect when the component unmounts
+      disconnect();
+    };
+  }, []);
+
 
   // Determine visibility classes based on screen width and state
   const isBackButtonVisible = windowWidth <= 915 && isUsernameVisible;
