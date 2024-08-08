@@ -1,4 +1,5 @@
 @use "../../assets/basestyle/base.scss";
+@import "../../assets/chatstyle/message-div.scss";
 
 .chat-container {
   display: flex;
@@ -57,7 +58,7 @@
         }
       }
 
-      .back-button-container{
+      .back-button-container {
         display: none !important;
       }
     }
@@ -65,6 +66,7 @@
 
   .chat-mid-container {
     display: flex;
+    flex-grow: 1;
 
     .users-container {
       display: flex;
@@ -111,20 +113,36 @@
       background-color: base.$chat-color-4;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
+      flex-grow: 1;
+      position: relative;
 
+      
       .message-content {
+        display: flex;
+        flex-direction: column;
         flex-grow: 1;
+        padding-bottom: 20px;
         overflow-y: auto;
+
+        .own-message {
+          @include messagestyle(#9473d1, 5px 10px 0 0);
+          align-self: flex-end;
+        }
+
+        .individual-message {
+          @include messagestyle(#7a48c6, 5px 0 0 10px);
+        }
       }
 
       .send-message-container {
         display: flex;
         align-items: center;
         background-color: base.$footer-color-1;
-        // width: 616px; // Default width
         height: 54px;
         flex-shrink: 0;
         gap: 30px;
+        margin-top: auto; // Ensures it stays at the bottom
 
         .input-container {
           padding-left: 20px;
@@ -243,15 +261,15 @@
       display: none !important;
     }
 
-    .back-button-container-visible{
+    .back-button-container-visible {
       display: block !important;
       padding-right: 30px;
 
-      button{
+      button {
         background-color: base.$footer-color-1;
         border: none;
 
-        &:hover{
+        &:hover {
           cursor: pointer;
         }
       }
@@ -296,7 +314,7 @@
 
     .input-container {
       input {
-        width: 290px !important;
+        width: 240px !important;
       }
     }
   }
