@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../chat/chat.scss";
 import { GetChats } from "../../AxiosFetchs/AuthFetchs/UsersChats";
 import { useAuth } from "../../Hooks/useAuth";
@@ -16,6 +16,7 @@ const Chat = () => {
   const [currentChatName, setCurrentChatName] = useState("");
   const [isUsernameVisible, setUsernameVisible] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const messageContentRef = useRef(null);
 
   //Hooks
   const { user } = useAuth();
@@ -24,7 +25,7 @@ const Chat = () => {
     currentChatName
   );
 
-  // Handlers
+  // // Handlers
   const handleClick = () => {
     setUsernameVisible(true);
   };
@@ -33,21 +34,27 @@ const Chat = () => {
     setUsernameVisible(false);
   };
 
-  // Effect to update screen width on resize
+  // // Effect to update screen width on resize
   useEffect(() => {
     // Fetch chats when the user is updated
-    const fetchChats = async () => {
-      if (user) {
-        try {
-          const chats = await GetChats(user.username);
-          setDisplayChats(chats);
-        } catch (error) {
-          console.error("Error fetching chats:", error);
-        }
-      }
-    };
+    // const fetchChats = async () => {
+    //   if (user) {
+    //     try {
+    //       const chats = await GetChats(user.username);
+    //       setDisplayChats(chats);
+    //     } catch (error) {
+    //       console.error("Error fetching chats:", error);
+    //     }
+    //   }
+    // };
 
-    fetchChats();
+    // fetchChats();
+
+    // For make scroll begin from bottom
+    if (messageContentRef.current) {
+      messageContentRef.current.scrollTop =
+        messageContentRef.current.scrollHeight;
+    }
 
     // Handle window resize
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -59,6 +66,13 @@ const Chat = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [user]);
+
+  useEffect(() => {
+    return () => {
+      // Disconnect when the component unmounts
+      disconnect();
+    };
+  }, []);
 
   // Determine visibility classes based on screen width and state
   const isBackButtonVisible = windowWidth <= 915 && isUsernameVisible;
@@ -149,24 +163,33 @@ const Chat = () => {
             isUsernameVisible ? "message-container-visible" : ""
           }`}
         >
-          <div className="message-content">
+          <div className="message-content" ref={messageContentRef}>
             {messages &&
               messages.map((msg, index) => (
-                <div key={index}>{msg.senderName + ":" + msg.content}</div>
+                <div key={index} className="individual-message">
+                  <div className="message">
+                    <p>
+                      {msg.content}
+                    </p>
+                  </div>
+                  <div className="sent-at">
+                    <p>12:00</p>
+                  </div>
+                </div>
               ))}
           </div>
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              sendMessage(inputMessage);
-              setInputMessage(""); // Clear the input after sending
-            }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendMessage(inputMessage);
+            setInputMessage(""); // Clear the input after sending
+          }}
           >
             <div className="send-message-container">
               <div className="input-container">
                 <input
-                  onChange={(e) => setInputMessage(e.target.value)}
-                  value={inputMessage}
+                onChange={(e) => setInputMessage(e.target.value)}
+                value={inputMessage}
                 />
               </div>
               <div className="send-button-container">

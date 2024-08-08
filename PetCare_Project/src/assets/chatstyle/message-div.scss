@@ -1,0 +1,25 @@
+@mixin messagestyle($backgorund-color, $margin) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  height: auto;
+  min-height: 100px;
+  justify-content: space-between;
+  border-radius: 15px;
+  padding: 10px;
+  background-color: $backgorund-color;
+  margin: $margin;
+  flex-shrink: 0;
+
+  .message {
+    color: base.$chat-color-4;
+  }
+
+  .sent-at {
+    align-self: flex-end;
+    color: base.$chat-color-4;
+    font-size: 12px;
+    max-height: 15px;
+  }
+}
