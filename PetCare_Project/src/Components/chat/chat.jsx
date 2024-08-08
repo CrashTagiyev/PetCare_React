@@ -37,18 +37,18 @@ const Chat = () => {
   // // Effect to update screen width on resize
   useEffect(() => {
     // Fetch chats when the user is updated
-    // const fetchChats = async () => {
-    //   if (user) {
-    //     try {
-    //       const chats = await GetChats(user.username);
-    //       setDisplayChats(chats);
-    //     } catch (error) {
-    //       console.error("Error fetching chats:", error);
-    //     }
-    //   }
-    // };
+    const fetchChats = async () => {
+      if (user) {
+        try {
+          const chats = await GetChats(user.username);
+          setDisplayChats(chats);
+        } catch (error) {
+          console.error("Error fetching chats:", error);
+        }
+      }
+    };
 
-    // fetchChats();
+    fetchChats();
 
     // For make scroll begin from bottom
     if (messageContentRef.current) {
