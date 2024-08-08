@@ -18,14 +18,14 @@ const Chat = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const messageContentRef = useRef(null);
 
-  // Hooks
+  //Hooks
   const { user } = useAuth();
-  const { sendMessage, messages, disconnect } = useChatConnection(
+  const { sendMessage, messages } = useChatConnection(
     user.username,
     currentChatName
   );
 
-  // Handlers
+  // // Handlers
   const handleClick = () => {
     setUsernameVisible(true);
   };
@@ -34,7 +34,7 @@ const Chat = () => {
     setUsernameVisible(false);
   };
 
-  // Effect to update screen width on resize
+  // // Effect to update screen width on resize
   useEffect(() => {
     // Fetch chats when the user is updated
     const fetchChats = async () => {
@@ -66,7 +66,7 @@ const Chat = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [user]);
-
+  
   useEffect(() => {
     return () => {
       // Disconnect when the component unmounts
@@ -168,7 +168,9 @@ const Chat = () => {
               messages.map((msg, index) => (
                 <div key={index} className="individual-message">
                   <div className="message">
-                    <p>{msg.content}</p>
+                    <p>
+                      {msg.content}
+                    </p>
                   </div>
                   <div className="sent-at">
                     <p>12:00</p>
@@ -177,17 +179,17 @@ const Chat = () => {
               ))}
           </div>
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              sendMessage(inputMessage);
-              setInputMessage(""); // Clear the input after sending
-            }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendMessage(inputMessage);
+            setInputMessage(""); // Clear the input after sending
+          }}
           >
             <div className="send-message-container">
               <div className="input-container">
                 <input
-                  onChange={(e) => setInputMessage(e.target.value)}
-                  value={inputMessage}
+                onChange={(e) => setInputMessage(e.target.value)}
+                value={inputMessage}
                 />
               </div>
               <div className="send-button-container">
