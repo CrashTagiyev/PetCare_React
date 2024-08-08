@@ -67,12 +67,12 @@ const Chat = () => {
     };
   }, [user]);
 
-  useEffect(() => {
-    return () => {
-      // Disconnect when the component unmounts
-      disconnect();
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     // Disconnect when the component unmounts
+  //     disconnect();
+  //   };
+  // }, []);
 
   // Determine visibility classes based on screen width and state
   const isBackButtonVisible = windowWidth <= 915 && isUsernameVisible;
