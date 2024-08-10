@@ -1,6 +1,7 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import PetCareAPI from "../../APIs/PetCareAPI";
 
-export const FetchVets = async () => {
+export const VetsFetch = createAsyncThunk("content/vetsFetch", async () => {
   const response = await PetCareAPI.get(
     "/RepoTest/GetAllByRole",
     {
@@ -15,6 +16,5 @@ export const FetchVets = async () => {
       withCredentials: true,
     }
   );
-
   return response.data;
-};
+});

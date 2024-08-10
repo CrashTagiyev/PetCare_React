@@ -1,7 +1,6 @@
 import react from "react";
 import { createSlice } from "@reduxjs/toolkit";
-import VetsFetch from "../AxiosFetchs/EntityFetchs/VetsFetch";
-
+import { VetsFetch } from "../AxiosFetchs/EntityReduxFetchs/VetsFetch";
 const vetsSlice = createSlice({
   name: "vets",
   initialState: {
