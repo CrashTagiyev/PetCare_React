@@ -7,7 +7,8 @@ import send_message from "../../assets/Icons/ send-message.png";
 import search_button from "../../assets/Icons/ user-search-button.png";
 import back_button from "../../assets/Icons/arrow.png";
 import useChatConnection from "../../Hooks/useChatConnection";
-
+import message_Seen from "../../assets/Icons/messageSeen.png";
+import message_Received from "../../assets/Icons/messageReceived.png";
 const Chat = () => {
   //States
   const [currentChattingUser, setCurrentChattingUser] = useState("");
@@ -20,12 +21,26 @@ const Chat = () => {
 
   //Hooks
   const { user } = useAuth();
-  const { sendMessage, messages,disconnect} = useChatConnection(
+  const { sendMessage, messages, disconnect } = useChatConnection(
     user.username,
     currentChatName
   );
 
-  // // Handlers
+  const messageEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    if (messageContentRef.current) {
+      messageContentRef.current.scrollTop = messageContentRef.current.scrollHeight;
+      messageContentRef.current.focus(); // Focus on the message-content div
+    }
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  // Handlers
   const handleClick = () => {
     setUsernameVisible(true);
   };
@@ -34,7 +49,7 @@ const Chat = () => {
     setUsernameVisible(false);
   };
 
-  // // Effect to update screen width on resize
+  // Effect to update screen width on resize
   useEffect(() => {
     // Fetch chats when the user is updated
     const fetchChats = async () => {
@@ -54,6 +69,7 @@ const Chat = () => {
     if (messageContentRef.current) {
       messageContentRef.current.scrollTop =
         messageContentRef.current.scrollHeight;
+      messageContentRef.current.focus(); // Focus on the message-content div
     }
 
     // Handle window resize
@@ -66,14 +82,6 @@ const Chat = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [user]);
-  
-  useEffect(() => {
-    return () => {
-      // Disconnect when the component unmounts
-      disconnect();
-    };
-  }, []);
-
 
   useEffect(() => {
     return () => {
@@ -81,7 +89,6 @@ const Chat = () => {
       disconnect();
     };
   }, []);
-
 
   // Determine visibility classes based on screen width and state
   const isBackButtonVisible = windowWidth <= 915 && isUsernameVisible;
@@ -172,33 +179,43 @@ const Chat = () => {
             isUsernameVisible ? "message-container-visible" : ""
           }`}
         >
-          <div className="message-content" ref={messageContentRef}>
+          <div className="message-content" ref={messageContentRef} tabIndex={-1}>
             {messages &&
               messages.map((msg, index) => (
-                <div key={index} className="individual-message">
-                  <div className="message">
-                    <p>
-                      {msg.content}
-                    </p>
-                  </div>
-                  <div className="sent-at">
-                    <p>12:00</p>
+                <div
+                  key={index}
+                  className={
+                    user.username !== msg.senderName
+                      ? "individual-message"
+                      : "own-message"
+                  }
+                >
+                  <div className="message">{msg.content}</div>
+                  <div className="message-info">
+                    <p className="sent-at">{msg.createdTime}</p>
+                    {msg.senderName === user.username ? (
+                      <img
+                        className="isSeen-img"
+                        src={msg.isSeen ? message_Seen : message_Received}
+                        alt="isSeen"
+                      />
+                    ) : null}
                   </div>
                 </div>
               ))}
           </div>
           <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            sendMessage(inputMessage);
-            setInputMessage(""); // Clear the input after sending
-          }}
+            onSubmit={(e) => {
+              e.preventDefault();
+              sendMessage(inputMessage);
+              setInputMessage(""); // Clear the input after sending
+            }}
           >
             <div className="send-message-container">
               <div className="input-container">
                 <input
-                onChange={(e) => setInputMessage(e.target.value)}
-                value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
+                  value={inputMessage}
                 />
               </div>
               <div className="send-button-container">

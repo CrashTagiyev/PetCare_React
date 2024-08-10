@@ -16,7 +16,7 @@ const Header = () => {
           </Link>
           <nav>
             <Link to="/">Home</Link>
-            <Link to="/getUsers">Users</Link>
+            {/* <Link to="/getUsers">Users</Link> */}
           </nav>
         </div>
         <div className="header-right">
@@ -28,11 +28,11 @@ const Header = () => {
           <div className="auth">
             {!user && <Link to="/signup">Sign Up</Link>}
             {!user && <Link to="/login">Log In</Link>}
-            <Link to="/userprofileinfo" className="profile">
+           {user && <Link  to="/userprofileinfo" className="profile">
               <div className="profile-photo">
                 <img src={user_image}></img>
               </div>
-            </Link>
+            </Link>}
           </div>
         </div>
       </header>

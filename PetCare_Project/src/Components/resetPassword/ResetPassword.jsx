@@ -17,7 +17,7 @@ const ResetPassword = () => {
     const fetchedUserId = query.get("userId");
     const fetchedToken = query.get("token");
     if (fetchedUserId && fetchedToken) {
-      fetchedToken = fetchedToken.replace(/ /g, "+"); // Replace spaces with +
+      // fetchedToken = fetchedToken.replace(/ /g, "+"); // Replace spaces with +
       setUserId(fetchedUserId);
       setToken(fetchedToken);
     }

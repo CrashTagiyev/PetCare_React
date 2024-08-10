@@ -1,39 +1,46 @@
-// colors
-    $footer-color-1: #6504B5;
-    $footer-color-2: #2E0152;
-    $footer-color-3: #FFFFFF;
-    // ..........................
-    $hover-color-1: #E49BFF;
-    $hover-color-2: #1C1678;
-    $hover-color-3:  #003285;
-    // ..........................
-    $login-color-1: #3C5A99;
-    $login-color-2:  #DC3545;
-    // ..........................
-    $border-color-1: #D2D1D3;
-    $background-color: #D2D1D3;
-    // ..........................
-    $user-profile-info-color-1: #919191;
-    // ..........................
-    $chat-color-1: #7A48C6;
-    $chat-color-2: #9473D1;
-    $chat-color-3: #bfa1e3;
-    $chat-color-4: #f1e6f3;
+@font-face {
+  font-family: Inter;
+  src: url("../../assets/Fonts/Inter_28pt-Bold.ttf");
+}
 
+// colors
+$footer-color-1: #6504b5;
+$footer-color-2: #2e0152;
+$footer-color-3: #ffffff;
+// ..........................
+$hover-color-1: #e49bff;
+$hover-color-2: #1c1678;
+$hover-color-3: #003285;
+// ..........................
+$login-color-1: #3c5a99;
+$login-color-2: #dc3545;
+// ..........................
+$border-color-1: #d2d1d3;
+$background-color: #d2d1d3;
+// ..........................
+$user-profile-info-color-1: #919191;
+// ..........................
+$chat-color-1: #7a48c6;
+$chat-color-2: #9473d1;
+$chat-color-3: #bfa1e3;
+$chat-color-4: #f1e6f3;
 
 // fonts
-    $font-1: sans-serif;
+$font-1: sans-serif;
 
 // box-shadow
-    $box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+$box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
 
 // Common Designs
-%common-shared-1{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font: $font-1;
+%common-shared-1 {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font: $font-1;
 }
 
 //Transitions
-$transitionDelay:0.6s;
+$transitionDelay: 0.6s;
+
+//Font family
+$InterFontFamily: Inter;
