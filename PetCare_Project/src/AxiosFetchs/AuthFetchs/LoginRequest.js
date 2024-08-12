@@ -22,6 +22,7 @@ export const LoginRequest = async (emailAdress, password, event) => {
         const roles = decodedToken.role;
         const username = decodedToken.username; // Ensure to get the correct claim
         const emailAddress = decodedToken.email; // Ensure to get the correct claim
+        const profileImage = decodedToken.profileimageurl;
         localStorage.setItem("accessToken", token);
         localStorage.setItem("refreshToken", refreshToken);
         console.log(message);
@@ -30,7 +31,9 @@ export const LoginRequest = async (emailAdress, password, event) => {
           username: username,
           emailAdress: emailAddress,
           roles: roles,
+          profileImage: profileImage
         };
+        console.log(user);
         return user;
       } else {
         console.log(message);

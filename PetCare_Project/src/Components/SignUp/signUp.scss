@@ -31,17 +31,17 @@
       .inputs {
         display: flex;
         gap: 80px;
-
         .half-part {
           display: flex;
           flex-direction: column;
+          
           gap: 30px;
 
           .input-container {
             display: flex;
             flex-direction: column;
             gap: 5px;
-
+            justify-content: space-between;
             input,
             select {
               width: 340px;
@@ -72,7 +72,10 @@
               font-size: 14px;
             }
           }
-          button {
+          .img-upload-btn{
+            border-color: base.$footer-color-1 !important;
+          }
+          .signup-btn {
             width: 340px;
             height: 45px;
             background-color: base.$footer-color-1;

@@ -1,27 +1,31 @@
 import { PetCareAPI } from "../../APIs/PetCareAPI";
-import { jwtDecode } from "jwt-decode";
+
 
 export const SignUpRequest = async (newUserDatas) => {
   event.preventDefault();
-  console.log(newUserDatas);
   try {
-    const response = await PetCareAPI.post(
-      "Account/Register",
-      {
-        UserName: newUserDatas.username,
-        Email: newUserDatas.email,
-        Password: newUserDatas.password,
-        Firstname: newUserDatas.firstname,
-        Lastname: newUserDatas.lastname,
-        DateOfBirth: newUserDatas.dateofbirth,
-        City: newUserDatas.city,
-        Address: newUserDatas.address,
-      },
-      {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      }
-    );
+    const formData = new FormData();
+
+    // Append each field to the FormData
+    formData.append("UserName", newUserDatas.username);
+    formData.append("Email", newUserDatas.email);
+    formData.append("Password", newUserDatas.password);
+    formData.append("Firstname", newUserDatas.firstname);
+    formData.append("Lastname", newUserDatas.lastname);
+    formData.append("DateOfBirth", newUserDatas.dateofbirth);
+    formData.append("City", newUserDatas.city);
+    formData.append("Address", newUserDatas.address);
+
+    // Handle the profile image
+    if (newUserDatas.profileimage && newUserDatas.profileimage[0]) {
+      formData.append("ProfileImage", newUserDatas.profileimage[0].originFileObj);
+    }
+
+    const response = await PetCareAPI.post("Account/Register", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: true,
+    });
+
     console.log(response.status);
     console.log(response.statusText);
     console.log(response.data);

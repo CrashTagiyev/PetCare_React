@@ -30,7 +30,7 @@ const Header = () => {
             {!user && <Link to="/login">Log In</Link>}
            {user && <Link  to="/userprofileinfo" className="profile">
               <div className="profile-photo">
-                <img src={user_image}></img>
+                <img src={user.profileImage}></img>
               </div>
             </Link>}
           </div>
