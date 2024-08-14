@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ForgotPassowrdRequest } from "../../AxiosFetchs/AuthFetchs/ForgotPasswordRequest";
+import { ForgotPasswordRequest } from "../../AxiosFetchs/AuthFetchs/ForgotPasswordRequest";
 import "../forgotPassword/forgotPassword.scss";
 
 const ForgotPassword = () => {
@@ -11,31 +11,15 @@ const ForgotPassword = () => {
   useEffect(() => {
     if (responseData) {
       setMessage(responseData.message);
+      setErrors(responseData.errors || {}); // Set errors from response
     }
   }, [responseData]);
 
-  const validateEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-  };
-
-  const validateInputs = () => {
-    const errors = {};
-    if (!email) {
-      errors.email = "Email is required";
-    } else if (!validateEmail(email)) {
-      errors.email = "Invalid email format";
-    }
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateInputs()) return;
     try {
-      const response = await ForgotPassowrdRequest(email);
-      setResponseData(response);
+      const data = await ForgotPasswordRequest(email);
+      setResponseData(data);
     } catch (error) {
       setMessage("An error occurred. Please try again.");
     }
@@ -49,16 +33,22 @@ const ForgotPassword = () => {
         </div>
         <form onSubmit={handleSubmit}>
           <div>
-            <p>Please write you email , for reset your password</p>
+            {message && message.startsWith("Reset") ? (
+              <p className="successMessage">{message}</p>
+            ) : (
+              <p>Please write your email to reset your password</p>
+            )}
           </div>
           <div>
             <input
-              className={errors.email ? "is-invalid" : ""}
+              className={errors.Email ? "is-invalid" : ""}
               onChange={(e) => setEmail(e.target.value)}
-              type="text"
+              type="email"
               placeholder="Email"
             />
-            {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+            {errors.Email && (
+              <div className="invalid-feedback">{errors.Email}</div>
+            )}
           </div>
           <div>
             <button type="submit">Submit</button>

@@ -1,6 +1,6 @@
 @use "../../assets/basestyle/base.scss";
 
-@mixin loginstyle($backgorund-color: base.$footer-color-3) {
+@mixin loginstyle($background-color: base.$footer-color-3) {
   width: 340px;
   height: 45px;
   display: flex;
@@ -9,18 +9,24 @@
   align-items: center;
   gap: 20px;
   border-radius: 30px;
-  background-color: $backgorund-color;
+  background-color: $background-color;
   font-size: 16px;
-  border: 1px solid black;
-}
+  border: 1px solid transparent;
+  transition: border-color 0.3s, background-color 0.3s;
 
-@mixin hoverstyle {
-  cursor: pointer;
-  border: 2px solid black;
+  &:hover {
+    border-color: base.$footer-color-1;
+    background-color: lighten($background-color, 10%);
+  }
 }
 
 @mixin linkstyle {
   color: base.$footer-color-1;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 * {
@@ -31,14 +37,14 @@
 }
 
 body {
-  background-color: #efeef1;
+  background-color: #f0f2f5; // Softer background
 }
 
-.parent-div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 723px;
+.parent-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; // Centering vertically
 }
 
 .main-div {
@@ -47,59 +53,55 @@ body {
   align-items: center;
   gap: 20px;
   background-color: base.$footer-color-3;
-  padding: 20px;
-  width: 390px;
-  border-radius: 5px;
+  padding: 40px; // Increased padding for more space
+  width: 400px; // Adjusted width
+  border-radius: 10px; // Slightly rounded corners
   box-shadow: base.$box-shadow;
 
   .login-text p {
-    font-size: 34px;
+    font-size: 36px; // Slightly larger font size
+    font-weight: bold; // Bold for emphasis
+    color: base.$footer-color-1; // Changed color for better contrast
   }
 
   form {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 100%; // Full width for inputs
 
     input {
-      width: 340px;
+      width: 100%; // Full width
       height: 55px;
       border-radius: 5px;
       border: 2px solid base.$border-color-1;
       padding-left: 20px;
       font-size: 18px;
+
+      &:hover {
+        border-color: base.$footer-color-1;
+      }
+
+      &:focus {
+        border-color: base.$footer-color-1;
+        outline: none;
+      }
+
+      &.is-invalid {
+        border-color: base.$login-color-2; // Adjust color as needed
+      }
     }
 
-    input:hover {
-      border-color: base.$footer-color-1;
+    button {
+      @include loginstyle(base.$footer-color-1);
+      color: base.$footer-color-3;
+      font-size: 16px; // Slightly larger font size
+      transition: background-color 0.3s; // Smooth transition on hover
     }
 
-    input:focus {
-      border-color: base.$footer-color-1;
-      outline: none;
-    }
-
-    input.is-invalid {
-      border-color: base.$login-color-2; // Adjust color as needed
-    }
-    
     .invalid-feedback {
       color: base.$login-color-2; // Adjust color as needed
       font-size: 0.875em;
-    }
-    
-    button {
-      width: 340px;
-      height: 45px;
-      background-color: base.$footer-color-1;
-      color: base.$footer-color-3;
-      border-radius: 30px;
-      font-size: 14px;
-    }
-
-    button:hover {
-      cursor: pointer;
-      background-color: base.$hover-color-2;
     }
   }
 
@@ -110,12 +112,13 @@ body {
   .or-login-with {
     margin-top: 15px;
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 10px;
 
     hr {
-      width: 121.16px;
+      flex: 1; // Ensure hr takes available space
+      border: none;
+      border-top: 1px solid #ccc; // Lighter color for better visibility
     }
   }
 
@@ -125,22 +128,29 @@ body {
     flex-direction: column;
     gap: 10px;
 
-    .google button {
+    button {
       @include loginstyle;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .google button {
+      background-color: #db4437; // Google color
+      color: white;
+
+      &:hover {
+        background-color: darken(#db4437, 10%);
+      }
     }
 
     .facebook button {
-      @include loginstyle(base.$login-color-1);
-      color: base.$footer-color-3;
-    }
+      background-color: #4267b2; // Facebook color
+      color: white;
 
-    .google button:hover {
-      @include hoverstyle();
-    }
-
-    .facebook button:hover {
-      @include hoverstyle();
-      background-color: base.$hover-color-3;
+      &:hover {
+        background-color: darken(#4267b2, 10%);
+      }
     }
   }
 
@@ -149,17 +159,32 @@ body {
   }
 }
 
-
 @media screen and (min-width: 768px) {
   .main-div {
-    width: 500px;
-    height: 632.58px;
+    width: 450px; // Adjust width for larger screens
   }
 }
 
 @media screen and (min-width: 1024px) {
   .main-div {
-    width: 500px;
-    height: 577.58px;
+    width: 500px; // Adjust width for larger screens
+  }
+}
+.error-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px; // Space above error messages
+
+  .error-column {
+    flex: 1; // Each column takes equal width
+    margin-right: 10px; // Spacing between columns
+  }
+
+  .error-message {
+    color: red; // Change this to your desired error color
+    font-size: 0.875em; // Adjust the font size
+    margin-bottom: 5px; // Space between messages
   }
 }

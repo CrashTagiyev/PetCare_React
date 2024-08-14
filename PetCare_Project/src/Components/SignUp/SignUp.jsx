@@ -143,7 +143,7 @@ const SignUp = () => {
                 <Input.Password />
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit">
+                <Button className="signup-btn" htmlType="submit">
                   Sign Up
                 </Button>
               </Form.Item>

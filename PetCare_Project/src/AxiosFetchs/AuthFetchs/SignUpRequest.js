@@ -26,6 +26,7 @@ export const SignUpRequest = async (newUserDatas) => {
       withCredentials: true,
     });
 
+    
     console.log(response.status);
     console.log(response.statusText);
     console.log(response.data);

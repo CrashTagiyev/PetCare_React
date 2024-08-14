@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { Form, Input, Button, message } from "antd";
 import { LoginRequest } from "../../AxiosFetchs/AuthFetchs/LoginRequest";
-import { PetCareAPI } from "../../APIs/PetCareAPI";
 import { useAuth } from "../../Hooks/useAuth";
 import "../login/login.scss";
 import google from "../../assets/Icons/google.png";
@@ -8,40 +8,34 @@ import facebook from "../../assets/Icons/facebook-login.png";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [form] = Form.useForm();
   const { login } = useAuth();
-  const [errors, setErrors] = useState({});
-  
-  const validateEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-  };
-  
-  const validateInputs = () => {
-    const errors = {};
-    if (!loginEmail) {
-      errors.email = "Email is required";
-    } else if (!validateEmail(loginEmail)) {
-      errors.email = "Invalid email format";
-    }
-    if (!loginPassword) {
-      errors.password = "Password is required";
-    } else if (loginPassword.length < 8) {
-      errors.password = "Password must be at least 8 characters";
-    }
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
 
-  const loginHandler = async (event) => {
-    event.preventDefault();
-    if (!validateInputs()) return;
-    await LoginRequest(loginEmail, loginPassword, event).then((u) => {
-      if (u !== undefined) login(u);
-    });
+  const loginHandler = async (values) => {
+    try {
+      const { emailAddress, password } = values;
+      const data = await LoginRequest(emailAddress, password);
+      if (data && !data.errors) {
+        login(data);
+      } else if (data && data.errors) {
+        // Display validation errors from the response
+        const errorMessages = {};
+        if (data.errors.EmailAddress) {
+          errorMessages.emailAddress = data.errors.EmailAddress.join(" ");
+        }
+        if (data.errors.Password) {
+          errorMessages.password = data.errors.Password.join(" ");
+        }
+        form.setFields([
+          { name: 'emailAddress', errors: errorMessages.emailAddress ? [errorMessages.emailAddress] : [] },
+          { name: 'password', errors: errorMessages.password ? [errorMessages.password] : [] }
+        ]);
+      }
+    } catch (error) {
+      console.error("An error occurred during login:", error);
+      message.error("An error occurred during login.");
+    }
   };
-
 
   return (
     <div className="parent-div">
@@ -49,35 +43,49 @@ const Login = () => {
         <div className="login-text">
           <p>Log In</p>
         </div>
-        <form onSubmit={loginHandler}>
-          <div>
-            <input
-              type="text"
-              name="emailAdress"
-              value={loginEmail}
-              onChange={(e) => setLoginEmail(e.target.value)}
-              placeholder="Email"
-              className={errors.email ? "is-invalid" : ""}
-            />
-             {errors.email && <div className="invalid-feedback">{errors.email}</div>}
-          </div>
-          <div>
-            <input
-              type="password"
-              name="password"
-              value={loginPassword}
-              onChange={(e) => setLoginPassword(e.target.value)}
-              placeholder="Password"
-              className={errors.password ? "is-invalid" : ""}
-            />
-            {errors.password && <div className="invalid-feedback">{errors.password}</div>}
-          </div>
-          <div>
-            <button type="submit">LOG IN</button>
-          </div>
-        </form>
+        <Form
+          form={form} // Ensure the form instance is passed here
+          onFinish={loginHandler}
+          layout="vertical"
+        >
+          <Form.Item
+            name="emailAddress"
+            label="Email"
+            rules={[{ required: true, message: 'Please input your email!' }]}
+          >
+            <Input placeholder="Email" />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            label="Password"
+            rules={[{ required: true, message: 'Please input your password!' }]}
+          >
+            <Input.Password placeholder="Password" />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" block>
+              LOG IN
+            </Button>
+          </Form.Item>
+        </Form>
+        <div className="error-container">
+          {form.getFieldError('emailAddress').length > 0 && (
+            <div className="error-column">
+              {form.getFieldError('emailAddress').map((error, index) => (
+                <div key={index} className="error-message">{error}</div>
+              ))}
+            </div>
+          )}
+          {form.getFieldError('password').length > 0 && (
+            <div className="error-column">
+              {form.getFieldError('password').map((error, index) => (
+                <div key={index} className="error-message">{error}</div>
+              ))}
+            </div>
+          )}
+        </div>
         <div className="forgot-password">
-          <Link to="/forgotpassword">Forgot password? </Link>
+          <Link to="/forgotpassword">Forgot password?</Link>
         </div>
         <div className="or-login-with">
           <div>
@@ -94,7 +102,7 @@ const Login = () => {
           <div className="facebook">
             <button>
               <div>
-                <img src={facebook} />
+                <img src={facebook} alt="Facebook Login" />
               </div>
               <div>
                 <p>Facebook</p>
@@ -104,7 +112,7 @@ const Login = () => {
           <div className="google">
             <button>
               <div>
-                <img src={google} />
+                <img src={google} alt="Google Login" />
               </div>
               <div>
                 <p>Google</p>
@@ -113,7 +121,7 @@ const Login = () => {
           </div>
         </div>
         <div className="need-account">
-          Need an account? <a href="/signup">Sign Up</a>
+          Need an account? <Link to="/signup">Sign Up</Link>
         </div>
       </div>
     </div>
@@ -121,19 +129,3 @@ const Login = () => {
 };
 
 export default Login;
-
-{
-  // <button
-  //   onClick={async () => {
-  //     try {
-  //       const response = await PetCareAPI.get("/RepoTest/AppUserGetAll");
-  //       console.log(response.status);
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.error("Fetching products failed:", error);
-  //     }
-  //   }}
-  // >
-  //   Fetch Users
-  // </button>
-}
