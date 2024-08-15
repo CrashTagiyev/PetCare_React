@@ -1,5 +1,6 @@
 import "../userprofile/userprofile.scss";
 import React, { useState, useRef } from "react";
+import { useAuth } from "../../Hooks/useAuth";
 
 const Userprofile = () => {
   const [username, setUsername] = useState();
@@ -11,6 +12,8 @@ const Userprofile = () => {
   const [birthdate, setBirthdate] = useState("");
   const [errors, setErrors] = useState({});
   const [isReadOnly, setIsReadOnly] = useState(true);
+
+  const {user,logout} = useAuth();
 
   const usernameRef = useRef(null);
 
@@ -79,7 +82,7 @@ const Userprofile = () => {
                 <label>Username:</label>
                 <input
                   type="text"
-                  value="Elgun"
+                  value={user.username}
                   onChange={(e) => setUsername(e.target.value)}
                   className={errors.username ? "is-invalid" : ""}
                   readOnly={isReadOnly}
@@ -183,6 +186,9 @@ const Userprofile = () => {
                 </div>
                 <div>
                   <button type="submit">Save</button>
+                </div>
+                <div>
+                  <button onClick={logout}>Log Out</button>
                 </div>
               </div>
             </div>

@@ -2,19 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import PetCareAPI from "../../APIs/PetCareAPI";
 
 export const VetsFetch = createAsyncThunk("content/vetsFetch", async () => {
-  const response = await PetCareAPI.get(
-    "/RepoTest/GetAllByRole",
-    {
-     params:{
-        roleName: "Vet",
-     }
+  const response = await PetCareAPI.get("/vets/getvetslist", {
+    headers: {
+      "Content-Type": "application/json",
     },
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    }
-  );
+    withCredentials: true,
+  });
   return response.data;
 });

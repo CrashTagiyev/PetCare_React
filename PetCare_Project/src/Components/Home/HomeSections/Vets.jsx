@@ -33,7 +33,7 @@ const Vets = () => {
             <div className="user-info-container">
               <img className="user-info-img" src={ vet.profileImageUrl && vet.profileImageUrl || user_image} alt="" />
               <div className="user-info-div">
-                <Link className="user-fullName" to={"/"}>{vet.firstname + " " + vet.lastname}</Link>
+                <Link className="user-fullName" to={`/vetinfo/${vet.id}`} >{vet.firstname + " " + vet.lastname}</Link>
                 <div className="user-info-address">{vet.email}</div>
                 <div className="user-info-phoneNumber">{vet.createdTime}</div>
               </div>

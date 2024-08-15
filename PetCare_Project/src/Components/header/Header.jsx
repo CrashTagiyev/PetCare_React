@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../Hooks/useAuth";
 import user_image from "../../assets/Icons/ user.jpg";
 import bell_image from "../../assets/Icons/bell.png";
-
+import default_UserImg from "../../assets/Icons/defaultUserImg.png"
 const Header = () => {
   const { user } = useAuth();
   return (
@@ -30,7 +30,7 @@ const Header = () => {
             {!user && <Link to="/login">Log In</Link>}
            {user && <Link  to="/userprofileinfo" className="profile">
               <div className="profile-photo">
-                <img src={user.profileImage}></img>
+                <img src={user.profileImage && user.profileImage || default_UserImg}></img>
               </div>
             </Link>}
           </div>

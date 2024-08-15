@@ -18,10 +18,6 @@ export const ResetPasswordRequest = async (userId, token, newPassword) => {
       }
     );
     const { statusMessage, statuscode } = response.data;
-    console.log("----------------------");
-    console.log(statusMessage);
-    console.log(statuscode);
-    console.log("----------------------");
     return statusMessage;
   } catch (error) {
     console.log(error);

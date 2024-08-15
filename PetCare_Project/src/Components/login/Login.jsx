@@ -13,9 +13,11 @@ const Login = () => {
 
   const loginHandler = async (values) => {
     try {
+      const a="";
+      a.startsWith
       const { emailAddress, password } = values;
       const data = await LoginRequest(emailAddress, password);
-      if (data && !data.errors) {
+      if (data && data.username) {
         login(data);
       } else if (data && data.errors) {
         // Display validation errors from the response

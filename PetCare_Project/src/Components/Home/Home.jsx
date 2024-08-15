@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import "../Home/home.scss";
 import SearchSection from "./HomeSections/SearchSection";
 import Vets from "./HomeSections/Vets";
+
 const Home = () => {
-  const [displayItems, setDisplayItems] = useState("All");
+  const [displayItems, setDisplayItems] = useLocalStorage("displayItems", "All");
 
   const renderContent = () => {
     switch (displayItems) {
@@ -34,9 +36,7 @@ const Home = () => {
           </div>
         );
       case "Vets":
-        return (
-            <Vets />
-        );
+        return <Vets />;
       default:
         return <h2>All</h2>;
     }
@@ -46,6 +46,7 @@ const Home = () => {
     <>
       {/* Search section */}
       <SearchSection setDisplay={setDisplayItems}></SearchSection>
+      {/* Items section */}
       <section className="items-section">{renderContent()}</section>
     </>
   );
