@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import "../Home/home.scss";
 import SearchSection from "./HomeSections/SearchSection";
-import Vets from "./HomeSections/Vets";
+import Vets from "../Home/HomeSections/vet/Vets";
 const Home = () => {
   const [displayItems, setDisplayItems] = useState("All");
 

@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import { Routes, Route } from "react-router-dom";
 import AuthRequires from "./Components/AuthRequires/AuthRequires";
 import GetUsers from "./Components/GetUsers";
