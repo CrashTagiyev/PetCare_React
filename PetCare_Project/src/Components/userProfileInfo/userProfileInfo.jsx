@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../userProfileInfo/userProfileInfo.scss";
 import UserProfile from "../userprofile/Userprofile";
-import Chat from "../chat/Chat";
+import Chat from "../chat/ Chat"
 import Notification from "../notification/Notification";
 
 const tabs = ["Info", "About Us", "Inbox", "Blogs"]; // Move tabs definition outside the component
