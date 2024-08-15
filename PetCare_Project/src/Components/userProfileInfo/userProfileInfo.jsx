@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "../userProfileInfo/userProfileInfo.scss";
 import UserProfile from "../userprofile/Userprofile";
-import Chat from "../chat/ Chat"
+import Chat from "../chat/ Chat";
 import Notification from "../notification/Notification";
-
-const tabs = ["Info", "About Us", "Inbox", "Blogs"]; // Move tabs definition outside the component
+import {useLocalStorage} from "../../Hooks/useLocalStorage"
+import { useState } from "react";
+const tabs = ["Info", "About Us", "Inbox", "Blogs"];
 
 const UserProfileInfo = () => {
-  const [activeTab, setActiveTab] = useState("Info");
-  const [lineStyle, setLineStyle] = useState({ left: 0, width: 0 });
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 790);
-
+  const [activeTab, setActiveTab] = useLocalStorage("activeTab", "Info");
+  const [lineStyle, setLineStyle] = useState({ left: 0, width: 0 }); // Use useState instead of useLocalStorage
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Use useState instead of useLocalStorage
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 790); // Use useState instead of useLocalStorage
   const tabRefs = useRef([]);
 
   useEffect(() => {

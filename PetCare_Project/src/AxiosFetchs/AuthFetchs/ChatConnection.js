@@ -18,8 +18,9 @@ export const CreateChatConnection = async (username, chatName) => {
     return messages;
   });
   try {
+    console.log(username,chatName)
     await connection.start();
-    await connection.invoke("CreateConnection", { username, chatName });
+    await connection.invoke("CreateChatConnection", { username, chatName });
   } catch (error) {
     console.error("Connection failed: ", error);
   }

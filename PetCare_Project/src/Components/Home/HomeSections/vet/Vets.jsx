@@ -39,7 +39,9 @@ const Vets = () => {
             </div>
             <div className="users-info-cont">
               <div className="user-fullname">
-                <p>{vet.firstname + " " + vet.lastname}</p>
+                <Link to={`/Vetinfo/${vet.id}`}>
+                  <p>{vet.firstname + " " + vet.lastname}</p>
+                </Link>
               </div>
               <div className="user-email">
                 <p>{vet.email}</p>

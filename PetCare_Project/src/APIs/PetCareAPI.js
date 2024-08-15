@@ -9,7 +9,6 @@ export const PetCareAPI = axios.create({
   withCredentials: true,
 });
 
-// Add a request interceptor
 PetCareAPI.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("accessToken");
