@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import "../Home/home.scss";
 import SearchSection from "./HomeSections/SearchSection";
-import Vets from "./HomeSections/Vets";
+import Vets from "./HomeSections/vet/Vets";
 const Home = () => {
   const [displayItems, setDisplayItems] = useLocalStorage("displayItems", "All");
 
