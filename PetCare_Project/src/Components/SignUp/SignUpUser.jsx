@@ -1,11 +1,11 @@
 import React from "react";
 import { Form, Input, Button, Select, Upload } from "antd";
-import { SignUpRequest } from "../../AxiosFetchs/AuthFetchs/SignUpRequest";
-import "../SignUp/signUp.scss";
-
+import { SignUpUserRequest } from "../../AxiosFetchs/AuthFetchs/SignUpRequest";
+import "../SignUp/signUpUser.scss";
+import { CitiesOptions } from "./signUpDatas/signUpDatas";
 const { Option } = Select;
 
-const SignUp = () => {
+const SignUpUser = () => {
   const [form] = Form.useForm();
 
   const normFile = (e) => {
@@ -18,7 +18,7 @@ const SignUp = () => {
   const onFinish = async (values) => {
     try {
       console.log(values);
-      const response = await SignUpRequest(values);
+      const response = await SignUpUserRequest(values);
       if (response.statusCode !== 200 && response.errors) {
         form.setFields(
           Object.keys(response.errors).map((field) => ({
@@ -38,7 +38,7 @@ const SignUp = () => {
     <div className="sign-up-parent">
       <div className="sign-up-container">
         <div>
-          <h1>Sign Up</h1>
+          <h1>User</h1>
         </div>
         <Form form={form} onFinish={onFinish} className="sign-up-form">
           <div className="inputs">
@@ -109,10 +109,11 @@ const SignUp = () => {
                 ]}
               >
                 <Select>
-                  <Option value="Baku">Baku</Option>
-                  <Option value="option1">Option 1</Option>
-                  <Option value="option2">Option 2</Option>
-                  <Option value="option3">Option 3</Option>
+                {CitiesOptions.map((city) => (
+                    <Select.Option key={city.value} value={city.value}>
+                      {city.label}
+                    </Select.Option>
+                  ))}
                 </Select>
               </Form.Item>
               <Form.Item
@@ -147,6 +148,7 @@ const SignUp = () => {
                   Sign Up
                 </Button>
               </Form.Item>
+              
             </div>
           </div>
         </Form>
@@ -155,4 +157,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpUser;

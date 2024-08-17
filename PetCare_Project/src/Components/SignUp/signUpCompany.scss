@@ -1,7 +1,7 @@
 @use "../../assets/basestyle/base.scss";
 
 .sign-up-parent {
-  height: 100vh;
+  height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center; // Centering the form vertically
@@ -35,6 +35,7 @@
         justify-content: space-between; // Spacing between half parts
         flex-wrap: wrap; // Allowing wrapping for smaller screens
         gap: 20px;
+        
         .half-part {
           flex: 1 1 40%; // Flexible width for half parts
           min-width: 300px; // Minimum width for responsiveness
@@ -49,21 +50,21 @@
 
             input,
             select {
-              width: 100%; // Full width for inputs
+              width: 100%; 
               height: 55px;
               border-radius: 5px;
               border: 2px solid base.$border-color-1 !important;
               padding-left: 20px;
               font-size: 18px;
-              transition: border-color 0.3s; // Smooth transition on hover/focus
+              transition: border-color 0.3s; 
 
               &:hover:not(.is-invalid) {
                 border-color: base.$footer-color-1 !important;
-                cursor: pointer; // Change cursor to pointer
+                cursor: pointer; 
               }
 
               &:focus {
-                border-color: base.$footer-color-1;
+                border-color: base.$footer-color-1 !important;
                 outline: none;
               }
             }

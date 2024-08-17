@@ -1,0 +1,41 @@
+@use "../../assets/basestyle/base.scss";
+
+.sign-up-parent {
+  height: max-content;
+  margin: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; // Centering the form vertically
+  flex-direction: column;
+  .signUp-parent-content-div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    .signUp-parent-h1 {
+      text-align: center;
+    }
+    .signUp-parent-btn-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      button {
+        border: 1px solid base.$footer-color-1;
+        border-radius: 7px;
+        background-color: white;
+        color: base.$footer-color-1;
+        height: 50px;
+        width: 120px;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          border: 1px solid white;
+          background-color: base.$footer-color-1;
+          color: white;
+        }
+      }
+    }
+  }
+}

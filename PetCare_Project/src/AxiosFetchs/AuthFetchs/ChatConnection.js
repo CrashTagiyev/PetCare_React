@@ -8,7 +8,7 @@ export const CreateChatConnection = async (username, chatName) => {
     })
     .withAutomaticReconnect()
     .build();
-
+    
   let messages = [];
 
   connection.on("GetConnectedChatsMessages", (receivedMessages) => {

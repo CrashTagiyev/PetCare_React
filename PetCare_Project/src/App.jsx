@@ -5,7 +5,6 @@ import GetUsers from "./Components/GetUsers";
 import Home from "./Components/Home/Home";
 import Layout from "./Components/Layouts/Layout";
 import { useAuth } from "./Hooks/useAuth";
-import SignUp from "./Components/SignUp/SignUp";
 import Login from "./Components/login/Login";
 import ForgotPassword from "./Components/forgotPassword/ForgotPassword";
 import ResetPassword from "./Components/resetPassword/ResetPassword";
@@ -13,7 +12,7 @@ import UserProfileInfo from "./Components/userProfileInfo/userProfileInfo";
 import store from "./Store/store";
 import { Provider } from "react-redux";
 import Vetinfo from "./Components/usersInformationCOmponents/VetInfo/Vetinfo";
-// import Chat from "./Components/chat/Chat";
+import SignUpParent from "./Components/SignUp/SignUpParent";
 
 const ROLES = {
   ADMIN: "Admin",
@@ -29,7 +28,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           {!user && <Route path="/login" element={<Login />} />}
-          {!user && <Route path="/signup" element={<SignUp />} />}
+          {!user && <Route path="/signup" element={<SignUpParent />} />}
           <Route path="/" element={<Home />} />
           <Route path="/userprofileinfo" element={<UserProfileInfo />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
