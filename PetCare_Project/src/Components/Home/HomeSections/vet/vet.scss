@@ -1,6 +1,6 @@
 @use "../../../../assets/basestyle/base.scss";
-p{
-    color: #4a4a4a;
+p {
+  color: #4a4a4a;
 }
 
 .users-cont {
@@ -38,5 +38,17 @@ p{
       align-items: center;
       gap: 20px;
     }
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .users-cont {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .users-cont {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

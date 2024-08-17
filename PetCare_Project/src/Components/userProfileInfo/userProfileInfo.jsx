@@ -5,7 +5,7 @@ import Chat from "../chat/ Chat";
 import Notification from "../notification/Notification";
 import {useLocalStorage} from "../../Hooks/useLocalStorage"
 import { useState } from "react";
-const tabs = ["Info", "About Us", "Inbox", "Blogs"];
+const tabs = ["Info", "About Us", "Inbox", "Notifications"];
 
 const UserProfileInfo = () => {
   const [activeTab, setActiveTab] = useLocalStorage("activeTab", "Info");
@@ -52,10 +52,9 @@ const UserProfileInfo = () => {
             <Chat />
           </div>
         );
-      case "Blogs":
+      case "Notifications":
         return (
           <div className="content active">
-            <h1>Notifications</h1>
             <h2>
               <Notification />
             </h2>
