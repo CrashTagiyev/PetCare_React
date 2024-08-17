@@ -2,6 +2,8 @@
 
 .notification-cont {
   min-width: 340px;
+  overflow-y: scroll;
+  max-height: 515px;
 
   .notification-header {
     height: 50px;

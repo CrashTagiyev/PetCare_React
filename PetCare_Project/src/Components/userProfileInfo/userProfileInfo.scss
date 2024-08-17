@@ -5,13 +5,13 @@
 }
 
 .tab-box-main-container {
-  height: 823px;
+  height: auto;
   display: flex;
   justify-content: center;
 
   .tab-container {
     width: 1000px;
-    height: 700px;
+    height: max-content;
     background-color: base.$footer-color-3;
     padding: 30px;
     box-shadow: base.$box-shadow;

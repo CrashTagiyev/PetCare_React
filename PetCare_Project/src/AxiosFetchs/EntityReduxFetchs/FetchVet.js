@@ -7,7 +7,6 @@ import PetCareAPI from "../../APIs/PetCareAPI";
 
 export const FetchVet =async (id)=>{
     try{
-
         const response = await PetCareAPI.get(
             "/vets/GetVet",
         {

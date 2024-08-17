@@ -1,10 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import "../userProfileInfo/userProfileInfo.scss";
-import UserProfile from "../userprofile/Userprofile";
+import UserProfile from "../userprofiles/Userprofile";
 import Chat from "../chat/ Chat";
 import Notification from "../notification/Notification";
-import {useLocalStorage} from "../../Hooks/useLocalStorage"
+import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import { useState } from "react";
+import { useAuth } from "../../Hooks/useAuth";
+import VetProfile from "../userprofiles/VetProfile";
+import { FetchVet } from "../../AxiosFetchs/EntityReduxFetchs/FetchVet";
 const tabs = ["Info", "About Us", "Inbox", "Notifications"];
 
 const UserProfileInfo = () => {
@@ -12,15 +15,19 @@ const UserProfileInfo = () => {
   const [lineStyle, setLineStyle] = useState({ left: 0, width: 0 }); // Use useState instead of useLocalStorage
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Use useState instead of useLocalStorage
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 790); // Use useState instead of useLocalStorage
-  const tabRefs = useRef([]);
 
+  const [currentUserInfo, setCurrentUserInfo] = useState({});
+
+  const tabRefs = useRef([]);
   useEffect(() => {
     const handleResize = () => setIsMobileView(window.innerWidth <= 790);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const { user } = useAuth();
   useEffect(() => {
+    console.log(user);
     const activeIndex = tabs.indexOf(activeTab);
     const activeTabRef = tabRefs.current[activeIndex];
     if (activeTabRef) {
@@ -31,12 +38,31 @@ const UserProfileInfo = () => {
     }
   }, [activeTab]);
 
+  useEffect(() => {
+    const fetchUsersCurrentInfo = async () => {
+      switch (user.roles) {
+        case "User":
+          break;
+        case "Vet":
+          await FetchVet(user.id).then((fetchedInfo) => {
+            console.log(fetchedInfo);
+            setCurrentUserInfo(fetchedInfo);
+          });
+      }
+    };
+    fetchUsersCurrentInfo();
+  }, []);
+
   const renderContent = () => {
     switch (activeTab) {
       case "Info":
         return (
           <div className="content active">
-            <UserProfile />
+            {(user.roles === "User" && <UserProfile />) ||
+              (user.roles === "Vet" && (
+                <VetProfile currentVetsInfo={currentUserInfo} />
+              )) ||
+              (user.roles === "Company" && <VetProfile />)}
           </div>
         );
       case "About Us":

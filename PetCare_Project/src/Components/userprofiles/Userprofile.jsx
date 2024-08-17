@@ -1,4 +1,4 @@
-import "../userprofile/userprofile.scss";
+import "./userprofile.scss";
 import React, { useState, useRef } from "react";
 import { useAuth } from "../../Hooks/useAuth";
 

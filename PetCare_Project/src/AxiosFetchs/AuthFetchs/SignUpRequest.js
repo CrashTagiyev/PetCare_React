@@ -81,7 +81,6 @@ export const SignUpVetRequest = async (newVetDatas) => {
     }
   }
 };
-
 export const SignUpCompanyRequest = async (newUserDatas) => {
   event.preventDefault();
   try {

@@ -6,32 +6,32 @@ import { useState } from "react";
 
 const Notification = () => {
   const { user } = useAuth();
-  // const { notifications, isThereNewNotification, setIsThereNewNotification } =
-  //   useNotificationConnection(user.username);
+  const { notifications, isThereNewNotification, setIsThereNewNotification } =
+    useNotificationConnection(user.username);
   const [selectedNotification, setSelectedNotification] = useState(null);
 
   const handleNotificationClick = (notification) => {
     setSelectedNotification(notification);
   };
 
-  const notifications = [
-    {
-      senderName: "John Doe",
-      content: "You have a new message!",
-    },
-    {
-      senderName: "Jane Smith",
-      content: "Your report has been submitted.",
-    },
-    {
-      senderName: "Mike Johnson",
-      content: "Don't forget the meeting at 3 PM.",
-    },
-    {
-      senderName: "Emma Wilson",
-      content: "Your password has been changed successfully.",
-    },
-  ];
+  // const notifications = [
+  //   {
+  //     senderName: "John Doe",
+  //     content: "You have a new message!",
+  //   },
+  //   {
+  //     senderName: "Jane Smith",
+  //     content: "Your report has been submitted.",
+  //   },
+  //   {
+  //     senderName: "Mike Johnson",
+  //     content: "Don't forget the meeting at 3 PM.",
+  //   },
+  //   {
+  //     senderName: "Emma Wilson",
+  //     content: "Your password has been changed successfully.",
+  //   },
+  // ];
 
   return (
     <div className="notification-cont">
@@ -44,7 +44,7 @@ const Notification = () => {
         {notifications.map((notification, index) => (
           <div className="notification-sender" key={index}>
             <button onClick={() => handleNotificationClick(notification)}>
-              {notification.senderName}
+              {notification.senderUserName}
             </button>
           </div>
         ))}
@@ -57,7 +57,7 @@ const Notification = () => {
         >
           <div className="notification-content-header">
             <div>
-              <p>{selectedNotification.senderName}</p>
+              <p>{selectedNotification.senderUserName}</p>
             </div>
             <div className="not-back-but">
               <button onClick={() => setSelectedNotification(null)}>←</button>
