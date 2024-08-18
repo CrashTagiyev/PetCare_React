@@ -1,0 +1,92 @@
+@use "../../../assets/basestyle/base.scss";
+
+.vet-info-cont {
+  margin: 30px;
+  min-height: 800px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+    /* Horizontal offset, vertical offset, blur radius, color */ 0 -2px 4px rgba(0, 0, 0, 0.1),
+    /* Top side */ 2px 0 4px rgba(0, 0, 0, 0.1),
+    /* Right side */ -2px 0 4px rgba(0, 0, 0, 0.1); /* Left side */
+  background-color: base.$footer-color-3;
+  display: flex;
+  justify-content: space-evenly;
+  .vet-profile {
+    margin: 30px;
+    margin-top: 140px;
+    border-radius: 50%;
+    border: 2px solid base.$footer-color-1;
+    width: 305px;
+    height: 305px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+    }
+  }
+
+  .vet-info {
+    height: 50%;
+    gap: 90px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+
+    .vet-single-info {
+      gap: 5px;
+      display: flex;
+      flex-direction: column;
+      .vet-label {
+        font-size: 20px;
+        color: base.$footer-color-1;
+      }
+      .vet-act-info {
+        font-size: 20px;
+        color: #4a4a4a;
+      }
+    }
+
+    .write-to-vet {
+      button {
+        height: 50px;
+        width: 190px;
+        border: 2px solid base.$footer-color-1;
+        font-size: 16px;
+        border-radius: 5px;
+        color: base.$footer-color-1;
+        background-color: base.$footer-color-3;
+
+        &:hover {
+          cursor: pointer;
+          border: 3px solid base.$footer-color-1;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .vet-info-cont {
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+
+    .write-to-vet {
+      padding-bottom: 20px;
+    }
+
+    .vet-profile {
+      width: 255px;
+      height: 255px;
+      img {
+        width: 250px;
+        height: 250px;
+      }
+    }
+  }
+}
