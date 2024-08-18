@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
+import MapComponent from "../MapComponent/MapComponent";
 import "./vetProfile.scss";
 const VetProfile = ({ currentVetsInfo }) => {
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="vet-profile-cont">
@@ -12,7 +12,8 @@ const VetProfile = ({ currentVetsInfo }) => {
           <div className="profile-img-cont">
             <img
               src={
-                currentVetsInfo.profileImageUrl && currentVetsInfo.profileImageUrl
+                currentVetsInfo.profileImageUrl &&
+                currentVetsInfo.profileImageUrl
               }
               alt={` profile`}
             />
@@ -20,7 +21,7 @@ const VetProfile = ({ currentVetsInfo }) => {
           <div className="left-part-info-cont">
             <div className="info-label-p-cont">
               <label>Username:</label>
-              <p>{ currentVetsInfo.userName}</p>
+              <p>{currentVetsInfo.userName}</p>
             </div>
             <div className="info-label-p-cont">
               <label>Firstname:</label>
@@ -53,6 +54,9 @@ const VetProfile = ({ currentVetsInfo }) => {
       </div>
       <div className="right-part">
         <div className="right-part-info-cont">
+          <div className="info-label-p-cont">
+            <MapComponent address={currentVetsInfo.address} city={currentVetsInfo.city}/>
+          </div>
           <div className="info-label-p-cont">
             <label>Likes:</label>
             <p>{currentVetsInfo.likes && currentVetsInfo.likes}</p>
