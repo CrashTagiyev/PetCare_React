@@ -16,16 +16,15 @@ export const LoginRequest = async (emailAdress, password) => {
         withCredentials: true,
       }
     );
-    const { token, refreshToken, message, statusCode } = response.data;
+    const { accessToken,message, statusCode } = response.data;
     if (statusCode <= 300) {
-      const decodedToken = jwtDecode(token);
+      const decodedToken = jwtDecode(accessToken);
       const roles = decodedToken.role;
       const username = decodedToken.username;
       const emailAddress = decodedToken.email;
       const profileImage = decodedToken.profileimageurl;
       const id = decodedToken.id;
-      localStorage.setItem("accessToken", token);
-      localStorage.setItem("refreshToken", refreshToken);
+      localStorage.setItem("accessToken", accessToken);
       console.log(message);
       console.log(statusCode);
       const user = {
@@ -33,7 +32,8 @@ export const LoginRequest = async (emailAdress, password) => {
         emailAddress,
         roles,
         profileImage,
-        id
+        id,
+        accessToken
       };
       return user;
     } else {

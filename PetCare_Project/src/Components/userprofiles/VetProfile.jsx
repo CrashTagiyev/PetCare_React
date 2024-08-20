@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import MapComponent from "../MapComponent/MapComponent";
 import "./vetProfile.scss";
 const VetProfile = ({ currentVetsInfo }) => {
-  useEffect(() => {}, []);
 
+  if(!currentVetsInfo)
+  return null;
   return (
     <div className="vet-profile-cont">
       <div className="left-part">

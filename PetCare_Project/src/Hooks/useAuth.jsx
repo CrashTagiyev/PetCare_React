@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }) => {
   // call this function to sign out logged in user
   const logout = () => {
     setUser(null);
+    localStorage.clear();
     navigate("/", { replace: true });
   };
   
@@ -26,6 +27,7 @@ export const AuthProvider = ({ children }) => {
       user,
       login,
       logout,
+      setUser,
     }),
     [user]
   );

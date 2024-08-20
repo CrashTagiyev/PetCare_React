@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { Form, Input, Button, message } from "antd";
-import { LoginRequest } from "../../AxiosFetchs/AuthFetchs/LoginRequest";
 import { useAuth } from "../../Hooks/useAuth";
 import "../login/login.scss";
 import google from "../../assets/Icons/google.png";
 import facebook from "../../assets/Icons/facebook-login.png";
 import { Link } from "react-router-dom";
+import usePetCareAPI from "../../Hooks/usePetCareApi";
 
 const Login = () => {
   const [form] = Form.useForm();
   const { login } = useAuth();
+  const {LoginRequest} = usePetCareAPI();
 
   const loginHandler = async (values) => {
     try {
       const { emailAddress, password } = values;
       const data = await LoginRequest(emailAddress, password);
-      
       if (data && data.username) {
         login(data);
       } else if (data && data.errors) {

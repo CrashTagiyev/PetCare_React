@@ -21,6 +21,7 @@ const ROLES = {
   VET: "Vet",
 };
 
+
 function App() {
   const { user } = useAuth();
   return (
@@ -30,7 +31,10 @@ function App() {
           {!user && <Route path="/login" element={<Login />} />}
           {!user && <Route path="/signup" element={<SignUpParent />} />}
           <Route path="/" element={<Home />} />
-          <Route path="/userprofileinfo" element={<UserProfileInfo />} />
+          <Route
+            path="/userprofileinfo"
+            element={user? <UserProfileInfo /> : <Login />}
+          />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="/vetInfo/:id" element={<Vetinfo />} />

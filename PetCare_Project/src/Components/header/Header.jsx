@@ -5,8 +5,9 @@ import { useAuth } from "../../Hooks/useAuth";
 import user_image from "../../assets/Icons/ user.jpg";
 import bell_image from "../../assets/Icons/bell.png";
 import default_UserImg from "../../assets/Icons/defaultUserImg.png"
+import { Button } from "antd";
 const Header = () => {
-  const { user } = useAuth();
+  const { user,logout } = useAuth();
   return (
     <>
       <header className="header">
@@ -33,6 +34,7 @@ const Header = () => {
                 <img src={user.profileImage && user.profileImage || default_UserImg}></img>
               </div>
             </Link>}
+            {user && <button onClick={logout}>LogOut</button>}
           </div>
         </div>
       </header>

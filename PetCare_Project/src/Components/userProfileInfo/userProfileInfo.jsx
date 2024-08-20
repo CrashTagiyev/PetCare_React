@@ -7,27 +7,27 @@ import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import { useState } from "react";
 import { useAuth } from "../../Hooks/useAuth";
 import VetProfile from "../userprofiles/VetProfile";
-import { FetchVet } from "../../AxiosFetchs/EntityReduxFetchs/FetchVet";
+import { useNavigate } from "react-router-dom";
 const tabs = ["Info", "About Us", "Inbox", "Notifications"];
+import usePetCareAPI from "../../Hooks/usePetCareApi";
 
 const UserProfileInfo = () => {
   const [activeTab, setActiveTab] = useLocalStorage("activeTab", "Info");
-  const [lineStyle, setLineStyle] = useState({ left: 0, width: 0 }); // Use useState instead of useLocalStorage
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Use useState instead of useLocalStorage
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 790); // Use useState instead of useLocalStorage
-
+  const [lineStyle, setLineStyle] = useState({ left: 0, width: 0 });
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 790);
   const [currentUserInfo, setCurrentUserInfo] = useState({});
 
   const tabRefs = useRef([]);
+  const { user,login } = useAuth();
+  const { PetCareAPI,isSomethingChanged } = usePetCareAPI();
   useEffect(() => {
     const handleResize = () => setIsMobileView(window.innerWidth <= 790);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const { user } = useAuth();
   useEffect(() => {
-    console.log(user);
     const activeIndex = tabs.indexOf(activeTab);
     const activeTabRef = tabRefs.current[activeIndex];
     if (activeTabRef) {
@@ -40,18 +40,32 @@ const UserProfileInfo = () => {
 
   useEffect(() => {
     const fetchUsersCurrentInfo = async () => {
-      switch (user.roles) {
-        case "User":
-          break;
-        case "Vet":
-          await FetchVet(user.id).then((fetchedInfo) => {
-            console.log(fetchedInfo);
-            setCurrentUserInfo(fetchedInfo);
-          });
+      try {
+        switch (user.roles) {
+          case "User":
+            break;
+          case "Vet":
+            await PetCareAPI.get("/vets/GetVet", {
+              params: {
+                Id: user.id,
+              },
+              headers: {
+                "Content-Type": "application/json",
+              },
+              withCredentials: true,
+            }).then((response) => {
+              setCurrentUserInfo(response.data);
+            });
+            break;
+          default:
+            throw new Error("User role not recognized.");
+        }
+      } catch (error) {
+        console.error("Error fetching user info:", error);
       }
     };
     fetchUsersCurrentInfo();
-  }, []);
+  }, [isSomethingChanged,user]);
 
   const renderContent = () => {
     switch (activeTab) {
