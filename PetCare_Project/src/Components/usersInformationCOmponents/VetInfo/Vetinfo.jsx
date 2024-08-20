@@ -2,30 +2,27 @@ import { Button } from "antd";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { CreateChatConnection } from "../../../AxiosFetchs/AuthFetchs/ChatConnection";
 import { FetchVet } from "../../../AxiosFetchs/EntityReduxFetchs/FetchVet";
 import { useAuth } from "../../../Hooks/useAuth";
 import { useLocalStorage } from "../../../Hooks/useLocalStorage";
+import MapComponent from "../../MapComponent/MapComponent";
 import "../VetInfo/vetInfo.scss";
 
 const Vetinfo = () => {
   const [info, setInfo] = useState({});
   // User profile active tab
   const [activeTab, setActiveTab] = useLocalStorage("activeTab", "Info");
-  const { id } = useParams();
   const { user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
-    const getVetsInfo = async () => {
-      await FetchVet(id).then((data) => {
-        setInfo(data);
-        console.log(data);
-      });
-    };
-
-    getVetsInfo();
+    if (location.state && location.state.vet) {
+      setInfo(location.state.vet);
+    }
   }, []);
+
   const handleWriteMessageButton = async (e) => {
     e.preventDefault();
     if (user) {
@@ -44,6 +41,9 @@ const Vetinfo = () => {
         <img src={info.profileImageUrl}></img>
       </div>
       <div className="vet-info">
+      <div>
+        <MapComponent height="300px" width="400px" city={info.city} address={info.address} />
+      </div>
         <div className="vet-single-info">
           <div>
             <p className="vet-label">Firstname:</p>

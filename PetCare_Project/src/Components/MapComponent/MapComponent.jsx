@@ -3,6 +3,8 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 const MapComponent = ({
+  height=`400px`,
+  width=`100%`,
   address,
   city,
   country = "Azerbaijan",
@@ -65,7 +67,7 @@ const MapComponent = ({
     <MapContainer
       center={position}
       zoom={13}
-      style={{ height: "400px", width: "100%" }}
+      style={{ height: height, width: width }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

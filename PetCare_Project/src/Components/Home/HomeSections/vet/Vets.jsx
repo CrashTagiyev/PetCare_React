@@ -39,7 +39,7 @@ const Vets = () => {
             </div>
             <div className="users-info-cont">
               <div className="user-fullname">
-                <Link to={`/Vetinfo/${vet.id}`}>
+                <Link to={`/Vetinfo/${vet.id}`} state={{ vet }}>
                   <p>{vet.firstname + " " + vet.lastname}</p>
                 </Link>
               </div>

@@ -5,12 +5,11 @@ import "../login/login.scss";
 import google from "../../assets/Icons/google.png";
 import facebook from "../../assets/Icons/facebook-login.png";
 import { Link } from "react-router-dom";
-import usePetCareAPI from "../../Hooks/usePetCareApi";
+import { LoginRequest } from "../../AxiosFetchs/AuthFetchs/LoginRequest";
 
 const Login = () => {
   const [form] = Form.useForm();
   const { login } = useAuth();
-  const {LoginRequest} = usePetCareAPI();
 
   const loginHandler = async (values) => {
     try {

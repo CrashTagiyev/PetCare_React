@@ -19,8 +19,8 @@ const UserProfileInfo = () => {
   const [currentUserInfo, setCurrentUserInfo] = useState({});
 
   const tabRefs = useRef([]);
-  const { user,login } = useAuth();
-  const { PetCareAPI,isSomethingChanged } = usePetCareAPI();
+  const { user, login } = useAuth();
+  const { PetCareAPI, isSomethingChanged } = usePetCareAPI();
   useEffect(() => {
     const handleResize = () => setIsMobileView(window.innerWidth <= 790);
     window.addEventListener("resize", handleResize);
@@ -65,7 +65,7 @@ const UserProfileInfo = () => {
       }
     };
     fetchUsersCurrentInfo();
-  }, [isSomethingChanged,user]);
+  }, [isSomethingChanged, user]);
 
   const renderContent = () => {
     switch (activeTab) {
