@@ -10,6 +10,8 @@ import VetProfile from "../userprofiles/VetProfile";
 import { useNavigate } from "react-router-dom";
 const tabs = ["Info", "About Us", "Inbox", "Notifications"];
 import usePetCareAPI from "../../Hooks/usePetCareApi";
+import CompanyProfile from "../userprofiles/CompanyProfile";
+import CreateShelterModal from "../userProfileComponents/CreateShelterModal";
 
 const UserProfileInfo = () => {
   const [activeTab, setActiveTab] = useLocalStorage("activeTab", "Info");
@@ -17,7 +19,7 @@ const UserProfileInfo = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 790);
   const [currentUserInfo, setCurrentUserInfo] = useState({});
-
+  
   const tabRefs = useRef([]);
   const { user, login } = useAuth();
   const { PetCareAPI, isSomethingChanged } = usePetCareAPI();
@@ -57,6 +59,16 @@ const UserProfileInfo = () => {
               setCurrentUserInfo(response.data);
             });
             break;
+          case "Company":
+            await PetCareAPI.get(`/company/GetCompanyProfileInfo`, {
+              params: { id: user.id },
+              headers: { "Content-Type": "application/json" },
+              withCredentials: true,
+            }).then((response) => {
+              setCurrentUserInfo(response.data);
+              console.log(response.data);
+            });
+            break;
           default:
             throw new Error("User role not recognized.");
         }
@@ -76,7 +88,9 @@ const UserProfileInfo = () => {
               (user.roles === "Vet" && (
                 <VetProfile currentVetsInfo={currentUserInfo} />
               )) ||
-              (user.roles === "Company" && <VetProfile />)}
+              (user.roles === "Company" && (
+                <CompanyProfile  currentCompanyInfo={currentUserInfo} />
+              ))}
           </div>
         );
       case "About Us":
@@ -107,6 +121,8 @@ const UserProfileInfo = () => {
 
   return (
     <div className="tab-box-main-container">
+       
+    
       <div className="tab-container">
         {isMobileView ? (
           <>

@@ -7,6 +7,7 @@ $text-color: #ffffff; // footer-color-3
 $background-color: #f9f9f9; // Light background to contrast with the primary and secondary colors
 
 .vet-profile-cont {
+  position: relative;
   display: flex;
   flex-direction: row;
   background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
