@@ -2,9 +2,8 @@ import { Button } from "antd";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CreateChatConnection } from "../../../AxiosFetchs/AuthFetchs/ChatConnection";
-import { FetchVet } from "../../../AxiosFetchs/EntityReduxFetchs/FetchVet";
 import { useAuth } from "../../../Hooks/useAuth";
 import { useLocalStorage } from "../../../Hooks/useLocalStorage";
 import MapComponent from "../../MapComponent/MapComponent";
@@ -41,15 +40,19 @@ const Vetinfo = () => {
         <img src={info.profileImageUrl}></img>
       </div>
       <div className="vet-info">
-      <div>
-        <MapComponent height="300px" width="400px" city={info.city} address={info.address} />
-      </div>
+        <div>
+          <MapComponent
+            height="300px"
+            width="400px"
+            city={info.city}
+            address={info.address}
+          />
+        </div>
         <div className="vet-single-info">
           <div>
             <p className="vet-label">Firstname:</p>
           </div>
           <div>
-            {" "}
             <p className="vet-act-info">{info.firstname}</p>
           </div>
         </div>
@@ -58,7 +61,6 @@ const Vetinfo = () => {
             <p className="vet-label">Address:</p>
           </div>
           <div>
-            {" "}
             <p className="vet-act-info">{info.address}</p>
           </div>
         </div>
@@ -67,7 +69,6 @@ const Vetinfo = () => {
             <p className="vet-label">Username:</p>
           </div>
           <div>
-            {" "}
             <p className="vet-act-info">{info.userName}</p>
           </div>
         </div>
@@ -78,7 +79,6 @@ const Vetinfo = () => {
             <p className="vet-label">Lastname:</p>
           </div>
           <div>
-            {" "}
             <p className="vet-act-info">{info.lastname}</p>
           </div>
         </div>
@@ -87,7 +87,6 @@ const Vetinfo = () => {
             <p className="vet-label">City:</p>
           </div>
           <div>
-            {" "}
             <p className="vet-act-info">{info.city}</p>
           </div>
         </div>

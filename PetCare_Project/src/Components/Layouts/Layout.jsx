@@ -3,8 +3,6 @@ import { Outlet } from "react-router-dom";
 import "../Layouts/layout.scss";
 import Footer from "../footer/Footer.jsx";
 import Header from "../header/Header.jsx";
-import CreateShelterModal from "../userProfileComponents/CreateShelterModal";
-import { useState } from "react";
 
 const Layout = () => {
   

@@ -1,0 +1,55 @@
+.company-shelters-cont {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 15px;
+    overflow-y: scroll;
+    height: 400px;
+  
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background-color: white;
+      border-radius: 10px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+      border-radius: 10px;
+    }
+  
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: rgb(171, 12, 238);
+    }
+  
+    .company-shelters-item {
+      display: flex;
+      flex-direction: column;
+      min-height: 399px;
+      border-bottom: 1px solid white;
+      max-height: 450px;
+      gap: 4px;
+  
+      .company-shelters-img {
+        height: 50%;
+        width: 50%;
+        align-self: center;
+      }
+  
+      h2 {
+      }
+  
+      a {
+        text-decoration: none;
+        align-self: center;
+        font-family: inherit;
+        color: white;
+      }
+    }
+  }
+  

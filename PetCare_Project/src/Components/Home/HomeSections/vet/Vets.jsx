@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { VetsFetch } from "../../../../AxiosFetchs/EntityReduxFetchs/VetsFetch";
 import user_image from "../../../../assets/Icons/ user.jpg";
-import "../vet/vet.scss";
+import "../vet/vets.scss";
 
 const Vets = () => {
   let dispatch = useDispatch();

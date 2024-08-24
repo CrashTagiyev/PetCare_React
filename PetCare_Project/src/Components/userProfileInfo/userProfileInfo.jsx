@@ -7,22 +7,26 @@ import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import { useState } from "react";
 import { useAuth } from "../../Hooks/useAuth";
 import VetProfile from "../userprofiles/VetProfile";
-import { useNavigate } from "react-router-dom";
-const tabs = ["Info", "About Us", "Inbox", "Notifications"];
 import usePetCareAPI from "../../Hooks/usePetCareApi";
 import CompanyProfile from "../userprofiles/CompanyProfile";
-import CreateShelterModal from "../userProfileComponents/CreateShelterModal";
+
+const tabs = ["Info",  "Inbox", "Notifications","About Us" ];
 
 const UserProfileInfo = () => {
+  
+  //States
   const [activeTab, setActiveTab] = useLocalStorage("activeTab", "Info");
   const [lineStyle, setLineStyle] = useState({ left: 0, width: 0 });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 790);
   const [currentUserInfo, setCurrentUserInfo] = useState({});
   
+  //Hooks
   const tabRefs = useRef([]);
-  const { user, login } = useAuth();
+  const { user} = useAuth();
   const { PetCareAPI, isSomethingChanged } = usePetCareAPI();
+
+
   useEffect(() => {
     const handleResize = () => setIsMobileView(window.innerWidth <= 790);
     window.addEventListener("resize", handleResize);

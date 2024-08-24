@@ -4,9 +4,13 @@ import { useState } from "react";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import "../Home/home.scss";
 import SearchSection from "./HomeSections/SearchSection";
+import Shelters from "./HomeSections/shelters/Shelters";
 import Vets from "./HomeSections/vet/Vets";
 const Home = () => {
-  const [displayItems, setDisplayItems] = useLocalStorage("displayItems", "All");
+  const [displayItems, setDisplayItems] = useLocalStorage(
+    "displayItems",
+    "All"
+  );
 
   const renderContent = () => {
     switch (displayItems) {
@@ -29,11 +33,7 @@ const Home = () => {
           </div>
         );
       case "Shelters":
-        return (
-          <div>
-            <h2>Shelters</h2>
-          </div>
-        );
+        return <Shelters />;
       case "Vets":
         return <Vets />;
       default:

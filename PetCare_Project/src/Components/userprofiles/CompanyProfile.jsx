@@ -1,7 +1,9 @@
+import { Button } from "antd";
 import React from "react";
 import { useState } from "react";
-import CreateShelterModal from "../userProfileComponents/CreateShelterModal";
-import "./vetProfile.scss";
+import CompanySheltersList from "../userProfileComponents/CompanyComponents/CompanySheltersList";
+import CreateShelterModal from "../userProfileComponents/CompanyComponents/CreateShelterModal";
+import "./companyProfile.scss";
 const CompanyProfile = ({  currentCompanyInfo }) => {
   const [createShelterIsOpen, setCreateShelterIsOpen] = useState(false);
   if (!currentCompanyInfo) return null;
@@ -38,14 +40,18 @@ const CompanyProfile = ({  currentCompanyInfo }) => {
       <div className="right-part">
         <div className="right-part-info-cont">
           <div className="info-label-p-cont">
-            <button
+          <Button
+          className="crt-sltr-btn"
               onClick={(e) => {
                 e.preventDefault();
                 setCreateShelterIsOpen(true);
               }}
             >
-              Add new shelter
-            </button>
+              Create new shelter
+            </Button>
+            <div>
+              <CompanySheltersList />
+            </div>
           </div>
         </div>
       </div>

@@ -13,6 +13,7 @@ import store from "./Store/store";
 import { Provider } from "react-redux";
 import Vetinfo from "./Components/usersInformationCOmponents/VetInfo/Vetinfo";
 import SignUpParent from "./Components/SignUp/SignUpParent";
+import ShelterInfo from "./Components/usersInformationCOmponents/ShelterInfo/ShelterInfo";
 
 const ROLES = {
   ADMIN: "Admin",
@@ -38,6 +39,7 @@ function App() {
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="/vetInfo/:id" element={<Vetinfo />} />
+          <Route path="/shelterInfo/:id" element={<ShelterInfo />} />
           <Route element={<AuthRequires allowedRoles={[ROLES.ADMIN]} />}>
             <Route path="/getusers" element={<GetUsers />} />
           </Route>

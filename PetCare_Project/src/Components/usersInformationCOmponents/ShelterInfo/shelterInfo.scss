@@ -1,0 +1,92 @@
+@use "../../../assets/basestyle/base.scss";
+
+// Variables
+$shadow-color: rgba(0, 0, 0, 0.1);
+$shelter-label-color: base.$footer-color-1;
+$shelter-info-color: #4a4a4a;
+$border-radius-circle: 50%;
+$profile-size: 300px;
+$profile-border-width: 2px;
+$profile-margin: 30px;
+$gap-large: 90px;
+$gap-small: 5px;
+$font-size-large: 20px;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin box-shadow($color) {
+  box-shadow: 0 2px 4px $color, 0 -2px 4px $color, 2px 0 4px $color, -2px 0 4px $color;
+}
+
+// Base Styles
+.shelter-info-cont {
+  margin: 30px;
+  min-height: 800px;
+  border-radius: 15px;
+  @include box-shadow($shadow-color);
+  background-color: base.$footer-color-3;
+  display: flex;
+  justify-content: space-evenly;
+
+  .shelter-profile {
+    margin: $profile-margin;
+    margin-top: 140px;
+    border-radius: $border-radius-circle;
+    border: $profile-border-width solid $shelter-label-color;
+    width: calc(#{$profile-size} + 5px);
+    height: calc(#{$profile-size} + 5px);
+    @include flex-center;
+
+    img {
+      width: $profile-size;
+      height: $profile-size;
+      border-radius: $border-radius-circle;
+    }
+  }
+
+  .shelter-info {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: $gap-large;
+
+    .shelter-single-info {
+      display: flex;
+      flex-direction: column;
+      gap: $gap-small;
+
+      .shelter-label {
+        font-size: $font-size-large;
+        color: $shelter-label-color;
+      }
+
+      .shelter-act-info {
+        font-size: $font-size-large;
+        color: $shelter-info-color;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .shelter-info-cont {
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+
+    .shelter-profile {
+      width: 255px;
+      height: 255px;
+
+      img {
+        width: 250px;
+        height: 250px;
+      }
+    }
+  }
+}

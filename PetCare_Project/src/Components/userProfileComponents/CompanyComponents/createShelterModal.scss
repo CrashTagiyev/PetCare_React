@@ -1,0 +1,17 @@
+.ant-modal-content{
+    height: auto;
+    .shelter-city-address-input-cont{
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 30px;
+        .ant-select-selector{
+            width: 150px;
+        }
+
+        input{
+            width: 250px;
+        }
+    }
+}
