@@ -12,7 +12,6 @@ const Shelters = () => {
     const array = useSelector((state) => state.shelters.sheltersArray);
     let isArrayLoading = useSelector((state) => state.shelters.isLoading);
     let arrayError = useSelector((state) => state.shelters.error);
-    console.log(array);
   
     useEffect(() => {
       dispatch(sheltersFetch());

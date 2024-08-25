@@ -14,6 +14,6 @@ export const FetchVet = async (id) => {
     return response.data;
   } catch (error) {
     console.error(`Error happened: ${error}`);
-    throw error; // Re-throw the error to handle it in the calling function
+    throw error; 
   }
 };

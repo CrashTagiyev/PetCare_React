@@ -1,0 +1,38 @@
+.add-pet-form {
+    .ant-form {
+      // Ensure the form takes full width inside the modal
+      width: 100%;
+    }
+  
+    .ant-row {
+      margin-bottom: 16px;
+  
+      .ant-col {
+        display: flex;
+        flex-direction: column;
+        padding: 0 8px;
+  
+        .ant-form-item {
+          margin-bottom: 16px;
+        }
+      }
+    }
+  
+    .ant-form-item {
+      margin-bottom: 24px;
+    }
+  
+    .success-message {
+      margin-top: 16px;
+      color: #52c41a; // Green color for success message
+      font-weight: bold;
+    }
+  
+    .ant-upload {
+      display: flex;
+      align-items: center;
+      .ant-upload-list {
+        margin-top: 8px;
+      }
+    }
+  }

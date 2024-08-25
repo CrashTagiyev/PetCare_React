@@ -5,11 +5,15 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../../Hooks/useAuth";
 import usePetCareAPI from "../../../Hooks/usePetCareApi";
 import "../CompanyComponents/companySheltersList.scss";
+import AddPetToShelterModal from "./AddPetToShelterModal";
 
 const CompanySheltersList = () => {
   const [shelters, setShelters] = useState([]);
+  const [currentShelterId, setCurrentShelterId] = useState(0);
   const { PetCareAPI } = usePetCareAPI();
   const { user } = useAuth();
+  const [isAddPetModalOpen, setIsAddPetModalOpen] = useState(false);
+
   useEffect(() => {
     const fetchShelters = async () => {
       try {
@@ -35,6 +39,11 @@ const CompanySheltersList = () => {
 
   return (
     <div className="company-shelters-cont">
+      <AddPetToShelterModal
+      shelterId={currentShelterId}
+        isModalOpen={isAddPetModalOpen}
+        closeModal={setIsAddPetModalOpen}
+      />
       {shelters &&
         shelters.map((shelter, index) => (
           <div className="company-shelters-item" key={index}>
@@ -46,6 +55,15 @@ const CompanySheltersList = () => {
             <Link to={`/shelterInfo/${shelter.id}`} state={{ shelter }}>
               <h2>{shelter.shelterName}</h2>
             </Link>
+
+            <button
+              onClick={(e) => {
+                setCurrentShelterId(prev=>prev=shelter.id)
+                setIsAddPetModalOpen((prev) => !prev);
+              }}
+            >
+              Add Pet
+            </button>
           </div>
         ))}
     </div>
