@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchPets } from "../../../../AxiosFetchs/EntityReduxFetchs/FetchPets";
+import "../pets/pets.scss";
 
 const Pets = ({ petTypeId }) => {
   const dispatch = useDispatch();
@@ -29,9 +30,18 @@ const Pets = ({ petTypeId }) => {
   }, []);
 
   return (
-    <div>
+    <div className="pets-cont">
       {array.map((pet, index) => (
-        <h1 key={index}>{pet.petName}</h1>
+         <div className="pet-self" key={index}>
+            <div className="pet-img-cont">
+              <img src={pet.imageUrls[0]}></img>
+            </div>
+            <div className="pets-info-cont">
+              <div className="pet-name">
+                <p>{pet.petName}</p>
+              </div>
+            </div>
+         </div>
       ))}
     </div>
   );
