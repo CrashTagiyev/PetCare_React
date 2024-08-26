@@ -6,7 +6,7 @@ p {
 
 .users-cont {
   display: grid;
-  grid-template-columns: repeat(3,300px);
+  grid-template-columns: repeat(3,1fr);
   height: max-content;
   width: 100%;
   gap: 20px;

@@ -30,14 +30,14 @@ const Pets = ({ petTypeId }) => {
   }, []);
 
   return (
-    <div className="pets-cont">
+    <div className="users-cont">
       {array.map((pet, index) => (
-         <div className="pet-self" key={index}>
-            <div className="pet-img-cont">
+         <div className="user-self" key={index}>
+            <div className="user-img-cont">
               <img src={pet.imageUrls[0]}></img>
             </div>
-            <div className="pets-info-cont">
-              <div className="pet-name">
+            <div className="users-info-cont">
+              <div className="user-fullname">
                 <p>{pet.petName}</p>
               </div>
             </div>
