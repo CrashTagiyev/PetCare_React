@@ -16,7 +16,7 @@ const Header = () => {
             <img className="logo" src="/src/assets/Icons/PetCareLogo.png"></img>
           </Link>
           <nav>
-            <Link to="/">Home</Link>
+            <Link to="/" className="home-btn">Home</Link>
             {/* <Link to="/getUsers">Users</Link> */}
           </nav>
         </div>
@@ -27,14 +27,14 @@ const Header = () => {
             </Link>
           </div>
           <div className="auth">
-            {!user && <Link to="/signup">Sign Up</Link>}
-            {!user && <Link to="/login">Log In</Link>}
-           {user && <Link  to="/userprofileinfo" className="profile">
+            {!user && <Link to="/signup" className="sign-up-btn">Sign Up</Link>}
+            {!user && <Link to="/login" className="login-btn">Log In</Link>}
+           {user && <Link to="/userprofileinfo" className="profile">
               <div className="profile-photo">
                 <img src={user.profileImage && user.profileImage || default_UserImg}></img>
               </div>
             </Link>}
-            {user && <button onClick={logout}>LogOut</button>}
+            {user && <Button onClick={logout} className="logout-btn">LogOut</Button>}
           </div>
         </div>
       </header>

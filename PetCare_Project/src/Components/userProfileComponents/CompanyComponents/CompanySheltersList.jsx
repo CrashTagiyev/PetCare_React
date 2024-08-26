@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "antd";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -56,14 +57,14 @@ const CompanySheltersList = () => {
               <h2>{shelter.shelterName}</h2>
             </Link>
 
-            <button
+            <Button className="add-pet-btn"
               onClick={(e) => {
                 setCurrentShelterId(prev=>prev=shelter.id)
                 setIsAddPetModalOpen((prev) => !prev);
               }}
             >
               Add Pet
-            </button>
+            </Button>
           </div>
         ))}
     </div>
