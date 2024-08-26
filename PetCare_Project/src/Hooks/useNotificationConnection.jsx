@@ -18,12 +18,10 @@ const useNotificationConnection = (username) => {
 
       newConnection.on("GetUsersNotifications", (notifications) => {
         setNotifications(notifications);
-        console.log("Received notifications", notifications);
       });
 
       newConnection.on("SendNotification", (notification) => {
         setIsThereNewNotification(true);
-        console.log("New notification received", notification);
       });
 
       try {

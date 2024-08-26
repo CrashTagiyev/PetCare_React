@@ -20,11 +20,9 @@ const useChatConnection = (username, chatName) => {
         
       newConnection.on("GetConnectedChatsMessages", (messages) => {
         setMessages(messages);
-        console.log(messages);
       });
 
       newConnection.on("SendMessage", (message) => {
-        console.log("Bu Message gorundu" + message.isSeen)
         setMessages((prev) => [...prev, message]);
       });
       

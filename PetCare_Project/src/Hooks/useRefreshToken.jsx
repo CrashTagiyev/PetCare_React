@@ -11,15 +11,16 @@ const useRefreshToken = () => {
             withCredentials: true
         });
         localStorage.setItem("accessToken",response.data.accessToken)
+
         const decodedToken = jwtDecode(response.data.accessToken);
         const roles = decodedToken.role;
         const username = decodedToken.username;
         const emailAddress = decodedToken.email;
         const profileImage = decodedToken.profileimageurl;
         const id = decodedToken.id;
+
         localStorage.setItem("accessToken", accessToken);
-        console.log(message);
-        console.log(statusCode);
+   
         const user = {
             id:id,
           username:username,

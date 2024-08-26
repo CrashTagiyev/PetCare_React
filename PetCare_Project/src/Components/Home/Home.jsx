@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import "../Home/home.scss";
+import Pets from "./HomeSections/pets/Pets";
 import SearchSection from "./HomeSections/SearchSection";
 import Shelters from "./HomeSections/shelters/Shelters";
 import Vets from "./HomeSections/vet/Vets";
@@ -17,13 +18,13 @@ const Home = () => {
       case "Dogs":
         return (
           <div>
-            <h2>Dogs</h2>
+            <Pets petTypeId={1} />
           </div>
         );
       case "Cats":
         return (
           <div>
-            <h2>Cats</h2>
+            <Pets petTypeId={3} />
           </div>
         );
       case "Others":

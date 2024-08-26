@@ -40,7 +40,7 @@ const usePetCareAPI = () => {
                 withCredentials: true,
               });
               if (response.data.statusCode === 404) {
-                logout(); // If refresh token is invalid or not found, logout
+                logout();
                 return Promise.reject(error);
               }
               localStorage.setItem("accessToken", response.data.accessToken);
@@ -65,7 +65,6 @@ const usePetCareAPI = () => {
               ] = `Bearer ${response.data.accessToken}`;
               return PetCareAPI(prevRequest);
             } catch (refreshError) {
-              // If the refresh request itself fails, logout
               logout();
               return Promise.reject(refreshError);
             }
