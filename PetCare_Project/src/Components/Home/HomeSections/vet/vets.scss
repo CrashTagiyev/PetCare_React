@@ -1,21 +1,26 @@
 @use "../../../../assets/basestyle/base.scss";
+
 p {
-  color: #4a4a4a;
+  color: #2c2c2c; /* Dark color for better contrast */
 }
 
 .users-cont {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3,1fr);
   height: max-content;
   width: 100%;
   gap: 20px;
   padding: 20px;
 
+  a{
+    text-decoration: none;
+  }
+
   .user-self {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
-      /* Horizontal offset, vertical offset, blur radius, color */ 0 -2px 4px rgba(0, 0, 0, 0.1),
-      /* Top side */ 2px 0 4px rgba(0, 0, 0, 0.1),
-      /* Right side */ -2px 0 4px rgba(0, 0, 0, 0.1); /* Left side */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+      0 -4px 8px rgba(0, 0, 0, 0.1),
+      4px 0 8px rgba(0, 0, 0, 0.1),
+      -4px 0 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,11 +29,23 @@ p {
     border-radius: 30px;
     gap: 30px;
     background-color: base.$chat-color-3;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2),
+        0 -8px 16px rgba(0, 0, 0, 0.2),
+        8px 0 16px rgba(0, 0, 0, 0.2),
+        -8px 0 16px rgba(0, 0, 0, 0.2);
+    }
+
     .user-img-cont {
       img {
         border-radius: 50%;
-        height: 200px;
-        width: 200px;
+        height: 180px;
+        width: 180px;
+        object-fit: cover;
+        border: 4px solid base.$chat-color-1;
       }
     }
 
@@ -36,7 +53,20 @@ p {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
+      text-align: center;
+
+      h3 {
+        font-size: 1.75rem;
+        color: #2b2b2b; /* Darker gray for clear visibility */
+        text-decoration:line-through;
+      }
+
+      p {
+        font-size: 1.125rem;
+        color: #333333; /* Dark color for strong contrast */
+        text-decoration: none;
+      }
     }
   }
 }

@@ -16,17 +16,9 @@ const Home = () => {
   const renderContent = () => {
     switch (displayItems) {
       case "Dogs":
-        return (
-          <div>
-            <Pets petTypeId={1} />
-          </div>
-        );
+        return <Pets petTypeId={1} />;
       case "Cats":
-        return (
-          <div>
-            <Pets petTypeId={3} />
-          </div>
-        );
+        return <Pets petTypeId={3} />;
       case "Others":
         return (
           <div>

@@ -30,27 +30,29 @@ const Vets = () => {
     <div className="users-cont">
       {array &&
         array.map((vet, index) => (
-          <div className="user-self" key={index}>
-            <div className="user-img-cont">
-              <img
-                src={(vet.profileImageUrl && vet.profileImageUrl) || user_image}
-                alt="user_image"
-              />
-            </div>
-            <div className="users-info-cont">
-              <div className="user-fullname">
-                <Link to={`/Vetinfo/${vet.id}`} state={{ vet }}>
+          <Link to={`/Vetinfo/${vet.id}`} state={{ vet }}>
+            <div className="user-self" key={index}>
+              <div className="user-img-cont">
+                <img
+                  src={
+                    (vet.profileImageUrl && vet.profileImageUrl) || user_image
+                  }
+                  alt="user_image"
+                />
+              </div>
+              <div className="users-info-cont">
+                <div className="user-fullname">
                   <p>{vet.firstname + " " + vet.lastname}</p>
-                </Link>
-              </div>
-              <div className="user-email">
-                <p>{vet.email}</p>
-              </div>
-              <div className="user-phone">
-                <p>{vet.createdTime}</p>
+                </div>
+                <div className="user-email">
+                  <p>{vet.email}</p>
+                </div>
+                <div className="user-phone">
+                  <p>{vet.createdTime}</p>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
     </div>
   );
