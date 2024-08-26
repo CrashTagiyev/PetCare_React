@@ -15,7 +15,6 @@ $background-color: #f9f9f9; // Light background to contrast with the primary and
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
@@ -67,6 +66,7 @@ $background-color: #f9f9f9; // Light background to contrast with the primary and
         display: flex;
         flex-direction: column;
         text-align: left;
+
 
         label {
           font-weight: 600;
@@ -146,6 +146,10 @@ $background-color: #f9f9f9; // Light background to contrast with the primary and
           }
         }
       }
+    }
+
+    .profile-img-cont {
+      margin: 0 auto 20px auto; // Center horizontally
     }
   }
 }

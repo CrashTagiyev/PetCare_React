@@ -26,6 +26,28 @@ header .header-left nav {
   align-items: center;
 }
 
+.home-btn{
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.sign-up-btn{
+  text-decoration: none;
+  border: 1px solid base.$footer-color-1;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.login-btn{
+  text-decoration: none;
+  border: 1px solid gray;
+  background-color: base.$footer-color-1;
+  color: base.$footer-color-3;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 .header-right {
   height: 70px;
   display: flex;
@@ -38,14 +60,25 @@ header .header-left nav {
 .auth {
   height: 70px;
   display: flex;
-  gap: 30px;
+  gap: 15px;
   flex-direction: row;
   align-items: center;
   padding-left: 20px;
   border-left: 1px solid #d2d1d3;
 
-  @media (max-width: 380px) {
-    gap: 0px;
+  @media (max-width: 420px) {
+    gap: 5px !important;
+  }
+
+  .logout-btn {
+    border: 1px solid base.$footer-color-1;
+    color: base.$footer-color-1;
+    font-weight: 500;
+
+    &:hover {
+      border: 1px solid base.$footer-color-1 !important;
+      color: base.$footer-color-1 !important;
+    }
   }
 }
 
@@ -102,12 +135,18 @@ header .header-left nav {
       }
     }
   }
-  @media (max-width: 380px) {
+  @media (max-width: 420px) {
     .header-right {
       gap: 0px;
     }
     .auth {
-     width: auto;
+      width: auto;
     }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .header-left {
+    gap: 15px;
   }
 }
