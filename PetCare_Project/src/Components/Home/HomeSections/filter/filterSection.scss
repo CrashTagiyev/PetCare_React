@@ -1,0 +1,18 @@
+@use "../../../../assets/basestyle/base.scss";
+
+ .ant-collapse-arrow
+{
+    color: white !important;
+}
+
+.filter-form-container{
+    margin-top: 40px;
+    display: flex;
+
+    .ant-collapse-header{
+        background-color:  base.$footer-color-1;
+        .ant-collapse-header-text{
+            color: white;
+        }
+    }
+}

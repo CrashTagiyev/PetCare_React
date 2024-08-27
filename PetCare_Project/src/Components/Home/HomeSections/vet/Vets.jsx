@@ -30,7 +30,7 @@ const Vets = () => {
     <div className="users-cont">
       {array &&
         array.map((vet, index) => (
-          <Link to={`/Vetinfo/${vet.id}`} state={{ vet }}>
+          <Link key={index} to={`/Vetinfo/${vet.id}`} state={{ vet }}>
             <div className="user-self" key={index}>
               <div className="user-img-cont">
                 <img

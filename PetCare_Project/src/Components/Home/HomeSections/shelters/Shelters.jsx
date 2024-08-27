@@ -26,7 +26,7 @@ const Shelters = () => {
   return (
     <div className="users-cont">
       {array.map((shelter, index) => (
-        <Link to={`/shelterInfo/${shelter.id}`} state={{ shelter }}>
+        <Link key={index} to={`/shelterInfo/${shelter.id}`} state={{ shelter }}>
           <div className="user-self" key={index}>
             <div className="user-img-cont">
               <img
