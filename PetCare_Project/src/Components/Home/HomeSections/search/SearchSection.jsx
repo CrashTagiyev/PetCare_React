@@ -28,7 +28,13 @@ const SearchSection = ({ setDisplay, setFilterOptions }) => {
         <button
           value={"Dogs"}
           onClick={(e) => {
-            setFilterOptions((p) => ({ ...p, petTypeId: 1 ,breedId:undefined, isAll: false }));
+            setFilterOptions((p) => ({
+              ...p,
+              petTypeId: 1,
+              breedId: undefined,
+              isAll: false,
+              pageNumber:1,
+            }));
             displayButtonHandler(e);
           }}
         >
@@ -40,7 +46,13 @@ const SearchSection = ({ setDisplay, setFilterOptions }) => {
         <button
           value={"Cats"}
           onClick={(e) => {
-            setFilterOptions((p) => ({ ...p, petTypeId: 2,breedId:undefined, isAll: false  }));
+            setFilterOptions((p) => ({
+              ...p,
+              petTypeId: 2,
+              breedId: undefined,
+              isAll: false,
+              pageNumber:1,
+            }));
             displayButtonHandler(e);
           }}
         >
@@ -52,8 +64,8 @@ const SearchSection = ({ setDisplay, setFilterOptions }) => {
         <button
           value={"All"}
           onClick={(e) => {
-            setFilterOptions(FILTER_OPTIONS)
-            setFilterOptions((p) => ({ ...p, petTypeId: 0, isAll: true }));
+            setFilterOptions(FILTER_OPTIONS);
+            setFilterOptions((p) => ({ ...p, petTypeId: 0, isAll: true, pageNumber:1, }));
             displayButtonHandler(e);
           }}
         >

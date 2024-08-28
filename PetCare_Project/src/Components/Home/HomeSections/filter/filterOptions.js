@@ -1,6 +1,6 @@
 export const FILTER_OPTIONS = {
-  isAll: false,
-  petTypeId: 1,
+  isAll: true,
+  petTypeId: 0,
   petName: "",
   size: "",
   minAge: 0,
@@ -9,4 +9,7 @@ export const FILTER_OPTIONS = {
   minWeight: 0,
   maxWeight: 0,
   breedId: 0,
+  pageNumber:1,
+  pageSize:10,
+  totalPets:0,
 };

@@ -16,7 +16,9 @@ export const FetchPets = createAsyncThunk(
         "MinWeight":filterOptions.minWeight,
         "MaxWeight":filterOptions.maxWeight,
         "BreedId":filterOptions.breedId,
-        "PetTypeId":filterOptions.petTypeId
+        "PetTypeId":filterOptions.petTypeId,
+        "PageNumber":filterOptions.pageNumber,
+        "PageSize":filterOptions.pageSize
       },
       {
         headers: {

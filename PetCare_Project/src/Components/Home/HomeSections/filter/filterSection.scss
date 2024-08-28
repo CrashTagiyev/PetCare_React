@@ -6,9 +6,11 @@
 }
 
 .filter-form-container{
-    margin-top: 40px;
     display: flex;
-
+    position: fixed;
+    z-index: 10;
+    left: 20px;
+    top: 500px;
     .ant-collapse-header{
         background-color:  base.$footer-color-1;
         .ant-collapse-header-text{
@@ -16,3 +18,9 @@
         }
     }
 }
+
+@media screen and (max-width: 570px) {
+    .filter-form-container{
+        top: 100px;
+    }
+  }

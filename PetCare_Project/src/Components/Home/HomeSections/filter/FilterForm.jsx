@@ -23,7 +23,7 @@ const FilterForm = ({ filterOptions, setFilterOptions }) => {
 
   return (
     <div>
-      <Form form={form}>
+      <Form  form={form}>
         <Form.Item label="Pet type" name={"petType"}>
           <Select
             onChange={(value) => {

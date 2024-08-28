@@ -6,6 +6,7 @@ const petsSlice = createSlice({
   name: "pets",
   initialState: {
     petsArray: [],
+    totalPets:0,
     isLoading: false,
     error: null,
   },
@@ -15,7 +16,8 @@ const petsSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(FetchPets.fulfilled, (state, action) => {
-      state.petsArray = action.payload;
+      state.petsArray = action.payload.petsArray;
+      state.totalPets = action.payload.totalPets
       state.isLoading = false;
     });
     builder.addCase(FetchPets.rejected, (state, action) => {
