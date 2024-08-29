@@ -11,6 +11,7 @@ const ShelterInfo = () => {
   useEffect(() => {
     if (location.state && location.state.shelter)
       setInfo(location.state.shelter);
+    window.scrollTo(0, 0);
   }, []);
 
   return (

@@ -74,11 +74,19 @@ p {
     *{
       border-color: base.$footer-color-1 !important;
       Color: base.$footer-color-1 ;
+     
     }
     .ant-pagination-item-link{
       box-shadow: 0 0 5px 0 base.$footer-color-1;
 
     }
+
+  .ant-pagination-options{
+    cursor: pointer;
+    div{
+      cursor: pointer;
+    }
+  }
 
     .ant-pagination-item {
       box-shadow: 0 0 5px 0 base.$footer-color-1;

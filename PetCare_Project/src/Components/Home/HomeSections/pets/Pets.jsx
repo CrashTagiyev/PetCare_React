@@ -7,7 +7,7 @@ import { FetchPets } from "../../../../AxiosFetchs/EntityReduxFetchs/FetchPets";
 import FilterSection from "../filter/FilterSection";
 import "../pets/pets.scss";
 import { LoadingOutlined } from "@ant-design/icons";
-
+import { Link, NavLink } from "react-router-dom";
 
 const Pets = ({ filterOptions, setFilterOptions }) => {
   const dispatch = useDispatch();
@@ -21,13 +21,10 @@ const Pets = ({ filterOptions, setFilterOptions }) => {
     dispatch(FetchPets(filterOptions));
   }, [filterOptions]);
 
-
-
-  const onChange = (page,pagesize) => {
-    setFilterOptions(p=>({...p,pageNumber:page,pageSize:pagesize}))
-    console.log(totalPets)
+  const onChange = (page, pagesize) => {
+    setFilterOptions((p) => ({ ...p, pageNumber: page, pageSize: pagesize }));
+    console.log(totalPets);
   };
-
 
   return (
     <div className="pets-filter-and-display">
@@ -43,9 +40,10 @@ const Pets = ({ filterOptions, setFilterOptions }) => {
         </div>
       )}
       {!isArrayLoading && (
-          <div className="pets-cont">
-            {array.map((pet, index) => (
-              <div className="pets-self" key={index}>
+        <div className="pets-cont">
+          {array.map((pet, index) => (
+            <NavLink key={index} to={`/petInfo/${pet.id}`} state={{pet}}>
+              <div className="pets-self" >
                 <div className="pets-img-cont">
                   <img src={pet.imageUrls[0]}></img>
                 </div>
@@ -55,22 +53,23 @@ const Pets = ({ filterOptions, setFilterOptions }) => {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        )}
-        {!isArrayLoading && (
-          <Pagination
-            total={totalPets}
-            defaultPageSize={filterOptions.pageSize}
-            defaultCurrent={1}
-            current={filterOptions.pageNumber}
-            onChange={onChange}
-             showTotal={(total) => `Total ${total} items`}
-             align="center"
-             showSizeChanger
-             showQuickJumper
-          />
-        )}
+            </NavLink>
+          ))}
+        </div>
+      )}
+      {!isArrayLoading && (
+        <Pagination
+          total={totalPets}
+          defaultPageSize={filterOptions.pageSize}
+          defaultCurrent={1}
+          current={filterOptions.pageNumber}
+          onChange={onChange}
+          showTotal={(total) => `Total ${total} pets`}
+          align="center"
+          showSizeChanger
+          showQuickJumper
+        />
+      )}
     </div>
   );
 };

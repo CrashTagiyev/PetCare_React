@@ -1,0 +1,75 @@
+.pet-info-sect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  .slick-slide {
+    width: 100%;
+  }
+  .carousel-cont {
+    width: 100%;
+    margin: 0 auto;
+    background-color: black;
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 500px;
+    }
+    .img-cont {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      div {
+        height: 100%;
+        .carousel-img {
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease-in-out;
+
+          &:hover {
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+    :where(.css-dev-only-do-not-override-98ntnt).ant-carousel .slick-prev,
+    :where(.css-dev-only-do-not-override-98ntnt).ant-carousel .slick-next {
+        &::after{
+        color: white;
+     }
+    }
+    .ant-carousel .slick-prev,
+    .ant-carousel .slick-next {
+      color: #fff;
+      font-size: 50px;
+      z-index: 1;
+
+      &:hover {
+        color: #1890ff;
+      }
+    }
+
+    .ant-carousel .slick-dots li button {
+      background-color: #1890ff;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+
+      &:hover {
+        background-color: #40a9ff;
+      }
+    }
+
+    .ant-carousel .slick-dots li.slick-active button {
+      background-color: #096dd9;
+    }
+  }
+}

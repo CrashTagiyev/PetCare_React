@@ -19,6 +19,7 @@ const Vetinfo = () => {
   useEffect(() => {
     if (location.state && location.state.vet) {
       setInfo(location.state.vet);
+      window.scrollTo(0, 0);
     }
   }, []);
 

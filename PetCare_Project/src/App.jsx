@@ -14,7 +14,8 @@ import { Provider } from "react-redux";
 import Vetinfo from "./Components/usersInformationCOmponents/VetInfo/Vetinfo";
 import SignUpParent from "./Components/SignUp/SignUpParent";
 import ShelterInfo from "./Components/usersInformationCOmponents/ShelterInfo/ShelterInfo";
-
+import PetInfo from "./Components/usersInformationCOmponents/PetInfo/PetInfo";
+import { useEffect } from "react";
 const ROLES = {
   ADMIN: "Admin",
   USER: "User",
@@ -25,6 +26,8 @@ const ROLES = {
 
 function App() {
   const { user } = useAuth();
+
+
   return (
     <Provider store={store}>
       <Routes>
@@ -40,6 +43,7 @@ function App() {
           <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="/vetInfo/:id" element={<Vetinfo />} />
           <Route path="/shelterInfo/:id" element={<ShelterInfo />} />
+          <Route path="/petInfo/:id" element={<PetInfo />} />
           <Route element={<AuthRequires allowedRoles={[ROLES.ADMIN]} />}>
             <Route path="/getusers" element={<GetUsers />} />
           </Route>

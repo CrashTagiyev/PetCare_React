@@ -5,19 +5,13 @@ import Footer from "../footer/Footer.jsx";
 import Header from "../header/Header.jsx";
 
 const Layout = () => {
-  
   return (
     <div className="layout-div">
-
-      <header>
-        <Header />
-      </header>
+      <Header />
       <main>
         <Outlet />
       </main>
-      <footer>
-        <Footer />
-      </footer>
+      <Footer />
     </div>
   );
 };
