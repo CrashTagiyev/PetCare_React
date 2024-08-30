@@ -1,9 +1,12 @@
+@use "../../../assets/basestyle/base.scss";
+
 .pet-info-sect {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
   background-color: #f5f5f5;
+  color: base.$footer-color-1;
   .slick-slide {
     width: 100%;
   }
@@ -16,7 +19,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 500px;
+      height: 550px;
     }
     .img-cont {
       height: 100%;
@@ -42,9 +45,9 @@
     }
     :where(.css-dev-only-do-not-override-98ntnt).ant-carousel .slick-prev,
     :where(.css-dev-only-do-not-override-98ntnt).ant-carousel .slick-next {
-        &::after{
+      &::after {
         color: white;
-     }
+      }
     }
     .ant-carousel .slick-prev,
     .ant-carousel .slick-next {
@@ -70,6 +73,173 @@
 
     .ant-carousel .slick-dots li.slick-active button {
       background-color: #096dd9;
+    }
+  }
+  .ant-anchor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: rgb(239, 239, 239);
+    border-radius: 15px;
+    a {
+      color: base.$footer-color-1 !important;
+    }
+  }
+  .info-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    width: 100%;
+    padding: 20px 0;
+    background-color: rgb(239, 239, 239);
+    height: max-content;
+    .pet-header-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 40px !important;
+      padding: 20px 0 0 0;
+      border-radius: 5px;
+      background-color: white;
+      width: 100%;
+      height: max-content;
+      box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.1); /* Adjust values as needed */
+      .header-info-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .info-petname {
+          font-size: xx-large;
+          font-weight: 900;
+          text-align: center;
+        }
+      }
+      .anchor-cont {
+        border-top: 1px solid gray;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+    .about-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px !important;
+      padding: 20px 0 20px 20px;
+      border-radius: 5px;
+      background-color: white;
+      width: 100%;
+      height: max-content;
+      box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.1);
+    }
+    .adoption-panel {
+      display: flex;
+      flex-direction: column;
+      .adoption-panel-item-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 35px;
+        height: 240px;
+        border-radius: 20px;
+        background-color: base.$footer-color-1;
+        padding: 40px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2),
+          0 -8px 16px rgba(0, 0, 0, 0.2), 8px 0 16px rgba(0, 0, 0, 0.2),
+          -8px 0 16px rgba(0, 0, 0, 0.2);
+        h1 {
+          color: rgb(239, 239, 239) !important;
+        }
+        button {
+          width: 200px;
+          max-width: 90%;
+          height: 30px;
+          border-radius: 15px;
+          border: none;
+          color: base.$footer-color-1;
+          cursor: pointer;
+          transition: 0.3s;
+          &:hover {
+            background-color: base.$footer-color-1;
+            color: rgb(239, 239, 239) !important ;
+            border: 1px solid rgb(239, 239, 239) !important ;
+          }
+        }
+      }
+    }
+    .description-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px !important;
+      padding: 20px;
+      border-radius: 5px;
+      background-color: white;
+      width: 100%;
+      height: max-content;
+      box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.1);
+    }
+    .shelter-info-panel {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 40px !important;
+      padding: 0 0 20px 20px;
+      border-radius: 5px;
+      background-color: white;
+      height: max-content;
+      width: 100%;
+      box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.1);
+  
+      .shelter-header {
+        position: relative;
+        bottom: 80px;
+        .pet-info-shelter-Image {
+          border-radius: 50%;
+          height: 180px;
+          width: 180px;
+          object-fit: cover;
+          border: 4px solid base.$chat-color-1;
+        }
+      }
+      .shelter-map-cont {
+        height: 300px;
+        width: 100%;
+      }
+      .shelter-info{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .shelter-info-content-cont{
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          padding: 5px;
+          border-bottom: 1px solid rgb(186, 186, 186);
+          .title-and-img{
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            img{
+              width: 20px;
+              height: 20px;
+              align-self: center;
+            }
+          }
+        }
+      }
     }
   }
 }

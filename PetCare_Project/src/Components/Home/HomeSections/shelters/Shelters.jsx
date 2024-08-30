@@ -5,6 +5,7 @@ import { sheltersFetch } from "../../../../AxiosFetchs/EntityReduxFetchs/Shelter
 import user_image from "../../../../assets/Icons/ user.jpg";
 import { Link } from "react-router-dom";
 import "../shelters/shelters.scss";
+import Loading from "../../../loading/Loading";
 
 const Shelters = () => {
   let dispatch = useDispatch();
@@ -17,7 +18,7 @@ const Shelters = () => {
   }, []);
 
   if (isArrayLoading) {
-    return <h1>LOADING</h1>;
+    return <Loading />;
   }
 
   if (arrayError) {

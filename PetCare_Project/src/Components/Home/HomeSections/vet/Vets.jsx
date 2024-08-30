@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { VetsFetch } from "../../../../AxiosFetchs/EntityReduxFetchs/VetsFetch";
 import user_image from "../../../../assets/Icons/ user.jpg";
 import "../vet/vets.scss";
+import Loading from "../../../loading/Loading";
 
 const Vets = () => {
   let dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Vets = () => {
   }, []);
 
   if (isArrayLoading) {
-    return <h1>LOADING</h1>;
+    return <Loading />;
   }
 
   if (arrayError) {

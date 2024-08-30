@@ -8,6 +8,7 @@ import FilterSection from "../filter/FilterSection";
 import "../pets/pets.scss";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Link, NavLink } from "react-router-dom";
+import Loading from "../../../loading/Loading";
 
 const Pets = ({ filterOptions, setFilterOptions }) => {
   const dispatch = useDispatch();
@@ -33,11 +34,7 @@ const Pets = ({ filterOptions, setFilterOptions }) => {
         setFilterOptions={setFilterOptions}
       />
       {isArrayLoading && (
-        <div className="loading-spinner-cont">
-          <Spin
-            indicator={<LoadingOutlined style={{ fontSize: 150 }} spin />}
-          />
-        </div>
+        <Loading />
       )}
       {!isArrayLoading && (
         <div className="pets-cont">

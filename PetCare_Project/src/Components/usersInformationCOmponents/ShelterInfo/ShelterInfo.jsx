@@ -14,6 +14,8 @@ const ShelterInfo = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  
+
   return (
     <div className="shelter-info-cont">
       <div className="shelter-profile">

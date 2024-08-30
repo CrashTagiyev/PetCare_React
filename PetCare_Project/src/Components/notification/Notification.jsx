@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const Notification = () => {
   const { user } = useAuth();
-  const { notifications, isThereNewNotification, setIsThereNewNotification } =
+  const { notifications } =
     useNotificationConnection(user.username);
   const [selectedNotification, setSelectedNotification] = useState(null);
 
@@ -35,6 +35,7 @@ const Notification = () => {
 
   return (
     <div className="notification-cont">
+     
       <div className="notification-header">Notifications</div>
       <div
         className={`${
