@@ -1,4 +1,4 @@
-import { Anchor, Carousel, Image, Spin } from "antd";
+import { Anchor, Carousel, Image } from "antd";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -7,7 +7,7 @@ import "../PetInfo/petInfo.scss";
 import Loading from "../../loading/Loading";
 import MapComponent from "../../MapComponent/MapComponent";
 import { ContactIcons } from "../../../IconImports/ContactIcons";
-
+import { useAuth } from "../../../Hooks/useAuth";
 const anchorItems = [
   {
     key: "petInfoAbout",
@@ -33,14 +33,14 @@ const anchorItems = [
 
 const PetInfo = () => {
   const [info, setInfo] = useState();
+  const {user} = useAuth()
   const { id } = useParams();
   useEffect(() => {
     window.scrollTo(0, 0);
     const fetchPetInfo = async () => {
       const petData = await FetchPet(id);
       setInfo((prev) => (prev = petData));
-      console.log(petData);
-    };
+      };
     if (!info) fetchPetInfo();
   }, []);
 
