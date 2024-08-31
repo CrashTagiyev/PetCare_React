@@ -1,5 +1,5 @@
-import addressIcon from "../assets/Icons/phone.png"
-import phoneIcon from "../assets/Icons/addressIcon2.png"
+import addressIcon from "../assets/Icons/addressIcon2.png"
+import phoneIcon from "../assets/Icons/phone.png"
 import emailIcon from "../assets/Icons/message.png"
 
 

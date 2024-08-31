@@ -6,11 +6,10 @@ import { CitiesOptions } from "../../SignUp/signUpDatas/signUpDatas";
 import usePetCareAPI from "../../../Hooks/usePetCareApi";
 import { useState } from "react";
 const CreateShelterModal = ({ isModalOpen, closeModal }) => {
-  
   const [form] = Form.useForm();
   const { user } = useAuth();
   const { PetCareAPI } = usePetCareAPI();
-  const [successMessage,setSuccessMessage]= useState();
+  const [successMessage, setSuccessMessage] = useState();
   const normFile = (e) => {
     if (Array.isArray(e)) {
       return e;
@@ -38,9 +37,9 @@ const CreateShelterModal = ({ isModalOpen, closeModal }) => {
         withCredentials: true,
       }).then((response) => {
         console.log(response);
-        if(response.data ===200)
-        setSuccessMessage("Shelter successfully created")
-        form.resetFields(); 
+        if (response.data === 200)
+          setSuccessMessage("Shelter successfully created");
+        form.resetFields();
       });
     } catch (error) {
       console.log(error.response);
@@ -69,15 +68,13 @@ const CreateShelterModal = ({ isModalOpen, closeModal }) => {
           <h3>{successMessage}</h3>
         </div>
         <Form form={form} onFinish={onFinish} layout="vertical">
-        <Form.Item
-              name="sheltername"
-              label="Shelter name"
-              rules={[
-                { required: true, message: "Please input your address!" },
-              ]}
-            >
-              <Input />
-            </Form.Item>
+          <Form.Item
+            name="sheltername"
+            label="Shelter name"
+            rules={[{ required: true, message: "Please input your address!" }]}
+          >
+            <Input />
+          </Form.Item>
           <Form.Item
             name="adoptionpolicy"
             label="Adoption Policy"

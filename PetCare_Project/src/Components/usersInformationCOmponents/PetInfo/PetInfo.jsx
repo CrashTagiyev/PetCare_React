@@ -8,6 +8,7 @@ import Loading from "../../loading/Loading";
 import MapComponent from "../../MapComponent/MapComponent";
 import { ContactIcons } from "../../../IconImports/ContactIcons";
 import { useAuth } from "../../../Hooks/useAuth";
+import AdoptionModal from "../../userProfileComponents/CompanyComponents/adoption/AdoptionModal";
 const anchorItems = [
   {
     key: "petInfoAbout",
@@ -33,6 +34,7 @@ const anchorItems = [
 
 const PetInfo = () => {
   const [info, setInfo] = useState();
+  const [isOpen,setIsOpen] = useState(false);
   const {user} = useAuth()
   const { id } = useParams();
   useEffect(() => {
@@ -48,6 +50,11 @@ const PetInfo = () => {
 
   return (
     <section className="pet-info-sect">
+      <AdoptionModal
+      closeModal={setIsOpen}
+      isModalOpen={isOpen}
+      petInfo={info}
+      />
       <div className="carousel-cont">
         <Carousel style={{ width: "100% !important" }} arrows infinite={true}>
           {info?.imageUrls?.map((url, index) => (
@@ -101,7 +108,10 @@ const PetInfo = () => {
         <div id="petInfoAdoption" className="adoption-panel">
           <div className="adoption-panel-item-container">
             <h1>Considering {info?.petName} for adoption?</h1>
-            <button>CLICK HERE!</button>
+            <button onClick={(e) =>{
+              e.preventDefault();
+              setIsOpen(true);
+            }}>CLICK HERE!</button>
           </div>
         </div>
         <div id="petInfoDescription" className="description-panel">
