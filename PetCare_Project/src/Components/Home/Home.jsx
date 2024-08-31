@@ -8,7 +8,7 @@ import Pets from "./HomeSections/pets/Pets";
 import SearchSection from "./HomeSections/search/SearchSection";
 import Shelters from "./HomeSections/shelters/Shelters";
 import Vets from "./HomeSections/vet/Vets";
-import { FILTER_OPTIONS } from "./HomeSections/filter/filterOptions";
+import { PETS_FILTER_OPTIONS } from "./HomeSections/filter/filterOptions";
 
 const Home = () => {
   const [displayItems, setDisplayItems] = useLocalStorage(
@@ -16,7 +16,7 @@ const Home = () => {
     "All"
   );
 
-  const [filterOptions, setFilterOptions] = useState(FILTER_OPTIONS);
+  const [filterOptions, setFilterOptions] = useState(PETS_FILTER_OPTIONS);
 
   const renderContent = () => {
     switch (displayItems) {

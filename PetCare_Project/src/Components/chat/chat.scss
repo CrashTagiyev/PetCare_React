@@ -78,12 +78,14 @@
 
       .user-container {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        height: 57px;
+        gap: 3px;
+        height: auto;
 
         button {
           height: 57px;
-          width: 284px;
+          width: 100%;
           background-color: base.$chat-color-2;
           text-align: left;
           border: none;
@@ -237,7 +239,7 @@
 
     .users-container {
       width: 644px !important;
-
+ 
       .user-container {
         button {
           width: 100% !important;

@@ -5,6 +5,7 @@ const vetsSlice = createSlice({
   name: "vets",
   initialState: {
     vetsArray: [],
+    totalVets:0,
     isLoading: false,
     error: null,
   },
@@ -14,7 +15,8 @@ const vetsSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(VetsFetch.fulfilled, (state, action) => {
-      state.vetsArray = action.payload;
+      state.vetsArray = action.payload.vetsList;
+      state.totalVets = action.payload.totalVets;
       state.isLoading = false;
     });
     builder.addCase(VetsFetch.rejected, (state, action) => {

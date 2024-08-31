@@ -123,9 +123,6 @@
     flex-wrap: wrap;
     width: 100%;
     justify-content: center;
-    // position: static;
-    // left: 50%;
-    // bottom: 40px;
     gap: 16px;
 
     button {
@@ -140,6 +137,12 @@
       &:hover {
         background-color: rgb(228, 227, 227);
         border: 2px solid base.$footer-color-1;
+      }
+      
+      &:focus{
+        background-color: rgb(228, 227, 227);
+        border: 2px solid base.$footer-color-1;
+        
       }
       .filter-btn-div {
         display: flex;

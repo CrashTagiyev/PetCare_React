@@ -3,40 +3,69 @@
 p {
   color: #2c2c2c; /* Dark color for better contrast */
 }
+.ant-pagination {
+  margin-bottom: 10px;
+  * {
+    border-color: base.$footer-color-1 !important;
+    color: base.$footer-color-1;
+  }
+  .ant-pagination-item-link {
+    box-shadow: 0 0 5px 0 base.$footer-color-1;
+  }
 
+  .ant-pagination-options {
+    cursor: pointer;
+    div {
+      cursor: pointer;
+    }
+  }
+
+  .ant-pagination-item {
+    box-shadow: 0 0 5px 0 base.$footer-color-1;
+  }
+  .ant-pagination-item-active {
+    box-shadow: 0 0 5px 0 base.$footer-color-1;
+    background-color: base.$footer-color-1 !important;
+    border: none;
+    a {
+      color: white;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+}
 .users-cont {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   height: max-content;
   width: 100%;
   gap: 20px;
   padding: 20px;
-
-  a{
+  margin-top: 30px;
+  a {
     text-decoration: none;
   }
 
   .user-self {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-      0 -4px 8px rgba(0, 0, 0, 0.1),
-      4px 0 8px rgba(0, 0, 0, 0.1),
-      -4px 0 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 -4px 8px rgba(0, 0, 0, 0.1),
+      4px 0 8px rgba(0, 0, 0, 0.1), -4px 0 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    height: 400px;
+    height: 350px;
     border-radius: 30px;
     gap: 30px;
-    background-color: base.$chat-color-3;
+    background-color: rgba(170, 50, 245, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+    padding: 10px;
     &:hover {
       transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2),
-        0 -8px 16px rgba(0, 0, 0, 0.2),
-        8px 0 16px rgba(0, 0, 0, 0.2),
-        -8px 0 16px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 16px rgba(185, 117, 221, 0.3),
+        /* Light blue tint */ 0 -8px 16px rgba(185, 117, 221, 0.3),
+        8px 0 16px rgba(185, 117, 221, 0.3),
+        -8px 0 16px rgba(185, 117, 221, 0.3);
     }
 
     .user-img-cont {
@@ -59,12 +88,12 @@ p {
       h3 {
         font-size: 1.75rem;
         color: #2b2b2b; /* Darker gray for clear visibility */
-        text-decoration:line-through;
+        text-decoration: line-through;
       }
 
       p {
         font-size: 1.125rem;
-        color: #333333; /* Dark color for strong contrast */
+        color: base.$footer-color-1; /* Dark color for strong contrast */
         text-decoration: none;
       }
     }

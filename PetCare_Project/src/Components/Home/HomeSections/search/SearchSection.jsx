@@ -1,6 +1,6 @@
 import React from "react";
 import filterIcons from "../../../../IconImports/ImportFIlterIcons";
-import { FILTER_OPTIONS } from "../filter/filterOptions";
+import { PETS_FILTER_OPTIONS } from "../filter/filterOptions";
 
 const SearchSection = ({ setDisplay, setFilterOptions }) => {
   const displayButtonHandler = (e) => {
@@ -64,7 +64,7 @@ const SearchSection = ({ setDisplay, setFilterOptions }) => {
         <button
           value={"All"}
           onClick={(e) => {
-            setFilterOptions(FILTER_OPTIONS);
+            setFilterOptions(PETS_FILTER_OPTIONS);
             setFilterOptions((p) => ({ ...p, petTypeId: 0, isAll: true, pageNumber:1, }));
             displayButtonHandler(e);
           }}

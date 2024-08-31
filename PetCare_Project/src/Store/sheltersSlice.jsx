@@ -5,6 +5,7 @@ const sheltersSlice = createSlice({
   name: "shelters",
   initialState: {
     sheltersArray: [],
+    totalShelters: 0,
     isLoading: false,
     error: null,
   },
@@ -14,7 +15,8 @@ const sheltersSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(sheltersFetch.fulfilled, (state, action) => {
-      state.sheltersArray = action.payload;
+      state.sheltersArray = action.payload.sheltersArray;
+      state.totalShelters = action.payload.totalShelters
       state.isLoading = false;
     });
     builder.addCase(sheltersFetch.rejected, (state, action) => {

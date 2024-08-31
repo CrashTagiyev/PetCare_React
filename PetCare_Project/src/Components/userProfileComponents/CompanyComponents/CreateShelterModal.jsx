@@ -6,7 +6,6 @@ import { CitiesOptions } from "../../SignUp/signUpDatas/signUpDatas";
 import usePetCareAPI from "../../../Hooks/usePetCareApi";
 import { useState } from "react";
 const CreateShelterModal = ({ isModalOpen, closeModal }) => {
-  
   const [form] = Form.useForm();
   const { user } = useAuth();
   const { PetCareAPI } = usePetCareAPI();

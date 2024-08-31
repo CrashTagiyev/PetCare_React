@@ -1,13 +1,11 @@
-import { Flex, Pagination, Skeleton, Spin } from "antd";
+import { Flex, Pagination } from "antd";
 import React from "react";
-import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchPets } from "../../../../AxiosFetchs/EntityReduxFetchs/FetchPets";
 import FilterSection from "../filter/FilterSection";
 import "../pets/pets.scss";
-import { LoadingOutlined } from "@ant-design/icons";
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import Loading from "../../../loading/Loading";
 
 const Pets = ({ filterOptions, setFilterOptions }) => {
@@ -24,7 +22,7 @@ const Pets = ({ filterOptions, setFilterOptions }) => {
 
   const onChange = (page, pagesize) => {
     setFilterOptions((p) => ({ ...p, pageNumber: page, pageSize: pagesize }));
-    console.log(totalPets);
+    window.scrollTo(0, 1);
   };
 
   return (

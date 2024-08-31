@@ -1,4 +1,4 @@
-export const FILTER_OPTIONS = {
+export const PETS_FILTER_OPTIONS = {
   isAll: true,
   petTypeId: 0,
   petName: "",
@@ -13,3 +13,16 @@ export const FILTER_OPTIONS = {
   pageSize:10,
   totalPets:0,
 };
+
+
+export const SHELTER_FILTER_OPTIONS = {
+  pageNumber:1,
+  pageSize:10,
+
+}
+
+export const VET_FILTER_OPTIONS = {
+  pageNumber:1,
+  pageSize:10,
+
+}
