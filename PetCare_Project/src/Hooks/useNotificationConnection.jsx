@@ -8,7 +8,7 @@ const useNotificationConnection = (username) => {
   const [notifications, setNotifications] = useState([]);
   const [isThereNewNotification, setIsThereNewNotification] = useState(false);
   const connectionRef = useRef(null);
-
+  
   const [api, contextHolder] = notification.useNotification();
   const openNotification = (notification) => {
     api.info({

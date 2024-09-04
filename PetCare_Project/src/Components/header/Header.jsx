@@ -10,9 +10,7 @@ import useNotificationConnection from "../../Hooks/useNotificationConnection";
 const Header = () => {
   const { user, logout } = useAuth();
 
-  const {  contextHolder } = useNotificationConnection(
-    user?.username
-  );
+  const { contextHolder } = useNotificationConnection(user?.username);
 
   return (
     <>
@@ -46,8 +44,20 @@ const Header = () => {
                 Log In
               </Link>
             )}
-            {user && (
+            {user && user.roles !== "Admin" && (
               <Link to="/userprofileinfo" className="profile">
+                <div className="profile-photo">
+                  <img
+                    src={
+                      (user.profileImage && user.profileImage) ||
+                      default_UserImg
+                    }
+                  ></img>
+                </div>
+              </Link>
+            )}
+            {user && user.roles === "Admin" && (
+              <Link to="/adminprofile" className="profile">
                 <div className="profile-photo">
                   <img
                     src={

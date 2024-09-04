@@ -1,0 +1,30 @@
+@use "../../assets/basestyle/base.scss";
+
+.ant-tabs-nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+}
+.admin-panel-section {
+  width: 100%;
+  height: auto;
+  padding: 15px;
+  
+  .ant-tabs-nav-list {
+    .ant-tabs-tab {
+      margin: 0 0 0 8px;
+      border: 1px solid base.$footer-color-1;
+      border-radius: 10px;
+      width: 150px;
+      justify-content: center;
+      .ant-tabs-tab-btn{
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+
+    }
+    *{
+        color: base.$footer-color-1;
+    }
+  }
+}

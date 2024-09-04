@@ -15,7 +15,7 @@ import Vetinfo from "./Components/usersInformationCOmponents/VetInfo/Vetinfo";
 import SignUpParent from "./Components/SignUp/SignUpParent";
 import ShelterInfo from "./Components/usersInformationCOmponents/ShelterInfo/ShelterInfo";
 import PetInfo from "./Components/usersInformationCOmponents/PetInfo/PetInfo";
-import { useEffect } from "react";
+import AdminProfile from "./Components/AdminComponents/AdminProfile";
 const ROLES = {
   ADMIN: "Admin",
   USER: "User",
@@ -23,10 +23,8 @@ const ROLES = {
   VET: "Vet",
 };
 
-
 function App() {
   const { user } = useAuth();
-
 
   return (
     <Provider store={store}>
@@ -37,7 +35,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route
             path="/userprofileinfo"
-            element={user? <UserProfileInfo /> : <Login />}
+            element={user ? <UserProfileInfo /> : <Login />}
           />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
@@ -45,7 +43,7 @@ function App() {
           <Route path="/shelterInfo/:id" element={<ShelterInfo />} />
           <Route path="/petInfo/:id" element={<PetInfo />} />
           <Route element={<AuthRequires allowedRoles={[ROLES.ADMIN]} />}>
-            <Route path="/getusers" element={<GetUsers />} />
+            <Route path="/adminprofile" element={<AdminProfile />} />
           </Route>
         </Route>
       </Routes>

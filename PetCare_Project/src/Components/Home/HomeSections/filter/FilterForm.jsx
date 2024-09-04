@@ -62,7 +62,7 @@ const FilterForm = ({ filterOptions, setFilterOptions }) => {
               ))}
           </Select>
         </Form.Item>
-        <Form.Item label="Breed" name="gender">
+        <Form.Item label="Gender" name="gender">
           <Select
             onSelect={(value) => {
               setFilterOptions((p) => ({ ...p, gender: value,isAll:false }));

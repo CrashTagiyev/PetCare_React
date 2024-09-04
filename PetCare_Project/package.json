@@ -11,6 +11,7 @@
     "sass": "sass --watch Styles/scss:Styles/css"
   },
   "dependencies": {
+    "@ant-design/charts": "^2.2.1",
     "@microsoft/signalr": "^8.0.7",
     "@react-google-maps/api": "^2.19.3",
     "@reduxjs/toolkit": "^2.2.6",
