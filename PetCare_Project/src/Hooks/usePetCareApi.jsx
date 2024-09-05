@@ -37,7 +37,6 @@ const usePetCareAPI = () => {
               {},
               { withCredentials: true }
             );
-            console.log(response.data.status)
             if (response.data.status.statusCode === 404) {
               logout();
               return Promise.reject(error);
@@ -45,7 +44,6 @@ const usePetCareAPI = () => {
 
             const newAccessToken = response.data.accessToken;
             localStorage.setItem("accessToken", newAccessToken);
-            console.log(newAccessToken)
             const decodedToken = jwtDecode(newAccessToken);
             const {
               id,

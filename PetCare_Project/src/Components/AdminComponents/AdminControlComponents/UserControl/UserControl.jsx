@@ -1,8 +1,13 @@
+import { Button } from 'antd'
 import React from 'react'
+import UsersTable from './tables/UsersTable'
 
 const UserControl = () => {
   return (
-    <div>UserControl</div>
+    <div>
+      <div><Button type='primary'>Create user</Button></div>
+      <UsersTable/>
+      </div>
   )
 }
 

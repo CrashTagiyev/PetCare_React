@@ -1,0 +1,63 @@
+// Responsive styles for Ant Design table
+.users-table-container {
+  // General styles for the table container
+  padding: 16px;
+  .ant-table {
+    width: 100%;
+    overflow-x: auto;
+
+    @media (max-width: 768px) {
+      .ant-table {
+        font-size: 12px; // Smaller font for mobile devices
+      }
+
+      .ant-table-thead > tr > th,
+      .ant-table-tbody > tr > td {
+        white-space: nowrap; 
+      }
+
+      .ant-table-thead {
+        display: none; 
+      }
+
+      .ant-table-tbody > tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid black;
+      }
+
+      .ant-table-tbody > tr > td {
+        display: block;
+        text-align: left;
+        position: relative;
+
+        // Label for table items on small screens
+        &::before {
+          content: attr(
+            data-label
+          ); // Use data-label for responsive table labels
+          position: absolute;
+          left: 10px;
+          width: calc(50% - 20px);
+          white-space: nowrap;
+          text-align: left;
+          font-weight: bold;
+        }
+      }
+    }
+
+    // Tablet-specific styling
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .ant-table {
+        font-size: 14px; // Slightly smaller font for tablets
+      }
+    }
+
+    // Larger screens (desktops)
+    @media (min-width: 1025px) {
+      .ant-table {
+        font-size: 16px; // Default font size for larger screens
+      }
+    }
+  }
+}
