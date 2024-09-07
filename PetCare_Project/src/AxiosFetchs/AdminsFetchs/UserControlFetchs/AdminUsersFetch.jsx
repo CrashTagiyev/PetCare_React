@@ -1,16 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import PetCareAPI from "../../APIs/PetCareAPI";
+import PetCareAPI from "../../../APIs/PetCareAPI";
 
 
 
-export const AdminVetsFetch = createAsyncThunk(
-    "content/adminVetsFetch",
+export const AdminUsersFetch = createAsyncThunk(
+    "content/adminUsersFetch",
     async (filterOptions) => {
       const response = await PetCareAPI.post(
-        "/admin/AdminGetVets",
+        "/admin/AdminGetUsers",
         {
-          PageNumber: filterOptions.pageNumber,
-          PageSize: filterOptions.pageSize,
+          PageNumber: filterOptions?.pageNumber,
+          PageSize: filterOptions?.pageSize,
         },
         {
           headers: {

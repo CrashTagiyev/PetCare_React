@@ -1,7 +1,6 @@
-import react from "react";
 import { createSlice } from "@reduxjs/toolkit";
-import { VetsFetch } from "../AxiosFetchs/EntityReduxFetchs/VetsFetch";
-import { AdminUsersFetch } from "../AxiosFetchs/AdminsFetchs/AdminUsersFetch";
+import { AdminUsersFetch } from "../AxiosFetchs/AdminsFetchs/UserControlFetchs/AdminUsersFetch";
+
 const AdminsPanelSlice = createSlice({
   name: "adminsPanel",
   initialState: {

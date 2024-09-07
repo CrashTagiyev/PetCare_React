@@ -8,7 +8,7 @@ p {
   padding: 10px;
   .pets-cont {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
     height: max-content;
     width: 100%;
     gap: 20px;

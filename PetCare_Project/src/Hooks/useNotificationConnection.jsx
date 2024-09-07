@@ -20,9 +20,7 @@ const useNotificationConnection = (username) => {
 
   useEffect(() => {
     const createConnection = async () => {
-      if (connectionRef.current) {
-       
-      }
+ 
 
       const newConnection = new HubConnectionBuilder()
         .withUrl(`${BASE_URL}/chathub`)
