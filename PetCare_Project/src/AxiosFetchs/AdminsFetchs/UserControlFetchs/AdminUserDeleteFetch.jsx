@@ -2,7 +2,7 @@ import PetCareAPI from "../../../APIs/PetCareAPI";
 
 export const adminDeleteUser = async (id) => {
     try {
-      const response = await PetCareAPI.delete(`/admin/deleteuser?id=${id}`, {
+      const response = await PetCareAPI.delete(`/admin/DeleteAppUser?id=${id}`, {
         headers: {
           "Content-Type": "application/json",
         },

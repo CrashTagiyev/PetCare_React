@@ -1,6 +1,13 @@
-// Responsive styles for Ant Design table
+
+
 .users-table-container {
-  // General styles for the table container
+  .user-table-btn{
+    background-color: #6504b5 ;
+    
+    &:hover{
+      background-color: #9863c3 !important;
+    }
+  }
   padding: 16px;
   .ant-table {
     width: 100%;
@@ -8,7 +15,7 @@
 
     @media (max-width: 768px) {
       .ant-table {
-        font-size: 12px; // Smaller font for mobile devices
+        font-size: 12px;
       }
 
       .ant-table-thead > tr > th,

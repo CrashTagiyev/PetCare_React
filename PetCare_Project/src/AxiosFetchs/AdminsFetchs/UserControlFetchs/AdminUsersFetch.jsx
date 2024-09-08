@@ -7,7 +7,7 @@ export const AdminUsersFetch = createAsyncThunk(
     "content/adminUsersFetch",
     async (filterOptions) => {
       const response = await PetCareAPI.post(
-        "/admin/AdminGetUsers",
+        "/admin/GetAppUsers",
         {
           PageNumber: filterOptions?.pageNumber,
           PageSize: filterOptions?.pageSize,

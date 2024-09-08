@@ -6,6 +6,9 @@ import Loading from "../../../../loading/Loading";
 import "./usersTable.scss";
 import { AdminUsersFetch } from "../../../../../AxiosFetchs/AdminsFetchs/UserControlFetchs/AdminUsersFetch";
 import { adminDeleteUser } from "../../../../../AxiosFetchs/AdminsFetchs/UserControlFetchs/AdminUserDeleteFetch";
+import AdminAppUserInfoModal from "../components/AdminAppUserInfoModal";
+import AdminAppUserUpdateModal from "../components/AdminAppUserUpdateModal";
+
 const UsersTable = () => {
   //STates
   const [tableDatas, setTableDatas] = useState([]);
@@ -18,7 +21,11 @@ const UsersTable = () => {
   const isArrayLoading = useSelector((state) => state.adminPanel.isLoading);
   const totalUsers = useSelector((state) => state.adminPanel.totalUsers);
   const arrayError = useSelector((state) => state.adminPanel.error);
-
+  const [isAppUserInfoModalOpen, setIsAppUserInfoModalOpen] = useState(false);
+  const [isAppUserUpdateModalOpen, setIsAppUserUpdateModalOpen] =
+    useState(false);
+  const [currentUserInfo, setCurrentUserInfo] = useState({});
+  const [currentUserUpdate, setCurrentUserUpdate] = useState({});
   //Use effects
   useEffect(() => {
     dispatch(AdminUsersFetch({ pageNumber: currentPage, pageSize: pageSize }));
@@ -33,10 +40,30 @@ const UsersTable = () => {
         email: user?.email,
         phonenumber: user?.phoneNumber,
         actions: [
-          <Button key={1} style={{ marginLeft: `5px` }} type="primary">
+          <Button
+            className="user-table-btn"
+            key={1}
+            onClick={(e) => {
+              e.preventDefault();
+              setCurrentUserInfo(user);
+              setIsAppUserInfoModalOpen((p) => !p);
+            }}
+            style={{ marginLeft: `5px` }}
+            type="primary"
+          >
             Info
           </Button>,
-          <Button key={2} style={{ marginLeft: `5px` }} type="primary">
+          <Button
+            className="user-table-btn"
+            key={2}
+            onClick={(e) => {
+              e.preventDefault();
+              setCurrentUserUpdate(user);
+              setIsAppUserUpdateModalOpen((p) => !p);
+            }}
+            style={{ marginLeft: `5px` }}
+            type="primary"
+          >
             Update
           </Button>,
           <Popconfirm
@@ -45,7 +72,7 @@ const UsersTable = () => {
             description="Are you sure to delete this user?"
             onConfirm={async (e) => {
               await adminDeleteUser(user?.id);
-              dispatch(AdminUsersFetch())
+              dispatch(AdminUsersFetch());
             }}
             okText="Yes"
             cancelText="No"
@@ -74,6 +101,16 @@ const UsersTable = () => {
 
   return (
     <div className="users-table-container">
+      <AdminAppUserInfoModal
+        userInfo={currentUserInfo}
+        isModalOpen={isAppUserInfoModalOpen}
+        closeModal={setIsAppUserInfoModalOpen}
+      />
+      <AdminAppUserUpdateModal
+        userInfo={currentUserUpdate}
+        isModalOpen={isAppUserUpdateModalOpen}
+        closeModal={setIsAppUserUpdateModalOpen}
+      />
       <Table
         columns={USER_TABLE_COLUMNS}
         dataSource={tableDatas}

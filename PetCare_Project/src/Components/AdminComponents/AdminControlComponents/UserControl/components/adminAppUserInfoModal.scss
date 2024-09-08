@@ -1,0 +1,87 @@
+.user-info-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff; 
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // Subtle shadow for elevation
+
+    &__name {
+      font-size: 24px; // Larger font for the name
+      font-weight: 700;
+      color:#6504b5;
+      margin-bottom: 5px;
+    }
+    
+        &__username {
+          font-size: 16px;
+          color:#6504b5; // Softer color for username
+        }
+    &__profile {
+      text-align: center;
+      margin-bottom: 20px;
+  
+      &-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 5px solid #ececec;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+      }
+      
+    }
+    
+    &__details {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px; // Space between details
+  
+      &__detail {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        color: #444;
+        background-color: #f7f7f7; // Subtle background for each row
+        padding: 12px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+  
+     
+  
+        svg {
+          font-size: 18px;
+          color: #888;
+        }
+  
+        &:hover {
+          background-color: #e6f7ff; // Change background on hover for interactivity
+        }
+      }
+    }
+  }
+  strong {
+    margin-left: 10px;
+    color: #6504b5 !important;
+  }
+  // Make it responsive for mobile screens
+  @media (max-width: 600px) {
+    .user-info-modal {
+      padding: 15px;
+  
+      &__profile-img {
+        width: 90px;
+        height: 90px;
+      }
+  
+      &__details {
+        &__detail {
+          font-size: 14px;
+          padding: 10px;
+        }
+      }
+    }
+  }
+  
