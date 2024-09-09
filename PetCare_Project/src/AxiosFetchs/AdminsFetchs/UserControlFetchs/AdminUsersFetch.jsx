@@ -1,11 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import PetCareAPI from "../../../APIs/PetCareAPI";
 
-
-
 export const AdminUsersFetch = createAsyncThunk(
-    "content/adminUsersFetch",
-    async (filterOptions) => {
+  "content/adminUsersFetch",
+  async (filterOptions) => {
+    try {
       const response = await PetCareAPI.post(
         "/admin/GetAppUsers",
         {
@@ -20,5 +19,9 @@ export const AdminUsersFetch = createAsyncThunk(
         }
       );
       return response.data;
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      throw error;
     }
-  );
+  }
+);

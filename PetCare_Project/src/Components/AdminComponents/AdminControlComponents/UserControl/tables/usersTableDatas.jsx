@@ -2,6 +2,10 @@ export const GetUsersTableDatas = async () => {};
 
 export const USER_TABLE_COLUMNS = [
   {
+    title: "ID",
+    dataIndex: "id",
+  },
+  {
     title: "Username",
     dataIndex: "username",
   },

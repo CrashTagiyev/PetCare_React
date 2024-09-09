@@ -9,6 +9,7 @@ import "../CompanyComponents/companySheltersList.scss";
 import AddPetToShelterModal from "./AddPetToShelterModal";
 
 const CompanySheltersList = () => {
+  
   const [shelters, setShelters] = useState([]);
   const [currentShelterId, setCurrentShelterId] = useState(0);
   const { PetCareAPI } = usePetCareAPI();

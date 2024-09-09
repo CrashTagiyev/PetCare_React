@@ -36,6 +36,7 @@ const UsersTable = () => {
     if (usersArray && usersArray.length > 0) {
       const formattedData = usersArray.map((user, index) => ({
         key: index,
+        id: user?.id,
         username: user?.userName,
         email: user?.email,
         phonenumber: user?.phoneNumber,
@@ -107,7 +108,7 @@ const UsersTable = () => {
         closeModal={setIsAppUserInfoModalOpen}
       />
       <AdminAppUserUpdateModal
-        userInfo={currentUserUpdate}
+        userId={currentUserUpdate.id}
         isModalOpen={isAppUserUpdateModalOpen}
         closeModal={setIsAppUserUpdateModalOpen}
       />

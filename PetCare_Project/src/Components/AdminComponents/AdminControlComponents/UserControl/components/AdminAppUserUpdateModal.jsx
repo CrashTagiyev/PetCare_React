@@ -1,16 +1,48 @@
-import { Modal, Form, Input, DatePicker, Button } from 'antd';
-import { MailOutlined, PhoneOutlined, EnvironmentOutlined, CalendarOutlined, IdcardOutlined } from '@ant-design/icons';
-import React from 'react';
-import moment from 'moment'; // Import moment
-import './adminAppUserUpdateModal.scss';
+import { Modal, Form, Input, DatePicker, Button, Select } from "antd";
+import {
+  UserOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  EnvironmentOutlined,
+  CalendarOutlined,
+  IdcardOutlined,
+} from "@ant-design/icons";
+import React from "react";
+import moment from "moment"; // Import moment
+import "./adminAppUserUpdateModal.scss";
+import { CitiesOptions } from "../../../../SignUp/signUpDatas/signUpDatas";
+import { useState } from "react";
+import { useEffect } from "react";
+import { AdminUserInfoFetch } from "../../../../../AxiosFetchs/AdminsFetchs/UserControlFetchs/AdminUserReadFetch";
 
-const AdminAppUserUpdateForm = ({ userInfo, isModalOpen, closeModal, handleSubmit }) => {
+const AdminAppUserUpdateForm = ({ userId, isModalOpen, closeModal }) => {
   const [form] = Form.useForm();
-
+  const [userInfo, setUserInfo] = useState();
   const onFinish = (values) => {
-    console.log(values)
+    console.log(values);
     closeModal(false);
   };
+
+  useEffect(() => {
+    const userInfoFetch = async () => {
+      const responseData = await AdminUserInfoFetch(userId);
+      setUserInfo(responseData);
+      form.setFieldsValue({
+        id: userId,
+        userName: responseData?.userName,
+        firstname: responseData?.firstname,
+        lastname: responseData?.lastname,
+        email: responseData?.email,
+        phoneNumber: responseData?.phoneNumber ,
+        address: responseData?.address,
+        city: responseData?.city,
+        dateOfBirth: responseData?.dateOfBirth
+          ? moment(responseData?.dateOfBirth)
+          : null, 
+      })
+    };
+    if (userId > 0) userInfoFetch();
+  }, [userId]);
 
   return (
     <Modal
@@ -34,30 +66,19 @@ const AdminAppUserUpdateForm = ({ userInfo, isModalOpen, closeModal, handleSubmi
           form={form}
           layout="vertical"
           onFinish={onFinish}
-          initialValues={{
-            id: userInfo?.id,
-            userName: userInfo?.userName,
-            firstname: userInfo?.firstname,
-            lastname: userInfo?.lastname,
-            email: userInfo?.email,
-            phoneNumber: userInfo?.phoneNumber,
-            address: userInfo?.address,
-            city: userInfo?.city,
-            dateOfBirth: userInfo?.dateOfBirth ? moment(userInfo?.dateOfBirth) : null, // Convert to moment
-          }}
           className="user-update-form__details"
         >
           <Form.Item label="ID" name="id">
             <Input prefix={<IdcardOutlined />} disabled />
           </Form.Item>
           <Form.Item label="Username" name="userName">
-            <Input prefix={<PhoneOutlined />} />
+            <Input prefix={<UserOutlined />} />
           </Form.Item>
           <Form.Item label="Firstname" name="firstname">
-            <Input prefix={<PhoneOutlined />} />
+            <Input prefix={<UserOutlined />} />
           </Form.Item>
           <Form.Item label="Lastname" name="lastname">
-            <Input prefix={<PhoneOutlined />} />
+            <Input prefix={<UserOutlined />} />
           </Form.Item>
           <Form.Item label="Email" name="email">
             <Input prefix={<MailOutlined />} />
@@ -68,18 +89,32 @@ const AdminAppUserUpdateForm = ({ userInfo, isModalOpen, closeModal, handleSubmi
           <Form.Item label="Address" name="address">
             <Input prefix={<EnvironmentOutlined />} />
           </Form.Item>
-          <Form.Item label="City" name="city">
-            <Input />
+          <Form.Item
+            name="city"
+            label="City"
+            rules={[{ required: true, message: "Please select your city!" }]}
+          >
+            <Select >
+              {CitiesOptions.map((city) => (
+                <Select.Option key={city.value} value={city.value}>
+                  {city.label}
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
           <Form.Item label="Date of Birth" name="dateOfBirth">
             <DatePicker prefix={<CalendarOutlined />} format="YYYY-MM-DD" />
           </Form.Item>
           <Form.Item>
-            <Button className='admin-appuser-update-btn' type="primary" htmlType="submit" block>
+            <Button
+              className="admin-appuser-update-btn"
+              type="primary"
+              htmlType="submit"
+              block
+            >
               Update
             </Button>
           </Form.Item>
-
         </Form>
       </div>
     </Modal>
