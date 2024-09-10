@@ -1,12 +1,29 @@
 import { Button } from "antd";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
+import { fetchCompanyAdoptions } from "../../AxiosFetchs/EntityReduxFetchs/FetchCompanyAdoptions";
+import { useAuth } from "../../Hooks/useAuth";
 import CompanySheltersList from "../userProfileComponents/CompanyComponents/CompanySheltersList";
 import CreateShelterModal from "../userProfileComponents/CompanyComponents/CreateShelterModal";
 import "./companyProfile.scss";
 const CompanyProfile = ({  currentCompanyInfo }) => {
   const [createShelterIsOpen, setCreateShelterIsOpen] = useState(false);
   if (!currentCompanyInfo) return null;
+
+  const {user} = useAuth();
+
+ useEffect(()=>{
+  const companyAdoptionsFetch = async()=>{
+
+    const companyAdoptions = await fetchCompanyAdoptions(user.id)
+    console.log("cOMPANY ADOPTIONS:",companyAdoptions)
+  }
+
+  companyAdoptionsFetch();
+  
+ },[])
+
 
   return (
     <div className="vet-profile-cont">

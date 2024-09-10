@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Button, Popconfirm, Table } from "antd";
-import { USER_TABLE_COLUMNS } from "./usersTableDatas";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../../loading/Loading";
-import "./usersTable.scss";
+import "./companiesTable.scss";
 import { AdminUsersFetch } from "../../../../../AxiosFetchs/AdminsFetchs/UserControlFetchs/AdminUsersFetch";
 import { adminDeleteUser } from "../../../../../AxiosFetchs/AdminsFetchs/UserControlFetchs/AdminUserDeleteFetch";
-import AdminAppUserInfoModal from "../components/AdminAppUserInfoModal";
-import AdminAppUserUpdateModal from "../components/AdminAppUserUpdateModal";
-const UsersTable = () => {
+import { AdminCompaniesFetch } from "../../../../../AxiosFetchs/AdminsFetchs/CompanyControlFetchs/AdminCompaniesFetch";
+import { COMPANY_TABLE_COLUMNS } from "./companiesTableDatas";
+import AdminCompanyInfoModal from "../components/AdminCompanyInfoModal";
+import AdminCompanyUpdateModal from "../components/AdminCompanyUpdateModal";
+
+const CompaniesTable = () => {
   //STates
   const [tableDatas, setTableDatas] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,38 +18,46 @@ const UsersTable = () => {
 
   //RTK
   const dispatch = useDispatch();
-  const usersArray = useSelector((state) => state.adminPanel.usersArray);
+  const companiesArray = useSelector(
+    (state) => state.adminPanel.companiesArray
+  );
   const isArrayLoading = useSelector((state) => state.adminPanel.isLoading);
-  const totalUsers = useSelector((state) => state.adminPanel.totalUsers);
+  const totalCompanies = useSelector(
+    (state) => state.adminPanel.totalCompanies
+  );
   const arrayError = useSelector((state) => state.adminPanel.error);
-  const [isAppUserInfoModalOpen, setIsAppUserInfoModalOpen] = useState(false);
-  const [isAppUserUpdateModalOpen, setIsAppUserUpdateModalOpen] =
+
+  //states
+  const [isCompanyInfoModalOpen, setIsCompanyInfoModalOpen] = useState(false);
+  const [isCompanyUpdateModalOpen, setIsCompanyUpdateModalOpen] =
     useState(false);
-  const [currentUserInfo, setCurrentUserInfo] = useState({});
-  const [currentUserUpdate, setCurrentUserUpdate] = useState({});
+  const [currentCompanyInfo, setCurrentCompanyInfo] = useState({});
+  const [currentCompanyUpdate, setCurrentCompanyUpdate] = useState({});
   const [dispatchTrigger, setDispatchTrigger] = useState(false);
-  //Use effects
-  useEffect(() => {
-    dispatch(AdminUsersFetch({ pageNumber: currentPage, pageSize: pageSize }));
-    console.log(usersArray);
-  }, [dispatch, currentPage, pageSize, adminDeleteUser,dispatchTrigger]);
 
   useEffect(() => {
-    if (usersArray && usersArray.length > 0) {
-      const formattedData = usersArray.map((user, index) => ({
+    dispatch(
+      AdminCompaniesFetch({ pageNumber: currentPage, pageSize: pageSize })
+    );
+ 
+  }, [dispatch, currentPage, pageSize, adminDeleteUser, dispatchTrigger]);
+
+  useEffect(() => {
+    if (companiesArray && companiesArray.length > 0) {
+      const formattedData = companiesArray.map((company, index) => ({
         key: index,
-        id: user?.id,
-        username: user?.userName,
-        email: user?.email,
-        phonenumber: user?.phoneNumber,
+        id: company?.id,
+        companyName: company?.companyName,
+        email: company?.email,
+        phonenumber: company?.phoneNumber,
         actions: [
           <Button
             className="user-table-btn"
             key={1}
             onClick={(e) => {
               e.preventDefault();
-              setCurrentUserInfo(user);
-              setIsAppUserInfoModalOpen((p) => !p);
+              setCurrentCompanyInfo(company);
+              setIsCompanyInfoModalOpen((p) => !p);
             }}
             style={{ marginLeft: `5px` }}
             type="primary"
@@ -59,8 +69,8 @@ const UsersTable = () => {
             key={2}
             onClick={(e) => {
               e.preventDefault();
-              setCurrentUserUpdate(user);
-              setIsAppUserUpdateModalOpen((p) => !p);
+              setCurrentCompanyUpdate(company);
+              setIsCompanyUpdateModalOpen((p) => !p);
             }}
             style={{ marginLeft: `5px` }}
             type="primary"
@@ -69,17 +79,22 @@ const UsersTable = () => {
           </Button>,
           <Popconfirm
             key={3}
-            title={`Delete the ${user?.userName}`}
+            title={`Delete the ${company?.userName}`}
             description="Are you sure to delete this user?"
             onConfirm={async (e) => {
-              await adminDeleteUser(user?.id);
-              dispatch(AdminUsersFetch());
+              await adminDeleteUser(company?.id);
+              dispatch(
+                AdminCompaniesFetch({
+                  pageNumber: currentPage,
+                  pageSize: pageSize,
+                })
+              );
             }}
             okText="Yes"
             cancelText="No"
           >
             <Button
-              value={user?.id}
+              value={company?.id}
               style={{ marginLeft: `5px` }}
               type="primary"
               danger
@@ -91,7 +106,7 @@ const UsersTable = () => {
       }));
       setTableDatas(formattedData);
     }
-  }, [usersArray]);
+  }, [companiesArray]);
 
   const handleTableChange = (pagination) => {
     setCurrentPage(pagination.current);
@@ -102,24 +117,24 @@ const UsersTable = () => {
 
   return (
     <div className="users-table-container">
-      <AdminAppUserInfoModal
-        userInfo={currentUserInfo}
-        isModalOpen={isAppUserInfoModalOpen}
-        closeModal={setIsAppUserInfoModalOpen}
+      <AdminCompanyInfoModal
+        companyInfo={currentCompanyInfo}
+        isModalOpen={isCompanyInfoModalOpen}
+        closeModal={setIsCompanyInfoModalOpen}
       />
-      <AdminAppUserUpdateModal
-        userId={currentUserUpdate.id}
-        isModalOpen={isAppUserUpdateModalOpen}
-        closeModal={setIsAppUserUpdateModalOpen}
+      <AdminCompanyUpdateModal
+        userId={currentCompanyUpdate.id}
+        isModalOpen={isCompanyUpdateModalOpen}
+        closeModal={setIsCompanyUpdateModalOpen}
         setDispatchTrigger={setDispatchTrigger}
       />
       <Table
-        columns={USER_TABLE_COLUMNS}
+        columns={COMPANY_TABLE_COLUMNS}
         dataSource={tableDatas}
         pagination={{
           current: currentPage,
           pageSize: pageSize,
-          total: totalUsers,
+          total: totalCompanies,
           showSizeChanger: true,
           pageSizeOptions: ["10", "20", "50", "100"],
         }}
@@ -129,4 +144,4 @@ const UsersTable = () => {
   );
 };
 
-export default UsersTable;
+export default CompaniesTable;

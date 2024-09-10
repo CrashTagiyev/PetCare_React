@@ -16,7 +16,7 @@ import { useEffect } from "react";
 import { AdminUserInfoFetch } from "../../../../../AxiosFetchs/AdminsFetchs/UserControlFetchs/AdminUserReadFetch";
 import { adminUserUpdateFetch } from "../../../../../AxiosFetchs/AdminsFetchs/UserControlFetchs/AdminUserUpdateFetch";
 
-const AdminAppUserUpdateForm = ({
+const AdminCompanyUpdateModal = ({
   userId,
   isModalOpen,
   closeModal,
@@ -151,4 +151,4 @@ const AdminAppUserUpdateForm = ({
   );
 };
 
-export default AdminAppUserUpdateForm;
+export default AdminCompanyUpdateModal;

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { AdminCompaniesFetch } from "../AxiosFetchs/AdminsFetchs/CompanyControlFetchs/AdminCompaniesFetch";
 import { AdminUsersFetch } from "../AxiosFetchs/AdminsFetchs/UserControlFetchs/AdminUsersFetch";
 
 const AdminsPanelSlice = createSlice({
@@ -27,18 +28,19 @@ const AdminsPanelSlice = createSlice({
       state.isLoading = false;
       state.error = true;
     });
-    // builder.addCase(VetsFetch.pending, (state) => {
-    //   state.isLoading = true;
-    // });
-    // builder.addCase(VetsFetch.fulfilled, (state, action) => {
-    //   state.vetsArray = action.payload.vetsList;
-    //   state.totalVets = action.payload.totalVets;
-    //   state.isLoading = false;
-    // });
-    // builder.addCase(VetsFetch.rejected, (state, action) => {
-    //   state.isLoading = false;
-    //   state.error = true;
-    // });
+    builder.addCase(AdminCompaniesFetch.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(AdminCompaniesFetch.fulfilled, (state, action) => {
+      state.companiesArray = action.payload.companiesList;
+      state.totalCompanies = action.payload.totalCompanies;
+      state.isLoading = false;
+    });
+
+    builder.addCase(AdminCompaniesFetch.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = true;
+    });
     // builder.addCase(VetsFetch.pending, (state) => {
     //   state.isLoading = true;
     // });
