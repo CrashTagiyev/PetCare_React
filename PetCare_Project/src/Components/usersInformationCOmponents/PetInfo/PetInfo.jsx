@@ -1,7 +1,7 @@
 import { Anchor, Carousel, Image } from "antd";
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FetchPet } from "../../../AxiosFetchs/EntityReduxFetchs/FetchPet";
 import "../PetInfo/petInfo.scss";
 import Loading from "../../loading/Loading";
@@ -33,16 +33,17 @@ const anchorItems = [
 ];
 
 const PetInfo = () => {
+  const navigate = useNavigate();
   const [info, setInfo] = useState();
-  const [isOpen,setIsOpen] = useState(false);
-  const {user} = useAuth()
+  const [isOpen, setIsOpen] = useState(false);
+  const { user } = useAuth();
   const { id } = useParams();
   useEffect(() => {
     window.scrollTo(0, 0);
     const fetchPetInfo = async () => {
       const petData = await FetchPet(id);
       setInfo((prev) => (prev = petData));
-      };
+    };
     if (!info) fetchPetInfo();
   }, []);
 
@@ -51,9 +52,9 @@ const PetInfo = () => {
   return (
     <section className="pet-info-sect">
       <AdoptionModal
-      closeModal={setIsOpen}
-      isModalOpen={isOpen}
-      petInfo={info}
+        closeModal={setIsOpen}
+        isModalOpen={isOpen}
+        petInfo={info}
       />
       <div className="carousel-cont">
         <Carousel style={{ width: "100% !important" }} arrows infinite={true}>
@@ -105,15 +106,21 @@ const PetInfo = () => {
             <p>{info?.weight}</p>
           </div>
         </div>
-        <div id="petInfoAdoption" className="adoption-panel">
-          <div className="adoption-panel-item-container">
-            <h1>Considering {info?.petName} for adoption?</h1>
-            <button onClick={(e) =>{
-              e.preventDefault();
-              setIsOpen(true);
-            }}>CLICK HERE!</button>
+        {user.roles === "User" && (
+          <div id="petInfoAdoption" className="adoption-panel">
+            <div className="adoption-panel-item-container">
+              <h1>Considering {info?.petName} for adoption?</h1>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsOpen(true);
+                }}
+              >
+                CLICK HERE!
+              </button>
+            </div>
           </div>
-        </div>
+        )}
         <div id="petInfoDescription" className="description-panel">
           <h1>Meet {info?.petName} !</h1>
           <div>

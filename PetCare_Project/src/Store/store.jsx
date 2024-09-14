@@ -7,6 +7,7 @@ import petTypesSlice from "./petTypesSlice";
 import breedsSlice from "./breedsSlice";
 import petsSlice from "./petsSlice";
 import AdminPanelSlice from "./AdminPanelSlice";
+import adoptionRequestSlice from "./adoptionRequestSlice";
 
 const applicationStore = configureStore({
   reducer: {
@@ -16,8 +17,9 @@ const applicationStore = configureStore({
     shelters: sheltersSlice,
     petTypes: petTypesSlice,
     breeds: breedsSlice,
-    pets:petsSlice,
-    adminPanel:AdminPanelSlice
+    pets: petsSlice,
+    adminPanel: AdminPanelSlice,
+    adoptionrequests: adoptionRequestSlice,
   },
 });
 

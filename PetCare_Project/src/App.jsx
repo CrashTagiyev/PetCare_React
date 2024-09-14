@@ -16,6 +16,7 @@ import SignUpParent from "./Components/SignUp/SignUpParent";
 import ShelterInfo from "./Components/usersInformationCOmponents/ShelterInfo/ShelterInfo";
 import PetInfo from "./Components/usersInformationCOmponents/PetInfo/PetInfo";
 import AdminProfile from "./Components/AdminComponents/AdminProfile";
+import RequestHandle from "./Components/RequestHandle/RequestHandle";
 const ROLES = {
   ADMIN: "Admin",
   USER: "User",
@@ -39,6 +40,7 @@ function App() {
           />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route path="/requesthandle" element={<RequestHandle/>}></Route>
           <Route path="/vetInfo/:id" element={<Vetinfo />} />
           <Route path="/shelterInfo/:id" element={<ShelterInfo />} />
           <Route path="/petInfo/:id" element={<PetInfo />} />

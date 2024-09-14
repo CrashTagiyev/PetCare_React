@@ -1,31 +1,33 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../userProfileInfo/userProfileInfo.scss";
 import UserProfile from "../userprofiles/Userprofile";
 import Chat from "../chat/ Chat";
 import Notification from "../notification/Notification";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
-import { useState } from "react";
 import { useAuth } from "../../Hooks/useAuth";
 import VetProfile from "../userprofiles/VetProfile";
 import usePetCareAPI from "../../Hooks/usePetCareApi";
 import CompanyProfile from "../userprofiles/CompanyProfile";
-
-const tabs = ["Info",  "Inbox", "Notifications","About Us" ];
+import AdoptionRequest from "../AdoptionRequest/AdoptionRequest";
 
 const UserProfileInfo = () => {
-  
-  //States
+  // States
   const [activeTab, setActiveTab] = useLocalStorage("activeTab", "Info");
   const [lineStyle, setLineStyle] = useState({ left: 0, width: 0 });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 790);
   const [currentUserInfo, setCurrentUserInfo] = useState({});
-  
-  //Hooks
+
+  // Hooks
   const tabRefs = useRef([]);
-  const { user} = useAuth();
+  const { user } = useAuth();
   const { PetCareAPI, isSomethingChanged } = usePetCareAPI();
 
+  // Define tabs and conditionally add "Adoption Requests" for "Company" role
+  const tabs = ["Info", "Inbox", "Notifications", "About Us"];
+  if (user?.roles === "Company") {
+    tabs.push("Adoption Requests");
+  }
 
   useEffect(() => {
     const handleResize = () => setIsMobileView(window.innerWidth <= 790);
@@ -52,12 +54,8 @@ const UserProfileInfo = () => {
             break;
           case "Vet":
             await PetCareAPI.get("/vets/GetVet", {
-              params: {
-                Id: user.id,
-              },
-              headers: {
-                "Content-Type": "application/json",
-              },
+              params: { Id: user.id },
+              headers: { "Content-Type": "application/json" },
               withCredentials: true,
             }).then((response) => {
               setCurrentUserInfo(response.data);
@@ -93,7 +91,7 @@ const UserProfileInfo = () => {
                 <VetProfile currentVetsInfo={currentUserInfo} />
               )) ||
               (user.roles === "Company" && (
-                <CompanyProfile  currentCompanyInfo={currentUserInfo} />
+                <CompanyProfile currentCompanyInfo={currentUserInfo} />
               ))}
           </div>
         );
@@ -118,6 +116,10 @@ const UserProfileInfo = () => {
             </h2>
           </div>
         );
+      case "Adoption Requests":
+        return (
+          <AdoptionRequest/>
+        );
       default:
         return null;
     }
@@ -125,8 +127,6 @@ const UserProfileInfo = () => {
 
   return (
     <div className="tab-box-main-container">
-       
-    
       <div className="tab-container">
         {isMobileView ? (
           <>
