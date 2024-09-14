@@ -1,0 +1,83 @@
+@use "../../assets/basestyle/base.scss";
+
+.handle-con{
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.handle-info{
+    height: 600px;
+    width: 1000px;
+    border: 1px solid base.$footer-color-1;
+    border-radius: 10px;
+    background-color: base.$chat-color-4;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+.info-con{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+
+    .user-info-con{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    
+        img{
+            width: 230px;
+            height:230px;
+            border-radius: 10px;
+        }
+    }
+    
+    .middle-con{
+        align-self: center;
+    }
+}
+
+.btn-con{
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+
+    .accept-btn{
+        width: 150px;
+        height: 40px;
+        background-color: base.$footer-color-1;
+        color: white;
+        border-radius: 5px;
+
+        &:hover{
+            cursor: pointer;
+        }
+
+        &:active{
+            transform: scale(0.99);
+        }
+    }
+
+    .reject-btn{
+        width: 150px;
+        height: 40px;
+        background-color: white;
+        color: base.$footer-color-1;
+        border-radius: 5px;
+
+        &:hover{
+            cursor: pointer;
+        }
+
+        &:active{
+            transform: scale(0.99);
+        }
+    }
+
+    
+}
+
+ 
