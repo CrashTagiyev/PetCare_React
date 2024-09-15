@@ -52,6 +52,8 @@ export const SignUpVetRequest = async (newVetDatas) => {
     formData.append("Password", newVetDatas.password);
     formData.append("Firstname", newVetDatas.firstname);
     formData.append("Lastname", newVetDatas.lastname);
+    formData.append("PhoneNumber", newVetDatas.phoneNumber);
+    formData.append("About", newVetDatas.about);
     formData.append("DateOfBirth", newVetDatas.dateofbirth);
     formData.append("City", newVetDatas.city);
     formData.append("Address", newVetDatas.address);

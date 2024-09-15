@@ -1,20 +1,10 @@
-import { Modal, Form, Input, DatePicker, Button, Select, Upload } from "antd";
-import {
-  UserOutlined,
-  MailOutlined,
-  PhoneOutlined,
-  EnvironmentOutlined,
-  CalendarOutlined,
-  IdcardOutlined,
-} from "@ant-design/icons";
+import { Modal, Form, Input, Button, Upload } from "antd";
 import React from "react";
-import moment from "moment"; // Import moment
-import "./adminAppUserUpdateModal.scss";
-import { CitiesOptions } from "../../../../SignUp/signUpDatas/signUpDatas";
+import "./adminCompanyUpdateModal.scss";
 import { useState } from "react";
 import { useEffect } from "react";
-import { AdminUserInfoFetch } from "../../../../../AxiosFetchs/AdminsFetchs/UserControlFetchs/AdminUserReadFetch";
-import { adminUserUpdateFetch } from "../../../../../AxiosFetchs/AdminsFetchs/UserControlFetchs/AdminUserUpdateFetch";
+import { adminCompanyUpdateFetch } from "../../../../../AxiosFetchs/AdminsFetchs/CompanyControlFetchs/AdminCompanyUpdateFetch";
+import { adminCompanyReadFetch } from "../../../../../AxiosFetchs/AdminsFetchs/CompanyControlFetchs/AdminCompanyReadFetch";
 
 const AdminCompanyUpdateModal = ({
   userId,
@@ -22,18 +12,20 @@ const AdminCompanyUpdateModal = ({
   closeModal,
   setDispatchTrigger,
 }) => {
+  const [userNameValue, setUserNameValue] = useState("");
   const [form] = Form.useForm();
   const [userInfo, setUserInfo] = useState();
+
   const onFinish = async (values) => {
-    const formattedValues = {
-      ...values,
-      dateOfBirth: values.dateOfBirth
-        ? values.dateOfBirth.format("YYYY-MM-DD")
-        : null,
-    };
-    await adminUserUpdateFetch(formattedValues);
+    const response = await adminCompanyUpdateFetch(values);
     setDispatchTrigger((p) => !p);
     closeModal(false);
+  };
+
+  const handleCompanyNameChange = (e) => {
+    const companyName = e.target.value;
+    const userName = companyName.replace(/\s+/g, ""); // Remove spaces
+    setUserNameValue(userName);
   };
 
   const normFile = (e) => {
@@ -45,20 +37,17 @@ const AdminCompanyUpdateModal = ({
 
   useEffect(() => {
     const userInfoFetch = async () => {
-      const responseData = await AdminUserInfoFetch(userId);
+      const responseData = await adminCompanyReadFetch(userId);
       setUserInfo(responseData);
+      setUserNameValue(responseData?.userName);
+      console.log(responseData);
       form.setFieldsValue({
-        id: userId,
+        id: responseData.id,
         userName: responseData?.userName,
-        firstname: responseData?.firstname,
-        lastname: responseData?.lastname,
+        companyName: responseData?.companyName,
         email: responseData?.email,
+        about: responseData?.about,
         phoneNumber: responseData?.phoneNumber,
-        address: responseData?.address,
-        city: responseData?.city,
-        dateOfBirth: responseData?.dateOfBirth
-          ? moment(responseData?.dateOfBirth)
-          : null,
       });
     };
     if (userId > 0) userInfoFetch();
@@ -82,69 +71,63 @@ const AdminCompanyUpdateModal = ({
           <p className="user-update-form__username">@{userInfo?.userName}</p>
         </div>
 
-        <Form
-          form={form}
-          layout="vertical"
-          onFinish={onFinish}
-          className="user-update-form__details"
-        >
-          <Form.Item label="ID" name="id">
-            <Input prefix={<IdcardOutlined />} disabled />
-          </Form.Item>
-          <Form.Item label="Username" name="userName">
-            <Input prefix={<UserOutlined />} />
-          </Form.Item>
-          <Form.Item label="Firstname" name="firstname">
-            <Input prefix={<UserOutlined />} />
-          </Form.Item>
-          <Form.Item label="Lastname" name="lastname">
-            <Input prefix={<UserOutlined />} />
-          </Form.Item>
-          <Form.Item label="Email" name="email">
-            <Input prefix={<MailOutlined />} />
-          </Form.Item>
-          <Form.Item label="Phone" name="phoneNumber">
-            <Input prefix={<PhoneOutlined />} />
-          </Form.Item>
-          <Form.Item label="Address" name="address">
-            <Input prefix={<EnvironmentOutlined />} />
-          </Form.Item>
-          <Form.Item
-            name="city"
-            label="City"
-            rules={[{ required: true, message: "Please select your city!" }]}
-          >
-            <Select>
-              {CitiesOptions.map((city) => (
-                <Select.Option key={city.value} value={city.value}>
-                  {city.label}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-          <Form.Item label="Date of Birth" name="dateOfBirth">
-            <DatePicker prefix={<CalendarOutlined />} format="YYYY-MM-DD" />
-          </Form.Item>
-          <Form.Item
-            name="profileimage"
-            label="Profile image"
-            valuePropName="fileList"
-            getValueFromEvent={normFile}
-          >
-            <Upload beforeUpload={() => false}>
-              <Button className="img-upload-btn">Upload</Button>
-            </Upload>
-          </Form.Item>
-          <Form.Item>
-            <Button
-              className="admin-appuser-update-btn"
-              type="primary"
-              htmlType="submit"
-              block
-            >
-              Update
-            </Button>
-          </Form.Item>
+        <Form form={form} onFinish={onFinish} className="sign-up-form">
+          <div className="inputs">
+            <div className="half-part">
+              <Form.Item label="ID" name="id">
+                <Input disabled />
+              </Form.Item>
+              <Form.Item
+                name="companyName"
+                label="Company name"
+                rules={[
+                  { required: true, message: "Please input Company name!" },
+                ]}
+              >
+                <Input onChange={handleCompanyNameChange} />
+              </Form.Item>
+              <Form.Item label="Username">
+                <Input disabled type={"text"} value={userNameValue}></Input>
+              </Form.Item>
+              <Form.Item
+                name="email"
+                label="Email address"
+                rules={[
+                  {
+                    required: true,
+                    type: "email",
+                    message: "Please input a valid email!",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                name="profileImage"
+                label="Profile image"
+                valuePropName="fileList"
+                getValueFromEvent={normFile}
+              >
+                <Upload beforeUpload={() => false}>
+                  <Button className="img-upload-btn">Upload</Button>
+                </Upload>
+              </Form.Item>
+            </div>
+            <div className="half-part">
+              <Form.Item
+                name="about"
+                label="About"
+                rules={[{ required: true, message: "This place is required!" }]}
+              >
+                <Input.TextArea autoSize={{ minRows: 3, maxRows: 10 }} />
+              </Form.Item>
+              <Form.Item>
+                <Button className="signup-btn" htmlType="submit">
+                  Sign Up
+                </Button>
+              </Form.Item>
+            </div>
+          </div>
         </Form>
       </div>
     </Modal>
