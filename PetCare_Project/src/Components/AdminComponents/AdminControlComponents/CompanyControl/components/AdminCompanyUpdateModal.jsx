@@ -25,7 +25,10 @@ const AdminCompanyUpdateModal = ({
   const handleCompanyNameChange = (e) => {
     const companyName = e.target.value;
     const userName = companyName.replace(/\s+/g, ""); // Remove spaces
-    setUserNameValue(userName);
+    form.setFieldsValue({
+      userName:userName
+    })
+    // setUserNameValue(userName);
   };
 
   const normFile = (e) => {
@@ -86,7 +89,7 @@ const AdminCompanyUpdateModal = ({
               >
                 <Input onChange={handleCompanyNameChange} />
               </Form.Item>
-              <Form.Item label="Username">
+              <Form.Item name={"userName"} label="Username">
                 <Input disabled type={"text"} value={userNameValue}></Input>
               </Form.Item>
               <Form.Item
@@ -123,7 +126,7 @@ const AdminCompanyUpdateModal = ({
               </Form.Item>
               <Form.Item>
                 <Button className="signup-btn" htmlType="submit">
-                  Sign Up
+                  Save
                 </Button>
               </Form.Item>
             </div>

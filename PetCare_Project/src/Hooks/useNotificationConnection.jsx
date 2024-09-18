@@ -12,8 +12,8 @@ const useNotificationConnection = (username) => {
   const [api, contextHolder] = notification.useNotification();
   const openNotification = (notification) => {
     api.info({
-      message: `${notification.senderUserName}`,
-      description: `${notification.content}`,
+      message: `${notification?.senderUserName}`,
+      description: `${notification?.content}`,
       duration: 0,
     });
   };
@@ -34,7 +34,6 @@ const useNotificationConnection = (username) => {
       newConnection.on("SendNotification", (notification) => {
         setIsThereNewNotification(true);
         openNotification(notification);
-        
       });
 
       try {
@@ -54,13 +53,31 @@ const useNotificationConnection = (username) => {
         connectionRef.current.stop();
       }
     };
-  }, [username]); // Only run when username changes
+  }, [username]); 
+
+  const sendNotification = async (notification) => {
+    if (connectionRef.current) {
+      try {
+        await connectionRef.current.invoke("SendNotification", {
+          SenderUserName: notification?.senderUserName,
+          Content: notification?.content,
+          ReceiverUserName: notification?.receiverUserName,
+          SendedAt: notification?.sendedAt,
+        });
+      } catch (error) {
+        console.error("Sending message failed: ", error);
+      }
+    } else {
+      console.error("No connection to the server.");
+    }
+  };
 
   return {
     notifications,
     isThereNewNotification,
     setIsThereNewNotification,
     contextHolder,
+    sendNotification
   };
 };
 

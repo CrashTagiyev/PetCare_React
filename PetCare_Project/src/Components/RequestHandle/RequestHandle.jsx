@@ -1,13 +1,16 @@
 // RequestHandle.js
 import React from "react";
 import { useSelector } from "react-redux";
+import { adoptionRequestHandler } from "../../AxiosFetchs/AdoptionsFetchs/adoptionHandlerFetch";
+import { useAuth } from "../../Hooks/useAuth";
+import useNotificationConnection from "../../Hooks/useNotificationConnection";
 import "../RequestHandle/requesthandle.scss";
 
 const RequestHandle = () => {
   const selectedRequest = useSelector(
     (state) => state.adoptionrequests.selectedRequest
-  );
-
+    );
+  
   if (!selectedRequest || !selectedRequest.user) {
     return (
       <div className="handle-con">
@@ -15,7 +18,9 @@ const RequestHandle = () => {
       </div>
     );
   }
-
+  const {user}= useAuth();
+  
+  const {sendNotification} = useNotificationConnection(selectedRequest.user.userName);
   return (
     <div className="handle-con">
       <div className="handle-info">
@@ -50,9 +55,18 @@ const RequestHandle = () => {
             {console.log(selectedRequest.pet)}
           </div>
         </div>
-        <div className="btn-con">
+       <div className="btn-con">
             <div>
-                <button className="accept-btn">Accept</button>
+                <button onClick={(e)=>{
+                  sendNotification({
+                    senderUserName: user?.username,
+                    content: `Your request is accepted,Please visit our shelter.\nCity/Address:${selectedRequest.pet.shelter.city},${selectedRequest.pet.shelter.address}`,
+                    receiverUserName: selectedRequest.user.userName,
+                    sendedAt:new Date().toISOString(),
+                  })
+                  adoptionRequestHandler(selectedRequest.id,true)
+                  console.log("request",selectedRequest)
+                }} className="accept-btn">Accept</button>
             </div>
             <div>
                 <button className="reject-btn">Reject</button>

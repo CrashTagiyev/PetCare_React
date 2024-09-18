@@ -4,16 +4,17 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
         {
             "name": "Attach to Chrome",
-            "port": 5174,
+            "port": 5173,
             "request": "attach",
             "type": "chrome",
             "webRoot": "${C:\\Users\\Crash\\Desktop\\PetCareClone\\PetCare_React\\petcare_project}"
         },
         {
             "name": "Attach to Chrome",
-            "port": 5174,
+            "port": 5173,
             "request": "attach",
             "type": "chrome",
             "webRoot": "${C:\\Users\\Crash\\Desktop\\PetCareClone\\PetCare_React\\petcare_project}"
@@ -22,7 +23,7 @@
             "name": "Launch Chrome",
             "request": "launch",
             "type": "chrome",
-            "url": "http://localhost:5174",
+            "url": "http://localhost:5173",
             "webRoot": "${C:\\Users\\Crash\\Desktop\\PetCareClone\\PetCare_React\\petcare_project}"
         },
         {
@@ -36,7 +37,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost:5174",
+            "url": "http://localhost:5173",
             "webRoot": "${C:\\Users\\Crash\\Desktop\\PetCareClone\\PetCare_React}"
         }
     ]

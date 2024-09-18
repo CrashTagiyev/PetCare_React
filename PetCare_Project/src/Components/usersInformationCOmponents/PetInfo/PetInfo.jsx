@@ -106,7 +106,7 @@ const PetInfo = () => {
             <p>{info?.weight}</p>
           </div>
         </div>
-        {user.roles === "User" && (
+        {user?.roles === "User" && (
           <div id="petInfoAdoption" className="adoption-panel">
             <div className="adoption-panel-item-container">
               <h1>Considering {info?.petName} for adoption?</h1>
