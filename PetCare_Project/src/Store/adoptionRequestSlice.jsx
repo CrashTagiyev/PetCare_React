@@ -10,9 +10,15 @@ const AdoptionRequestsSlice = createSlice({
     selectedRequest: null, // State to store the selected request
   },
   reducers: {
-    // Action to set the selected request
     setSelectedRequest: (state, action) => {
       state.selectedRequest = action.payload;
+    },
+    updateRequestStatus: (state, action) => {
+      const { id, status } = action.payload;
+      const request = state.requestsArray.find(req => req.id === id);
+      if (request) {
+        request.isAccepted = status;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -32,7 +38,6 @@ const AdoptionRequestsSlice = createSlice({
   },
 });
 
-// Export the action to set the selected request
-export const { setSelectedRequest } = AdoptionRequestsSlice.actions;
+export const { setSelectedRequest, updateRequestStatus } = AdoptionRequestsSlice.actions;
 
 export default AdoptionRequestsSlice.reducer;
