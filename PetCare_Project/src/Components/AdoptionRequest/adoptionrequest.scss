@@ -1,41 +1,94 @@
 @use "../../assets/basestyle/base.scss";
 
-ul,li{
-    list-style: none;
+ul,
+li {
+  list-style: none;
 }
 
-.ad-req-div{
+.ad-req-div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid base.$footer-color-1;
+  border-radius: 10px;
+  min-height: 500px;
+  padding: 20px;
+  background-color: base.$chat-color-4;
+}
+
+.req-btn {
+  width: 100%;
+  height: 45px;
+  background-color: base.$chat-color-3;
+  border-radius: 10px;
+  color: #3c3d37;
+  text-align: left;
+  padding-left: 10px;
+  font-size: 18px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+}
+
+.req-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.accept-color {
+  background-color: base.$accept;
+  color: white;
+}
+
+.pending-color {
+  background-color: base.$pending;
+}
+
+.reject-color {
+  background-color: base.$reject;
+  color: whitesmoke;
+}
+
+@mixin ellipse($color) {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: $color;
+  }
+  
+  // Usage
+  .accept-ellipse {
+    @include ellipse(base.$accept);
+  }
+  
+  .reject-ellipse {
+    @include ellipse(base.$reject);
+  }
+  
+  .pending-ellipse {
+    @include ellipse(base.$pending);
+  }
+
+.accept-cont{
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    border: 1px solid base.$footer-color-1;
-    border-radius: 10px;
-    min-height: 500px;
-    padding: 20px;
-    background-color: base.$chat-color-4;
-}
-
-.req-btn{
-    width: 100%;
-    height: 45px;
-    background-color: base.$chat-color-3;
-    border-radius: 10px;
-    color: #3C3D37;
-    text-align: left;
-    padding-left: 10px;
-    font-size: 18px;
-
-    &:hover{
-        cursor: pointer;
-    }
-
-    &:active{
-        transform: scale(0.99);
-    }
-}
-
-.req-list{
-    display: flex;
-    flex-direction: column;
     gap: 10px;
 }
+
+.adopt-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.status-cont{
+    display: flex;
+    margin-right: 50px;
+    align-self: center;
+    gap: 20px;
+}
+
