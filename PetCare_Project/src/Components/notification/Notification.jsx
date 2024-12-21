@@ -14,24 +14,6 @@ const Notification = () => {
     setSelectedNotification(notification);
   };
 
-  // const notifications = [
-  //   {
-  //     senderName: "John Doe",
-  //     content: "You have a new message!",
-  //   },
-  //   {
-  //     senderName: "Jane Smith",
-  //     content: "Your report has been submitted.",
-  //   },
-  //   {
-  //     senderName: "Mike Johnson",
-  //     content: "Don't forget the meeting at 3 PM.",
-  //   },
-  //   {
-  //     senderName: "Emma Wilson",
-  //     content: "Your password has been changed successfully.",
-  //   },
-  // ];
 
   return (
     <div className="notification-cont">

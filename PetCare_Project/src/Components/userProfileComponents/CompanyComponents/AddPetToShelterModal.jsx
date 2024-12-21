@@ -42,7 +42,6 @@ const AddPetToShelterModal = ({ isModalOpen, closeModal, shelterId }) => {
           headers: { "Content-Type": "multipart/form-data" },
           withCredentials: true,
         }).then((response) => {
-          console.log(response);
           if(response.status === 200) {
             setSuccessMessage("Pet successfully added to the shelter");
             form.resetFields(); 
@@ -150,7 +149,6 @@ const AddPetToShelterModal = ({ isModalOpen, closeModal, shelterId }) => {
                 rules={[{ required: true, message: "Please select the pet type" }]}
               >
                 <Select  onSelect={(value)=>{
-                  console.log(value);
                   setCurrentPetTypeId(prev=>prev=value)
                   form.setFieldsValue({ BreedId: undefined });
                 }}>

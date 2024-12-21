@@ -1,6 +1,4 @@
-export const GetUsersTableDatas = async () => {};
-
-export const COMPANY_TABLE_COLUMNS = [
+export const SHELTER_TABLE_COLUMNS = [
   {
     key: 1,
     title: "ID",
@@ -8,22 +6,26 @@ export const COMPANY_TABLE_COLUMNS = [
   },
   {
     key: 2,
-    title: "Company name",
-    dataIndex: "companyName",
+    title: "Shelter name",
+    dataIndex: "shelterName",
   },
   {
     key: 3,
-    title: "Email",
-    dataIndex: "email",
+    title: "City",
+    dataIndex: "city",
   },
   {
     key: 4,
     title: "Phone number",
     dataIndex: "phonenumber",
   },
-
   {
     key: 5,
+    title: "Email address",
+    dataIndex: "emailAddress",
+  },
+  {
+    key: 6,
     title: "Actions",
     dataIndex: "actions",
   },

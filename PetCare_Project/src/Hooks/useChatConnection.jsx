@@ -16,7 +16,6 @@ const useChatConnection = (username, chatName) => {
         })
         .withAutomaticReconnect()
         .build();
-        console.log(newConnection);
         
       newConnection.on("GetConnectedChatsMessages", (messages) => {
         setMessages(messages);
@@ -42,7 +41,6 @@ const useChatConnection = (username, chatName) => {
     return () => {
       if (connectionRef.current) {
         connectionRef.current.stop()
-          .then(() => console.log('Disconnected from SignalR hub'))
           .catch(err => console.error('Disconnection failed: ', err));
       }
     };
@@ -68,7 +66,6 @@ const useChatConnection = (username, chatName) => {
       try {
         await connectionRef.current.stop();
         setIsConnected(false);
-        console.log('Disconnected from SignalR hub');
       } catch (error) {
         console.error('Disconnection failed: ', error);
       }

@@ -69,8 +69,7 @@ const Footer = () => {
         </div>
         <div className="rights">
           <p>
-            All trademarks are owned by Société des Produits Nestlé S.A., or
-            used with permission.
+            Developed by Emil Tagiyev and Elgun Haqqverdiyev
           </p>
         </div>
       </div>

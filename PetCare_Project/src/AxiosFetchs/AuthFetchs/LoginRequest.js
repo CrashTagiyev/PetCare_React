@@ -3,8 +3,6 @@ import { jwtDecode } from "jwt-decode";
 
 export const LoginRequest = async (emailAdress, password) => {
   try {
-    console.log(emailAdress);
-    console.log(password);
     const response = await PetCareAPI.post(
       "/Account/LogIn",
       {
@@ -25,8 +23,6 @@ export const LoginRequest = async (emailAdress, password) => {
       const profileImage = decodedToken.profileimageurl;
       const id = decodedToken.id;
       localStorage.setItem("accessToken", accessToken);
-      console.log(message);
-      console.log(statusCode);
       const user = {
         username,
         emailAddress,
@@ -36,10 +32,7 @@ export const LoginRequest = async (emailAdress, password) => {
         accessToken
       };
       return user;
-    } else {
-      console.log(message);
-      console.log(statusCode);
-    }
+    } 
   } catch (error) {
     if (error.response && error.response.data) {
       console.log(error.response.data);

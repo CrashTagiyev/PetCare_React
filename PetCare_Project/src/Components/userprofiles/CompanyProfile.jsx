@@ -17,7 +17,6 @@ const CompanyProfile = ({  currentCompanyInfo }) => {
   const companyAdoptionsFetch = async()=>{
 
     const companyAdoptions = await fetchCompanyAdoptions(user.id)
-    console.log("cOMPANY ADOPTIONS:",companyAdoptions)
   }
 
   companyAdoptionsFetch();

@@ -19,13 +19,11 @@ const CompanySheltersList = () => {
   useEffect(() => {
     const fetchShelters = async () => {
       try {
-        console.log(user.id);
         const response = await PetCareAPI.get(`/company/GetCompanyShelters`, {
           params: { companyId: user.id },
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         });
-        console.log(response.data);
         setShelters(response.data);
       } catch (error) {
         if (error.response && error.response.status === 429) {

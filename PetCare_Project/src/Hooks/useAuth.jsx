@@ -12,9 +12,11 @@ export const AuthProvider = ({ children }) => {
     setUser(data);
     navigate("/", { replace: true });
   };
+  
   const loginWithoutNavigation = async (data) => {
     setUser(data);
   };
+
   const logout = () => {
     setUser(null);
     localStorage.clear();

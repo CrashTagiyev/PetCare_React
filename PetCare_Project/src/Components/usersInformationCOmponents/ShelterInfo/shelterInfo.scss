@@ -8,7 +8,7 @@ $border-radius-circle: 50%;
 $profile-size: 300px;
 $profile-border-width: 2px;
 $profile-margin: 30px;
-$gap-large: 90px;
+$gap-large: 30px;
 $gap-small: 5px;
 $font-size-large: 20px;
 
@@ -32,7 +32,7 @@ $font-size-large: 20px;
   background-color: base.$footer-color-3;
   display: flex;
   justify-content: space-evenly;
-
+  gap: 30px;
   .shelter-profile {
     margin: $profile-margin;
     margin-top: 140px;
@@ -59,7 +59,6 @@ $font-size-large: 20px;
       display: flex;
       flex-direction: column;
       gap: $gap-small;
-
       .shelter-label {
         font-size: $font-size-large;
         color: $shelter-label-color;

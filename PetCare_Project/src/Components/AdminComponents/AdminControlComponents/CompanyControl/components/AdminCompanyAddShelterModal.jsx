@@ -1,11 +1,11 @@
 import { Form, Input, Modal, Upload, Button, Select } from "antd";
 import React from "react";
-import { useAuth } from "../../../Hooks/useAuth";
-import "../CompanyComponents/createShelterModal.scss";
-import { CitiesOptions } from "../../SignUp/signUpDatas/signUpDatas";
-import usePetCareAPI from "../../../Hooks/usePetCareApi";
+import { useAuth } from "../../../../../Hooks/useAuth";
+import { CitiesOptions } from "../../../../SignUp/signUpDatas/signUpDatas";
+import usePetCareAPI from "../../../../../Hooks/usePetCareApi";
 import { useState } from "react";
-const CreateShelterModal = ({ isModalOpen, closeModal }) => {
+
+const AdminCompanyAddShelterModal = ({companyId, isModalOpen, closeModal }) => {
   const [form] = Form.useForm();
   const { user } = useAuth();
   const { PetCareAPI } = usePetCareAPI();
@@ -20,15 +20,12 @@ const CreateShelterModal = ({ isModalOpen, closeModal }) => {
   const onFinish = async (values) => {
     try {
       const formDatas = new FormData();
-      formDatas.append("CompanyId", user.id);
+      formDatas.append("CompanyId",companyId);
       formDatas.append("ShelterName", values.sheltername);
       formDatas.append("AdoptionPolicy", values.adoptionpolicy);
       formDatas.append("AboutShelter", values.aboutshelter);
       formDatas.append("City", values.city);
       formDatas.append("Address", values.address);
-      formDatas.append("PhoneNumber", values.phoneNumber);
-      formDatas.append("EmailAddress", values.emailAddress);
-
       // Check if there's a file in the shelterImage field
       if (values.shelterimage && values.shelterimage[0]) {
         formDatas.append("ShelterImage", values.shelterimage[0].originFileObj);
@@ -43,7 +40,6 @@ const CreateShelterModal = ({ isModalOpen, closeModal }) => {
         form.resetFields();
       });
     } catch (error) {
-      console.log(error.response);
       if (error.response && error.response.data.errors) {
         form.setFields(
           Object.keys(error.response.data.errors).map((field) => ({
@@ -114,28 +110,6 @@ const CreateShelterModal = ({ isModalOpen, closeModal }) => {
               <Input />
             </Form.Item>
           </div>
-            <div style={{display:`flex`,flexDirection:`row`,gap:`25px`}}>
-            <Form.Item
-            style={{width:`200px`}}
-              name="phoneNumber"
-              label="Phone number"
-              rules={[
-                { required: true, message: "Please input shelters phone number!" },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-            style={{width:`200px`}}
-              name="emailAddress"
-              label="Email address"
-              rules={[
-                { required: true, message: "Please input shelters email address!" },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-            </div>
           <Form.Item
             name="shelterimage"
             label="Shelter image"
@@ -163,4 +137,4 @@ const CreateShelterModal = ({ isModalOpen, closeModal }) => {
   );
 };
 
-export default CreateShelterModal;
+export default AdminCompanyAddShelterModal;

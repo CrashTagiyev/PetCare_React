@@ -9,6 +9,7 @@ import { AdminCompaniesFetch } from "../../../../../AxiosFetchs/AdminsFetchs/Com
 import { COMPANY_TABLE_COLUMNS } from "./companiesTableDatas";
 import AdminCompanyInfoModal from "../components/AdminCompanyInfoModal";
 import AdminCompanyUpdateModal from "../components/AdminCompanyUpdateModal";
+import AdminCompanyAddShelterModal from "../components/AdminCompanyAddShelterModal";
 
 const CompaniesTable = () => {
   //STates
@@ -31,15 +32,16 @@ const CompaniesTable = () => {
   const [isCompanyInfoModalOpen, setIsCompanyInfoModalOpen] = useState(false);
   const [isCompanyUpdateModalOpen, setIsCompanyUpdateModalOpen] =
     useState(false);
+  const [isAddShelterModalOpen, setIsAddShelterModalOpen] = useState(false);
   const [currentCompanyInfo, setCurrentCompanyInfo] = useState({});
   const [currentCompanyUpdate, setCurrentCompanyUpdate] = useState({});
+  const [currentCompanyAddShelter, setCurrentCompanyAddShelter] = useState({});
   const [dispatchTrigger, setDispatchTrigger] = useState(false);
 
   useEffect(() => {
     dispatch(
       AdminCompaniesFetch({ pageNumber: currentPage, pageSize: pageSize })
     );
- 
   }, [dispatch, currentPage, pageSize, adminDeleteUser, dispatchTrigger]);
 
   useEffect(() => {
@@ -77,8 +79,21 @@ const CompaniesTable = () => {
           >
             Update
           </Button>,
-          <Popconfirm
+          <Button
+            className="user-table-btn"
             key={3}
+            onClick={(e) => {
+              e.preventDefault();
+              setCurrentCompanyAddShelter(company);
+              setIsAddShelterModalOpen(p=> !p)
+            }}
+            style={{ marginLeft: `5px` }}
+            type="primary"
+          >
+            AddShelter
+          </Button>,
+          <Popconfirm
+            key={4}
             title={`Delete the ${company?.userName}`}
             description="Are you sure to delete this user?"
             onConfirm={async (e) => {
@@ -127,6 +142,11 @@ const CompaniesTable = () => {
         isModalOpen={isCompanyUpdateModalOpen}
         closeModal={setIsCompanyUpdateModalOpen}
         setDispatchTrigger={setDispatchTrigger}
+      />
+      <AdminCompanyAddShelterModal
+        companyId={currentCompanyAddShelter.id}
+        isModalOpen={isAddShelterModalOpen}
+        closeModal={setIsAddShelterModalOpen}
       />
       <Table
         columns={COMPANY_TABLE_COLUMNS}

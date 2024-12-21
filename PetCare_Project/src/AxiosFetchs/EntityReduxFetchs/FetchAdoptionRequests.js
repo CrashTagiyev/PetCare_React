@@ -16,7 +16,6 @@ export const FetchAdoptionRequests = createAsyncThunk(
         },
         withCredentials: true,
       });
-      console.log(response.data)
       return response.data; // Make sure the response structure matches your state expectations
     } catch (error) {
       console.error(`Error occurred: ${error}`);

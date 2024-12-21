@@ -11,9 +11,9 @@ const SearchSection = ({ setDisplay, setFilterOptions }) => {
   return (
     <section className="search-section">
       <form className="search-form">
-        <input
+        {/* <input
           className="form-input1"
-          placeholder="Search Terrier, Kitten,etc."
+          placeholder="Search Terrier, Kitten,etc."+
           type="text"
         />
         <input
@@ -21,7 +21,7 @@ const SearchSection = ({ setDisplay, setFilterOptions }) => {
           placeholder="Enter City,Country"
           type="text"
         />
-        <button className="search-submit-button" type="submit"></button>
+        <button className="search-submit-button" type="submit"></button> */}
       </form>
       <h1 className="search-section-Text">Find your new best friend</h1>
       <div className="search-button-container">

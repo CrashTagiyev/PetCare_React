@@ -18,13 +18,11 @@ export const CreateChatConnection = async (username, chatName) => {
     return messages;
   });
   try {
-    console.log(username,chatName)
     await connection.start();
     await connection.invoke("CreateChatConnection", { username, chatName });
   } catch (error) {
     console.error("Connection failed: ", error);
   }
-  console.log(messages);
   return {
     connection: connection,
     messages: messages,

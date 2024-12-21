@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import SheltersTable from "./SheltersTable";
 
 const ShelterControl = () => {
   return (
-    <div>ShelterControl</div>
-  )
-}
+    <div>
+      <SheltersTable />
+    </div>
+  );
+};
 
-export default ShelterControl
+export default ShelterControl;

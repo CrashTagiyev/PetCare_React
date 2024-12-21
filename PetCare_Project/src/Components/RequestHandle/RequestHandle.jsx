@@ -52,7 +52,6 @@ const RequestHandle = () => {
             <div>Description: {selectedRequest.pet.description}</div>
             <div>Health: {selectedRequest.pet.health}</div>
             <div>Size: {selectedRequest.pet.size}</div>
-            {console.log(selectedRequest.pet)}
           </div>
         </div>
        <div className="btn-con">
@@ -65,7 +64,6 @@ const RequestHandle = () => {
                     sendedAt:new Date().toISOString(),
                   })
                   adoptionRequestHandler(selectedRequest.id,true)
-                  console.log("request",selectedRequest)
                 }} className="accept-btn">Accept</button>
             </div>
             <div>

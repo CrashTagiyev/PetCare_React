@@ -24,7 +24,6 @@ const SignUpCompany = () => {
   const onFinish = async (values) => {
     try {
       values.username = userNameValue;
-      console.log(values);
 
       const response = await SignUpCompanyRequest(values);
       if (response.statusCode !== 200 && response.errors) {

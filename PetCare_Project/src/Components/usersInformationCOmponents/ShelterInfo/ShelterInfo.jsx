@@ -22,10 +22,10 @@ const ShelterInfo = () => {
         <img src={info.shelterImageUrl}></img>
       </div>
       <div className="shelter-info">
-        <div>
+        <div >
           <MapComponent
-            height="300px"
-            width="400px"
+            height="200px"
+            width="300px"
             city={info.city}
             address={info.address}
           />
@@ -70,6 +70,22 @@ const ShelterInfo = () => {
           </div>
           <div>
             <p className="shelter-act-info">{info.aboutShelter}</p>
+          </div>
+        </div>
+        <div className="shelter-single-info">
+          <div>
+            <p className="shelter-label">Phone number:</p>
+          </div>
+          <div>
+            <p className="shelter-act-info">{info.phoneNumber}</p>
+          </div>
+        </div>
+        <div className="shelter-single-info">
+          <div>
+            <p className="shelter-label">Email address</p>
+          </div>
+          <div>
+            <p className="shelter-act-info">{info.emailAddress}</p>
           </div>
         </div>
       </div>

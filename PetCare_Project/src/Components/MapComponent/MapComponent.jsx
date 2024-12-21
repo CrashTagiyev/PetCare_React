@@ -29,7 +29,6 @@ const MapComponent = ({
         }
 
         const data = await response.json();
-        console.log("Geocoding Data:", data);
 
         if (data.length > 0) {
           const { lat, lon } = data[0];

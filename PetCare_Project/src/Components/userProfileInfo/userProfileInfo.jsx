@@ -68,7 +68,6 @@ const UserProfileInfo = () => {
               withCredentials: true,
             }).then((response) => {
               setCurrentUserInfo(response.data);
-              console.log(response.data);
             });
             break;
           default:

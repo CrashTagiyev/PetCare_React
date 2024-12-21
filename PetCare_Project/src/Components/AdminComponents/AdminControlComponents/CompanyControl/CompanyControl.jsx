@@ -8,6 +8,7 @@ import CompaniesTable from "./tables/CompaniesTable";
 const CompanyControl = () => {
   const [isCreateCompanyModalOpen, setIsCreateCompanyModalOpen] =
     useState(false);
+ 
   return (
     <div>
       <div>
@@ -26,6 +27,7 @@ const CompanyControl = () => {
         closeModal={setIsCreateCompanyModalOpen}
         isModalOpen={isCreateCompanyModalOpen}
       />
+    
       <CompaniesTable />
     </div>
   );

@@ -24,7 +24,6 @@ const AdminCompanyCreateModal = ({closeModal,isModalOpen}) => {
     const onFinish = async (values) => {
       try {
         values.username = userNameValue;
-        console.log(values);
   
         const response = await adminCompanyCreatFetch(values);
         if (response.statusCode !== 200 && response.errors) {

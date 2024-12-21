@@ -1,12 +1,12 @@
 import { Modal, Form, Input, Button, Upload } from "antd";
 import React from "react";
-import "./adminCompanyUpdateModal.scss";
+import "./adminShelterUpdateModal.scss";
 import { useState } from "react";
 import { useEffect } from "react";
-import { adminCompanyUpdateFetch } from "../../../../../AxiosFetchs/AdminsFetchs/CompanyControlFetchs/AdminCompanyUpdateFetch";
-import { adminCompanyReadFetch } from "../../../../../AxiosFetchs/AdminsFetchs/CompanyControlFetchs/AdminCompanyReadFetch";
-
-const AdminCompanyUpdateModal = ({
+import { adminShelterUpdateFetch } from "../../../../../AxiosFetchs/AdminsFetchs/ShelterControlFetchs/AdminShelterUpdateFetch";
+import { adminShelterReadFetch } from "../../../../../AxiosFetchs/AdminsFetchs/ShelterControlFetchs/AdminShelterReadFetch";
+    
+const AdminShelterUpdateModal = ({
   userId,
   isModalOpen,
   closeModal,
@@ -17,17 +17,18 @@ const AdminCompanyUpdateModal = ({
   const [userInfo, setUserInfo] = useState();
 
   const onFinish = async (values) => {
-    const response = await adminCompanyUpdateFetch(values);
+    const response = await adminShelterUpdateFetch(values);
     setDispatchTrigger((p) => !p);
     closeModal(false);
   };
 
-  const handleCompanyNameChange = (e) => {
-    const companyName = e.target.value;
-    const userName = companyName.replace(/\s+/g, ""); // Remove spaces
+  const handleShelterNameChange = (e) => {
+    const ShelterName = e.target.value;
+    const userName = ShelterName.replace(/\s+/g, ""); // Remove spaces
     form.setFieldsValue({
       userName:userName
     })
+    // setUserNameValue(userName);
   };
 
   const normFile = (e) => {
@@ -39,13 +40,13 @@ const AdminCompanyUpdateModal = ({
 
   useEffect(() => {
     const userInfoFetch = async () => {
-      const responseData = await adminCompanyReadFetch(userId);
+      const responseData = await adminShelterReadFetch(userId);
       setUserInfo(responseData);
       setUserNameValue(responseData?.userName);
       form.setFieldsValue({
         id: responseData.id,
         userName: responseData?.userName,
-        companyName: responseData?.companyName,
+        ShelterName: responseData?.ShelterName,
         email: responseData?.email,
         about: responseData?.about,
         phoneNumber: responseData?.phoneNumber,
@@ -79,13 +80,13 @@ const AdminCompanyUpdateModal = ({
                 <Input disabled />
               </Form.Item>
               <Form.Item
-                name="companyName"
-                label="Company name"
+                name="ShelterName"
+                label="Shelter name"
                 rules={[
-                  { required: true, message: "Please input Company name!" },
+                  { required: true, message: "Please input Shelter name!" },
                 ]}
               >
-                <Input onChange={handleCompanyNameChange} />
+                <Input onChange={handleShelterNameChange} />
               </Form.Item>
               <Form.Item name={"userName"} label="Username">
                 <Input disabled type={"text"} value={userNameValue}></Input>
@@ -135,4 +136,4 @@ const AdminCompanyUpdateModal = ({
   );
 };
 
-export default AdminCompanyUpdateModal;
+export default AdminShelterUpdateModal;

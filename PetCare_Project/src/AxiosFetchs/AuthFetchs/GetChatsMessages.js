@@ -7,6 +7,5 @@ export const GetCHatsMessages = async (username,chatName) => {
     withCredentials: true,
   });
   var messages = response.data.messages;
-  console.log(messages)
   return messages;
 };

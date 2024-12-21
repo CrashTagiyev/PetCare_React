@@ -16,8 +16,6 @@ const AdoptionModal = ({ isModalOpen, closeModal, petInfo }) => {
   const onFinish = async (values) => {
     try {
       const formDatas = new FormData();
-      console.log(values);
-      console.log(petInfo.id);
       formDatas.append("PetId", petInfo.id);
       formDatas.append("UserId", user.id);
       formDatas.append("About", values.about);
@@ -27,7 +25,6 @@ const AdoptionModal = ({ isModalOpen, closeModal, petInfo }) => {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true,
       }).then((response) => {
-        console.log(response);
         if (response.status === 200)
           setSuccessMessage("Adoption request successfully sent !");
         setErrorMessage(null);

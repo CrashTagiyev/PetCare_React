@@ -26,9 +26,7 @@ export const SignUpUserRequest = async (newUserDatas) => {
     });
 
     
-    console.log(response.status);
-    console.log(response.statusText);
-    console.log(response.data);
+
     return response.data;
   } catch (error) {
     if (error.response && error.response.data) {
@@ -69,9 +67,7 @@ export const SignUpVetRequest = async (newVetDatas) => {
     });
 
     
-    console.log(response.status);
-    console.log(response.statusText);
-    console.log(response.data);
+
     return response.data;
   } catch (error) {
     if (error.response && error.response.data) {
@@ -106,9 +102,7 @@ export const SignUpCompanyRequest = async (newUserDatas) => {
     });
 
     
-    console.log(response.status);
-    console.log(response.statusText);
-    console.log(response.data);
+
     return response.data;
   } catch (error) {
     if (error.response && error.response.data) {

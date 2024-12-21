@@ -1,17 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AdminCompaniesFetch } from "../AxiosFetchs/AdminsFetchs/CompanyControlFetchs/AdminCompaniesFetch";
+import { adminSheltersFetch } from "../AxiosFetchs/AdminsFetchs/ShelterControlFetchs/AdminGetSheltersFetch";
 import { AdminUsersFetch } from "../AxiosFetchs/AdminsFetchs/UserControlFetchs/AdminUsersFetch";
 import { AdminVetsFetch } from "../AxiosFetchs/AdminsFetchs/VetsControlFetchs/AdminVetsFetch";
 
 const AdminsPanelSlice = createSlice({
   name: "adminsPanel",
   initialState: {
+
     usersArray: [],
     vetsArray: [],
     companiesArray: [],
+    sheltersArray:[],
+    petsArray:[],
+
     totalUsers: 0,
     totalVets: 0,
     totalCompanies: 0,
+    totalShelters:0,
+    totalPets:0,
+
     isLoading: false,
     error: null,
   },
@@ -51,6 +59,18 @@ const AdminsPanelSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(AdminVetsFetch.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = true;
+    });
+    builder.addCase(adminSheltersFetch.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(adminSheltersFetch.fulfilled, (state, action) => {
+      state.sheltersArray = action.payload.sheltersList;
+      state.totalShelters = action.payload.totalShelters;
+      state.isLoading = false;
+    });
+    builder.addCase(adminSheltersFetch.rejected, (state, action) => {
       state.isLoading = false;
       state.error = true;
     });

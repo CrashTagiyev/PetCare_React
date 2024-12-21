@@ -16,7 +16,6 @@ const AdminCreateUser = ({closeModal,isModalOpen}) => {
 
   const onFinish = async (values) => {
     try {
-      console.log(values);
       const response = await AdminUserCreateFetch(values);
       if (response.statusCode !== 200 && response.errors) {
         form.setFields(

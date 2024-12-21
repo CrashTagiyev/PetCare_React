@@ -17,7 +17,6 @@ const SignUpUser = () => {
 
   const onFinish = async (values) => {
     try {
-      console.log(values);
       const response = await SignUpUserRequest(values);
       if (response.statusCode !== 200 && response.errors) {
         form.setFields(

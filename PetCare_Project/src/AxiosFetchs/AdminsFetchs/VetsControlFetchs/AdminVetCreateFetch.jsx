@@ -31,9 +31,6 @@ export const adminVetCreateFetch = async (newVetDatas) => {
       });
   
       
-      console.log(response.status);
-      console.log(response.statusText);
-      console.log(response.data);
       return response.data;
     } catch (error) {
       if (error.response && error.response.data) {

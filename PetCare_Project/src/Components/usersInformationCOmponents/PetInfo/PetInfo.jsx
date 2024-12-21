@@ -1,7 +1,7 @@
 import { Anchor, Carousel, Image } from "antd";
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { FetchPet } from "../../../AxiosFetchs/EntityReduxFetchs/FetchPet";
 import "../PetInfo/petInfo.scss";
 import Loading from "../../loading/Loading";
@@ -33,7 +33,6 @@ const anchorItems = [
 ];
 
 const PetInfo = () => {
-  const navigate = useNavigate();
   const [info, setInfo] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();

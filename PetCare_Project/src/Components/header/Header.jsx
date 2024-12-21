@@ -2,7 +2,6 @@ import React from "react";
 import "../header/header.scss";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Hooks/useAuth";
-import user_image from "../../assets/Icons/ user.jpg";
 import bell_image from "../../assets/Icons/bell.png";
 import default_UserImg from "../../assets/Icons/defaultUserImg.png";
 import { Button } from "antd";
